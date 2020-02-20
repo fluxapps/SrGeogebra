@@ -114,6 +114,7 @@ return array(
     'srag\\Plugins\\SrGeogebra\\Config\\Factory' => $baseDir . '/src/Config/Factory.php',
     'srag\\Plugins\\SrGeogebra\\Config\\Repository' => $baseDir . '/src/Config/Repository.php',
     'srag\\Plugins\\SrGeogebra\\Repository' => $baseDir . '/src/Repository.php',
+    'srag\\Plugins\\SrGeogebra\\Tables\\GeogebraFormGUI' => $baseDir . '/src/Tables/GeogebraFormGUI.php',
     'srag\\Plugins\\SrGeogebra\\Utils\\SrGeogebraTrait' => $baseDir . '/src/Utils/SrGeogebraTrait.php',
     'srag\\RemovePluginDataConfirm\\SrGeogebra\\BasePluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/BasePluginUninstallTrait.php',
     'srag\\RemovePluginDataConfirm\\SrGeogebra\\PluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/PluginUninstallTrait.php',

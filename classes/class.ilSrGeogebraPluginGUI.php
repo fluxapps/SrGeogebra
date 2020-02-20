@@ -1,5 +1,6 @@
 <?php
 
+use srag\Plugins\SrGeogebra\Tables\GeogebraFormGUI;
 use srag\Plugins\SrGeogebra\Utils\SrGeogebraTrait;
 use srag\DIC\SrGeogebra\DICTrait;
 
@@ -67,10 +68,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      */
     protected function getForm() : ilPropertyFormGUI
     {
-        $form = new ilPropertyFormGUI();
-
-        // TODO: Implement getForm
-        // TODO: Use seperate class
+        $form = new GeogebraFormGUI($this);
 
         return $form;
     }

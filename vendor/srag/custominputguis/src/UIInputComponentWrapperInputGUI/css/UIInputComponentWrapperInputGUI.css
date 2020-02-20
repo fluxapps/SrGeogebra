@@ -1,1 +1,10 @@
-.UIInputComponentWrapperInputGUI .help-block,.UIInputComponentWrapperInputGUI label{display:none}.UIInputComponentWrapperInputGUI .col-sm-9,.UIInputComponentWrapperInputGUI .form-group{margin:0!important;padding:0!important}
+.UIInputComponentWrapperInputGUI label,
+.UIInputComponentWrapperInputGUI .help-block {
+  display: none;
+}
+.UIInputComponentWrapperInputGUI .form-group,
+.UIInputComponentWrapperInputGUI .col-sm-9 {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/*# sourceMappingURL=UIInputComponentWrapperInputGUI.css.map */

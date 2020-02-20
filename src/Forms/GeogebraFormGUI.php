@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\SrGeogebra\Tables;
+namespace srag\Plugins\SrGeogebra\Forms;
 
 use ilFileInputGUI;
 use ilLanguage;
@@ -57,18 +57,16 @@ class GeogebraFormGUI extends ilPropertyFormGUI
         $file->setSuffixes(array('ggb'));
         $this->addItem($file);
 
-        /*
         if (empty($this->properties)) {
-            $this->setTitle($this->pl->txt('form_create_marzipano'));
+            $this->setTitle($this->pl->txt('form_title_create'));
             $file->setRequired(true);
-            $this->addCommandButton(ilMarzipanoPageComponentPluginGUI::CMD_CREATE, $this->lng->txt('create'));
+            $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_CREATE, $this->lng->txt('create'));
         } else {
-            $this->setTitle($this->pl->txt('form_edit_marzipano'));
-            $this->addCommandButton(ilMarzipanoPageComponentPluginGUI::CMD_UPDATE, $this->lng->txt('update'));
+            $this->setTitle($this->pl->txt('form_title_edit'));
+            $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_UPDATE, $this->lng->txt('update'));
             $file->setValue($this->properties["legacyFileName"]);
             $title->setValue($this->properties["title"]);
         }
-        */
 
         $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_CANCEL, $this->lng->txt('cancel'));
     }

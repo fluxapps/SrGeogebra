@@ -1,6 +1,9 @@
 <?php
 
-use srag\Plugins\SrGeogebra\Tables\GeogebraFormGUI;
+use ILIAS\FileUpload\DTO\ProcessingStatus;
+use ILIAS\FileUpload\DTO\UploadResult;
+use ILIAS\FileUpload\Location;
+use srag\Plugins\SrGeogebra\Forms\GeogebraFormGUI;
 use srag\Plugins\SrGeogebra\Utils\SrGeogebraTrait;
 use srag\DIC\SrGeogebra\DICTrait;
 
@@ -24,6 +27,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     const CMD_EDIT = "edit";
     const CMD_INSERT = "insert";
     const CMD_UPDATE = "update";
+    const DATA_FOLDER = "geogebra";
 
 
     /**
@@ -64,11 +68,17 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
 
 
     /**
+     * @param string $properties
+     *
      * @return ilPropertyFormGUI
      */
-    protected function getForm() : ilPropertyFormGUI
+    protected function getForm($properties = "") : ilPropertyFormGUI
     {
-        $form = new GeogebraFormGUI($this);
+        if (empty($properties)) {
+            $form = new GeogebraFormGUI($this);
+        } else {
+            $form = new GeogebraFormGUI($this, $properties);
+        }
 
         return $form;
     }
@@ -89,7 +99,6 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     public function create()/*:void*/
     {
         $form = $this->getForm();
-
         $form->setValuesByPost();
 
         if (!$form->checkInput()) {
@@ -98,13 +107,41 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             return;
         }
 
-        // TODO: Implement create
+        $upload = self::dic()->upload();
+
+        if (!$upload->hasUploads() || $upload->hasBeenProcessed()) {
+            $form->setValuesByPost();
+
+            return $form->getHTML();
+        }
+
+        $upload->process();
+
+        /** @var UploadResult $uploadResult */
+        $uploadResult = array_values($upload->getResults())[0];
+
+        if (!$uploadResult || $uploadResult->getStatus()->getCode() !== ProcessingStatus::OK) {
+            $form->setValuesByPost();
+
+            return $form->getHTML();
+        }
+
+        $ext = pathinfo($uploadResult->getName(), PATHINFO_EXTENSION);
+        $file_name = $_POST["srgg_title"] . "." . $ext;
+
+        $upload->moveOneFileTo(
+            $uploadResult,
+            self::DATA_FOLDER,
+            Location::WEB
+        );
 
         $properties = [
-
+            "legacyFileName" => $_FILES["srgg_file"]["name"],
+            "fileName"       => $file_name,
+            "title"          => $_POST["srgg_title"]
         ];
-        $this->createElement($properties);
 
+        $this->createElement($properties);
         $this->returnToParent();
     }
 
@@ -114,7 +151,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      */
     public function edit()/*:void*/
     {
-        $form = $this->getForm();
+        $form = $this->getForm($this->getProperties());
 
         self::output()->output($form);
     }
@@ -125,8 +162,8 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      */
     public function update()/*:void*/
     {
-        $form = $this->getForm();
-
+        $properties = $this->getProperties();
+        $form = $this->getForm($properties);
         $form->setValuesByPost();
 
         if (!$form->checkInput()) {
@@ -135,12 +172,45 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             return;
         }
 
-        $properties = $this->getProperties();
+        if (!empty($_FILES["srgg_file"]["name"])) {
+            $upload = self::dic()->upload();
 
-        // TODO: Implement update
+            if (!$upload->hasUploads() || $upload->hasBeenProcessed()) {
+                $form->setValuesByPost();
+
+                return $form->getHTML();
+            }
+
+            $upload->process();
+
+            /** @var UploadResult $uploadResult */
+            $uploadResult = array_values($upload->getResults())[0];
+
+            if (!$uploadResult || $uploadResult->getStatus()->getCode() !== ProcessingStatus::OK) {
+                $form->setValuesByPost();
+
+                return $form->getHTML();
+            }
+
+            $ext = pathinfo($uploadResult->getName(), PATHINFO_EXTENSION);
+            $file_name = $_POST["srgg_title"] . "." . $ext;
+
+            $upload->moveOneFileTo(
+                $uploadResult,
+                self::DATA_FOLDER,
+                Location::WEB,
+                true
+            );
+
+            $properties = [
+                "legacyFileName" => $_FILES["srgg_file"]["name"],
+                "fileName"       => $file_name
+            ];
+        }
+
+        $properties["title"] = $_POST["srgg_title"];
 
         $this->updateElement($properties);
-
         $this->returnToParent();
     }
 
@@ -159,6 +229,6 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      */
     public function getElementHTML(/*string*/ $a_mode, array $a_properties, /*string*/ $plugin_version) : string
     {
-        return ""; // TODO: Implement getElementHTML
+        return "ok"; // TODO: Implement getElementHTML
     }
 }

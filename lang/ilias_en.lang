@@ -2,3 +2,7 @@ cmd_insert#:#Insert SrGeogebra
 config_configuration#:#Configuration
 config_configuration_saved#:#Configuration saved
 config_save#:#Save
+form_title#:#Title
+form_upload#:#Upload
+form_title_create#:#Create Geogebra object
+form_title_edit#:#Edit Geogebra object

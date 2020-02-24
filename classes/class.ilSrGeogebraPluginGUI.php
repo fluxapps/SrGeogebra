@@ -28,6 +28,15 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     const CMD_INSERT = "insert";
     const CMD_UPDATE = "update";
     const DATA_FOLDER = "geogebra";
+    const ID_PREFIX = "geogebra_page_component_";
+
+
+    /**
+     * @var int
+     */
+    protected static $id_counter = 0;
+
+    protected $pl;
 
 
     /**
@@ -36,6 +45,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     public function __construct()
     {
         parent::__construct();
+        $this->pl = new ilSrGeogebraPlugin();
     }
 
 
@@ -129,10 +139,14 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $ext = pathinfo($uploadResult->getName(), PATHINFO_EXTENSION);
         $file_name = $_POST["srgg_title"] . "." . $ext;
 
+        // Adjust white list
+        self::dic()->settings()->set("suffix_custom_white_list", "ggb");
+
         $upload->moveOneFileTo(
             $uploadResult,
             self::DATA_FOLDER,
-            Location::WEB
+            Location::WEB,
+            $file_name
         );
 
         $properties = [
@@ -195,10 +209,14 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             $ext = pathinfo($uploadResult->getName(), PATHINFO_EXTENSION);
             $file_name = $_POST["srgg_title"] . "." . $ext;
 
+            // Adjust white list
+            self::dic()->settings()->set("suffix_custom_white_list", "ggb");
+
             $upload->moveOneFileTo(
                 $uploadResult,
                 self::DATA_FOLDER,
                 Location::WEB,
+                $file_name,
                 true
             );
 
@@ -224,11 +242,32 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     }
 
 
+    protected function loadJS()
+    {
+        // TEST IF TEMPLATE/PL WORKS
+        self::dic()->ui()->mainTemplate()->addJavaScript($this->pl->getDirectory() . '/js/deployggb.js');
+        self::dic()->ui()->mainTemplate()->addJavaScript($this->pl->getDirectory() . '/js/ggb_create.js');
+    }
+
+
     /**
      * @inheritDoc
      */
     public function getElementHTML(/*string*/ $a_mode, array $a_properties, /*string*/ $plugin_version) : string
     {
-        return "ok"; // TODO: Implement getElementHTML
+        self::$id_counter += 1;
+        $id = self::ID_PREFIX . self::$id_counter;
+        $plugin_dir = $this->pl->getDirectory();
+        $file_name = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . self::DATA_FOLDER . '/' . $a_properties["fileName"];
+
+        $this->loadJS();
+
+        $tpl = $template = self::plugin()->template("tpl.geogebra.html");
+        $tpl->setVariable("ID", $id);
+
+        self::dic()->ui()->mainTemplate()->addOnLoadCode('GeogebraPageComponent.create("' . $id . '", "' . $plugin_dir . '", "' . $file_name . '");');
+
+        return $tpl->get();
     }
+
 }

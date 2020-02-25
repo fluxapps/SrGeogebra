@@ -76,7 +76,39 @@ final class Repository extends AbstractRepository
     protected function getFields() : array
     {
         return [
-            ConfigFormGUI::KEY_SOME => Config::TYPE_STRING
+            ConfigFormGUI::KEY_APP_NAME => [Config::TYPE_STRING, "classic"],
+            ConfigFormGUI::KEY_WIDTH => [Config::TYPE_STRING, 800],
+            ConfigFormGUI::KEY_HEIGHT => [Config::TYPE_STRING, 600],
+            ConfigFormGUI::KEY_BORDER_COLOR => [Config::TYPE_STRING, "ffffff"],
+            ConfigFormGUI::KEY_ENABLE_RIGHT => [Config::TYPE_STRING, true],
+            ConfigFormGUI::KEY_ENABLE_LABEL_DRAGS => [Config::TYPE_STRING, true],
+            ConfigFormGUI::KEY_ENABLE_SHIFT_ZOOM => [Config::TYPE_STRING, true],
+            ConfigFormGUI::KEY_SHOW_ZOOM => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_ERROR_DIALOGS => [Config::TYPE_STRING, true],
+            ConfigFormGUI::KEY_SHOW_MENU_BAR => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_SHOW_TOOL_BAR => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_SHOW_TOOL_BAR_HELP => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_SHOW_ALGEBRA_INPUT => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_LANGUAGE => [Config::TYPE_STRING, "en"],
+            ConfigFormGUI::KEY_ALLOW_STYLE_BAR => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_USE_BROWSER_FOR_JS => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_SHOW_LOGGING => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_CAPTURING_THRESHOLD => [Config::TYPE_STRING, 3],
+            ConfigFormGUI::KEY_ENABLE_3D => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_ENABLE_CAS => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_ALGEBRA_INPUT_POSITION => Config::TYPE_STRING,
+            ConfigFormGUI::KEY_PREVENT_FOCUS => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_AUTO_HEIGHT => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_ALLOW_UPSCALE => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_PLAY_BUTTON => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_SCALE => [Config::TYPE_STRING, 1],
+            ConfigFormGUI::KEY_SHOW_ANIMATION_BUTTON => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_SHOW_FULLSCREEN_BUTTON => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_SHOW_SUGGESTION_BUTTONS => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_SHOW_START_TOOLTIP => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_ROUNDING => Config::TYPE_STRING,
+            ConfigFormGUI::KEY_BUTTON_SHADOWS => [Config::TYPE_STRING, false],
+            ConfigFormGUI::KEY_BUTTON_ROUNDING => [Config::TYPE_STRING, 0.2]
         ];
     }
 }

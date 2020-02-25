@@ -152,11 +152,17 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $properties = [
             "legacyFileName" => $_FILES["srgg_file"]["name"],
             "fileName"       => $file_name,
-            "title"          => $_POST["srgg_title"]
+            "title"          => $_POST["srgg_title"],
+            "settings"       => $this->evaluateSettings()
         ];
 
         $this->createElement($properties);
         $this->returnToParent();
+    }
+
+
+    protected function evaluateSettings() {
+        return $_POST["srgg_custom"];
     }
 
 
@@ -265,7 +271,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $tpl = $template = self::plugin()->template("tpl.geogebra.html");
         $tpl->setVariable("ID", $id);
 
-        self::dic()->ui()->mainTemplate()->addOnLoadCode('GeogebraPageComponent.create("' . $id . '", "' . $plugin_dir . '", "' . $file_name . '");');
+        self::dic()->ui()->mainTemplate()->addOnLoadCode('GeogebraPageComponent.create("' . $id . '", "' . $plugin_dir . '", "' . $file_name . '", "' . $a_properties["settings"] . '");');
 
         return $tpl->get();
     }

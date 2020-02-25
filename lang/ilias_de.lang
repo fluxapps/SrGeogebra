@@ -4,5 +4,40 @@ config_configuration_saved#:#Konfiguration gespeichert
 config_save#:#Speichern
 form_title#:#Titel
 form_upload#:#Upload
+config_appName#:#App Name
+config_width#:#Default-Breite
+config_height#:#Default-Höhe
+config_borderColor#:#Rahmenfarbe
+config_enableRightClick#:#Rechtsklick aktivieren
+config_enableLabelDrags#:#Beschriftungen ziehen aktivieren
+config_enableShiftDragZoom#:#Zoom & Bewegen aktivieren
+config_showZoomButtons#:#Zoom-Knopf aktivieren
+config_errorDialogsActive#:#Fehlerdialoge aktivieren
+config_showMenuBar#:#Menüleiste anzeigen
+config_showToolBar#:#Symbolleiste anzeigen
+config_showToolBarHelp#:#Symbolleistenhilfe anzeigen
+config_showAlgebraInput#:#Algebraeingaben anzeigen
+config_language#:#Sprache
+config_allowStyleBar#:#Stilleiste anzeigen
+config_useBrowserForJS#:#JS für Browser aktivieren
+config_showLogging#:#Logging anzeigen
+config_capturingThreshold#:#Selektions-Schwellenwert
+config_enable3d#:#3D aktivieren
+config_enableCAS#:#CAS aktivieren
+config_algebraInputPosition#:#Algebra-Eingabeposition
+config_preventFocus#:#Start-Fokus verhindern
+config_autoHeight#:#Automatische Höhe
+config_allowUpscale#:#Hochskalierung erlauben
+config_playButton#:#Startknopf anzeigen
+config_scale#:#Skalierung
+config_showAnimationButton#:#Animationsknopf anzeigen
+config_showFullscreenButton#:#Vollbildschirm anzeigen
+config_showSuggestionButtons#:#Vorschlagsknöpfe anzeigen
+config_showStartTooltip#:#Willkommensnachricht anzeigen
+config_rounding#:#Rundung
+config_buttonShadows#:#Knopfschatten anzeigen
+config_buttonRounding#:#Knopfrundung
+form_zoom#:#Zoom & Bewegen aktivieren
+form_reset#:#Neu laden aktivieren
 form_title_create#:#Geogebra-Objekt erstellen
 form_title_edit#:#Geogebra-Objekt bearbeiten

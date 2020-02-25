@@ -49,6 +49,17 @@ class GeogebraFormGUI extends ilPropertyFormGUI
 
     protected function initForm()
     {
+        /*
+        $this->year = new ilSelectInputGUI(self::plugin()->translate("year", ilObjSrFinanceCockpitGUI::LANG_MODULE_VALUES), "year");
+        $yearOptions = array();
+        foreach (BudgetYear::getCollection()->where(array('ref_id' => $this->parent->ref_id))->get() as $year) {
+            $yearOptions[$year->getId()] = $year->getYear();
+        }
+        $this->year->setOptions($yearOptions);
+        $this->year->setRequired(true);
+        $this->addItem($this->year);
+        */
+
         $title = new ilTextInputGUI($this->pl->txt("form_title"), "srgg_title");
         $title->setRequired(true);
         $this->addItem($title);
@@ -57,6 +68,32 @@ class GeogebraFormGUI extends ilPropertyFormGUI
         $file->setSuffixes(array('ggb'));
         $this->addItem($file);
 
+        $width = new \ilNumberInputGUI($this->pl->txt("form_width"), "width");
+        $width->setRequired(true);
+        $this->addItem($width);
+
+        $height = new \ilNumberInputGUI($this->pl->txt("form_height"), "height");
+        $height->setRequired(true);
+        $this->addItem($height);
+
+        /*
+        $borderColor = new \ilColorPickerInputGUI($this->pl->txt("form_border_color"), "srgg_border_color");
+        $borderColor->setRequired(true);
+        $this->addItem($borderColor);
+        */
+
+        /*
+        $reset = new \ilCheckboxInputGUI($this->pl->txt("form_fullscreen"), "srgg_fullscreen");
+        $this->addItem($reset);
+        */
+
+        $zoom = new \ilCheckboxInputGUI($this->pl->txt("form_zoom"), "enableShiftDragZoom");
+        $this->addItem($zoom);
+
+        $reset = new \ilCheckboxInputGUI($this->pl->txt("form_reset"), "showResetIcon");
+        $this->addItem($reset);
+
+        // Test if creation form
         if (empty($this->properties)) {
             $this->setTitle($this->pl->txt('form_title_create'));
             $file->setRequired(true);

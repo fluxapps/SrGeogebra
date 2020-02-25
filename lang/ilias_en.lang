@@ -4,5 +4,40 @@ config_configuration_saved#:#Configuration saved
 config_save#:#Save
 form_title#:#Title
 form_upload#:#Upload
+config_appName#:#App Name
+config_width#:#Default Width
+config_height#:#Default Height
+config_borderColor#:#Border Color
+config_enableRightClick#:#Enable Right Click
+config_enableLabelDrags#:#Enable Label Drags
+config_enableShiftDragZoom#:#Enable Shift Drag Zoom
+config_showZoomButtons#:#Show Zoom Buttons
+config_errorDialogsActive#:#Show Error Dialogs
+config_showMenuBar#:#Show Menu Bar
+config_showToolBar#:#Show Tool Bar
+config_showToolBarHelp#:#Show Tool Bar Help
+config_showAlgebraInput#:#Show Algebra Input
+config_language#:#Language
+config_allowStyleBar#:#Show Style Bar
+config_useBrowserForJS#:#Use Browser For JS
+config_showLogging#:#Show Logging
+config_capturingThreshold#:#Capturing Threshold
+config_enable3d#:#Enable 3D
+config_enableCAS#:#Enable CAS
+config_algebraInputPosition#:#Algebra Input Position
+config_preventFocus#:#Prevent Focus
+config_autoHeight#:#Auto Height
+config_allowUpscale#:#Allow Upscale
+config_playButton#:#Show Play Button
+config_scale#:#Scale
+config_showAnimationButton#:#Show Animation Button
+config_showFullscreenButton#:#Show Fullscreen Button
+config_showSuggestionButtons#:#Show Suggestion Buttons
+config_showStartTooltip#:#Show Start Tooltip
+config_rounding#:#Show Rounding
+config_buttonShadows#:#Button Shadows
+config_buttonRounding#:#Button Rounding
+form_zoom#:#Enable Dragging And Zooming
+form_reset#:#Enable Reset Icon
 form_title_create#:#Create Geogebra object
 form_title_edit#:#Edit Geogebra object

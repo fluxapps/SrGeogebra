@@ -1,0 +1,60 @@
+cmd_insert#:#Insert SrGeogebra
+config_configuration#:#Configuration
+config_configuration_saved#:#Configuration saved
+config_save#:#Save
+form_create#:#Create
+form_save#:#Save
+form_edit#:#Edit
+form_cancel#:#Cancel
+form_title#:#Title
+form_file#:#Upload
+form_width#:#Width
+form_height#:#Height
+form_showResetIcon#:#Enable Reset Icon
+form_enableShiftDragZoom#:#Enable Dragging And Zooming
+config_default_showResetIcon#:#Default "Enable Reset Icon" Value
+config_default_enableShiftDragZoom#:#Default "Enable Dragging And Zooming" Value
+config_default_height#:#Default Height
+config_default_width#:#Default Width
+config_appName#:#App Name
+config_width#:#Width
+config_height#:#Height
+config_borderColor#:#Border Color
+config_enableRightClick#:#Enable Right Click
+config_enableLabelDrags#:#Enable Label Drags
+config_showResetIcon#:#Default "Enable Reset Icon" Value
+config_enableShiftDragZoom#:#Enable Shift Drag Zoom
+config_showZoomButtons#:#Show Zoom Buttons
+config_errorDialogsActive#:#Show Error Dialogs
+config_showMenuBar#:#Show Menu Bar / Undo Button
+config_showToolBar#:#Show Tool Bar
+config_showToolBarHelp#:#Show Tool Bar Help
+config_showAlgebraInput#:#Show Algebra Input
+config_language#:#Language
+config_allowStyleBar#:#Show Style Bar
+config_useBrowserForJS#:#Use Browser For JS
+config_showLogging#:#Show Logging
+config_capturingThreshold#:#Capturing Threshold
+config_enable3d#:#Enable 3D
+config_enableCAS#:#Enable CAS
+config_algebraInputPosition#:#Algebra Input Position
+config_preventFocus#:#Prevent Focus
+config_autoHeight#:#Auto Height
+config_allowUpscale#:#Allow Upscale
+config_playButton#:#Show Play Button
+config_scale#:#Scale
+config_showAnimationButton#:#Show Animation Button
+config_showFullscreenButton#:#Show Fullscreen Button
+config_showSuggestionButtons#:#Show Suggestion Buttons
+config_showStartTooltip#:#Show Start Tooltip
+config_rounding#:#Show Rounding
+config_buttonShadows#:#Button Shadows
+config_buttonRounding#:#Button Rounding
+config_form_title_edit#:#Edit Geogebra object advanced properties
+form_zoom#:#Enable Dragging And Zooming
+form_reset#:#Enable Reset Icon
+form_title_create#:#Create Geogebra object
+form_title_edit#:#Edit Geogebra object
+subtab_generic_settings#:#Generic Settings
+subtab_advanced_settings#:#Advanced Settings
+alert_file_exists#:#The file "%1$s" already exists on the server. Automatically using the existing file. Please check if the displayed Geogebra object is correct. If the displayed Geogebra object is incorrect consider renaming the uploaded file and retry.

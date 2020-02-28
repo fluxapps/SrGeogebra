@@ -2,18 +2,31 @@ cmd_insert#:#SrGeogebra einfügen
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
 config_save#:#Speichern
+form_create#:#Erstellen
+form_save#:#Speichern
+form_edit#:#Bearbeiten
+form_cancel#:#Abbrechen
 form_title#:#Titel
-form_upload#:#Upload
+form_file#:#Upload
+form_width#:#Breite
+form_height#:#Höhe
+form_showResetIcon#:#Neu laden aktivieren
+form_enableShiftDragZoom#:#Zoom & Bewegen aktivieren
+config_default_showResetIcon#:#Standardwert "Neu laden aktivieren"
+config_default_enableShiftDragZoom#:#Standardwert "Zoom & Bewegen aktivieren"
+config_default_height#:#Standardhöhe
+config_default_width#:#Standardbreite
 config_appName#:#App Name
 config_width#:#Default-Breite
 config_height#:#Default-Höhe
 config_borderColor#:#Rahmenfarbe
 config_enableRightClick#:#Rechtsklick aktivieren
 config_enableLabelDrags#:#Beschriftungen ziehen aktivieren
+config_showResetIcon#:#Standardwert "Neu laden aktivieren"
 config_enableShiftDragZoom#:#Zoom & Bewegen aktivieren
 config_showZoomButtons#:#Zoom-Knopf aktivieren
 config_errorDialogsActive#:#Fehlerdialoge aktivieren
-config_showMenuBar#:#Menüleiste anzeigen
+config_showMenuBar#:#Menüleiste anzeigen / Zurücksetzen anzeigen
 config_showToolBar#:#Symbolleiste anzeigen
 config_showToolBarHelp#:#Symbolleistenhilfe anzeigen
 config_showAlgebraInput#:#Algebraeingaben anzeigen
@@ -37,7 +50,11 @@ config_showStartTooltip#:#Willkommensnachricht anzeigen
 config_rounding#:#Rundung
 config_buttonShadows#:#Knopfschatten anzeigen
 config_buttonRounding#:#Knopfrundung
+config_form_title_edit#:#Geogebra-Objekt erweiterte Einstellungen bearbeiten
 form_zoom#:#Zoom & Bewegen aktivieren
 form_reset#:#Neu laden aktivieren
 form_title_create#:#Geogebra-Objekt erstellen
 form_title_edit#:#Geogebra-Objekt bearbeiten
+subtab_generic_settings#:#Spezifische Einstellungen
+subtab_advanced_settings#:#Erweiterte Einstellungen
+alert_file_exists#:#Die Datei "%1$s" existiert bereits auf dem Server. Die bereits existierende Datei wird priorisiert. Bitte überprüfen Sie, ob das angezeigte Geogebra-Objekt korrekt ist. Ändern Sie den Dateinamen und laden Sie die das Geogebra-Objekt erneut hoch, falls ein falsches Geogebra-Objekt angezeigt wird.

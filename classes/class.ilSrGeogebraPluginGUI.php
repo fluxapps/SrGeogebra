@@ -3,7 +3,10 @@
 use ILIAS\FileUpload\DTO\ProcessingStatus;
 use ILIAS\FileUpload\DTO\UploadResult;
 use ILIAS\FileUpload\Location;
+use srag\ActiveRecordConfig\SrGeogebra\Config\Config;
+use srag\Plugins\SrGeogebra\Config\Repository;
 use srag\Plugins\SrGeogebra\Forms\GeogebraFormGUI;
+use srag\Plugins\SrGeogebra\Forms\SettingsAdvancedGeogebraFormGUI;
 use srag\Plugins\SrGeogebra\Utils\SrGeogebraTrait;
 use srag\DIC\SrGeogebra\DICTrait;
 
@@ -24,9 +27,14 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     const PLUGIN_CLASS_NAME = ilSrGeogebraPlugin::class;
     const CMD_CANCEL = "cancel";
     const CMD_CREATE = "create";
+    const CMD_CREATE_ADVANCED = "createAdvanced";
     const CMD_EDIT = "edit";
+    const CMD_EDIT_ADVANCED = "editAdvanced";
     const CMD_INSERT = "insert";
     const CMD_UPDATE = "update";
+    const CMD_UPDATE_ADVANCED_PROPERTIES = "updateAdvancedProperties";
+    const SUBTAB_GENERIC_SETTINGS = "subtab_generic_settings";
+    const SUBTAB_ADVANCED_SETTINGS = "subtab_advanced_settings";
     const DATA_FOLDER = "geogebra";
     const ID_PREFIX = "geogebra_page_component_";
 
@@ -64,8 +72,10 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
                     case self::CMD_CANCEL:
                     case self::CMD_CREATE:
                     case self::CMD_EDIT:
+                    case self::CMD_EDIT_ADVANCED:
                     case self::CMD_INSERT:
                     case self::CMD_UPDATE:
+                    case self::CMD_UPDATE_ADVANCED_PROPERTIES:
                         $this->{$cmd}();
                         break;
 
@@ -117,52 +127,53 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             return;
         }
 
-        $upload = self::dic()->upload();
-
-        if (!$upload->hasUploads() || $upload->hasBeenProcessed()) {
-            $form->setValuesByPost();
-
-            return $form->getHTML();
-        }
-
-        $upload->process();
-
-        /** @var UploadResult $uploadResult */
-        $uploadResult = array_values($upload->getResults())[0];
-
-        if (!$uploadResult || $uploadResult->getStatus()->getCode() !== ProcessingStatus::OK) {
-            $form->setValuesByPost();
-
-            return $form->getHTML();
-        }
-
-        $ext = pathinfo($uploadResult->getName(), PATHINFO_EXTENSION);
-        $file_name = $_POST["srgg_title"] . "." . $ext;
-
-        // Adjust white list
-        self::dic()->settings()->set("suffix_custom_white_list", "ggb");
-
-        $upload->moveOneFileTo(
-            $uploadResult,
-            self::DATA_FOLDER,
-            Location::WEB,
-            $file_name
-        );
+        $this->handleUpload($form, $_FILES["file"]["name"]);
 
         $properties = [
-            "legacyFileName" => $_FILES["srgg_file"]["name"],
-            "fileName"       => $file_name,
-            "title"          => $_POST["srgg_title"],
-            "settings"       => $this->evaluateSettings()
+            "title" => $_POST["title"],
+            "legacyFileName" => $_FILES["file"]["name"],
+            "fileName"       => $_FILES["file"]["name"]
         ];
+
+        $properties = $this->mergeCustomSettings($properties);
+        $properties = $this->mergeAdvancedSettings($properties);
 
         $this->createElement($properties);
         $this->returnToParent();
     }
 
 
-    protected function evaluateSettings() {
-        return $_POST["srgg_custom"];
+    protected function mergeCustomSettings(&$properties) {
+        $customSettings = [
+            "custom_width",
+            "custom_height",
+            "custom_enableShiftDragZoom",
+            "custom_showResetIcon"
+        ];
+
+        $formatedCustomSettings = [];
+
+        foreach ($customSettings as $custom_setting) {
+            $key = str_replace("custom_", "", $custom_setting);
+            $formatedCustomSettings[$custom_setting] = $_POST[$key];
+        }
+
+        return array_merge($properties, $formatedCustomSettings);
+    }
+
+
+    protected function mergeAdvancedSettings(&$properties) {
+        $occurringValues = Repository::getInstance()->getFields();
+        $advancedSettings = [];
+
+        foreach ($occurringValues as $key => $occurring_value) {
+            if (strpos($key, "default_") !== 0) {
+                $value = Repository::getInstance()->getValue($key);
+                $advancedSettings["advanced_" . $key] = $value;
+            }
+        }
+
+        return array_merge($properties, $advancedSettings);
     }
 
 
@@ -171,7 +182,18 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      */
     public function edit()/*:void*/
     {
+        if (!empty($this->getProperties())) {
+            $this->setSubTabs(self::SUBTAB_GENERIC_SETTINGS);
+        }
         $form = $this->getForm($this->getProperties());
+
+        self::output()->output($form);
+    }
+
+
+    public function editAdvanced() {
+        $this->setSubTabs(self::SUBTAB_ADVANCED_SETTINGS);
+        $form = new SettingsAdvancedGeogebraFormGUI($this, $this->getProperties());
 
         self::output()->output($form);
     }
@@ -192,50 +214,52 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             return;
         }
 
-        if (!empty($_FILES["srgg_file"]["name"])) {
-            $upload = self::dic()->upload();
+        if (!empty($_FILES["file"]["name"])) {
+            $this->handleUpload($form, $_FILES["file"]["name"]);
 
-            if (!$upload->hasUploads() || $upload->hasBeenProcessed()) {
-                $form->setValuesByPost();
+            $properties["legacyFileName"] = $_FILES["file"]["name"];
+            $properties["fileName"] = $_FILES["file"]["name"];
 
-                return $form->getHTML();
-            }
-
-            $upload->process();
-
-            /** @var UploadResult $uploadResult */
-            $uploadResult = array_values($upload->getResults())[0];
-
-            if (!$uploadResult || $uploadResult->getStatus()->getCode() !== ProcessingStatus::OK) {
-                $form->setValuesByPost();
-
-                return $form->getHTML();
-            }
-
-            $ext = pathinfo($uploadResult->getName(), PATHINFO_EXTENSION);
-            $file_name = $_POST["srgg_title"] . "." . $ext;
-
-            // Adjust white list
-            self::dic()->settings()->set("suffix_custom_white_list", "ggb");
-
-            $upload->moveOneFileTo(
-                $uploadResult,
-                self::DATA_FOLDER,
-                Location::WEB,
-                $file_name,
-                true
-            );
-
-            $properties = [
-                "legacyFileName" => $_FILES["srgg_file"]["name"],
-                "fileName"       => $file_name
-            ];
+            $this->updateElement($properties);
         }
 
-        $properties["title"] = $_POST["srgg_title"];
-
-        $this->updateElement($properties);
+        $this->updateCustomProperties();
+        $properties["title"] = $_POST["title"];
+        $this->updateElement($this->getProperties());
         $this->returnToParent();
+    }
+
+
+    public function handleUpload($form, $file_name) {
+        $upload = self::dic()->upload();
+
+        if (!$upload->hasUploads() || $upload->hasBeenProcessed()) {
+            $form->setValuesByPost();
+
+            return $form->getHTML();
+        }
+
+        $upload->process();
+        $uploadResult = array_values($upload->getResults())[0];
+
+        if (!$uploadResult || $uploadResult->getStatus()->getCode() !== ProcessingStatus::OK) {
+            $form->setValuesByPost();
+
+            return $form->getHTML();
+        }
+
+        if (self::dic()->filesystem()->web()->has(self::DATA_FOLDER . '/' . $file_name)) {
+            ilUtil::sendInfo(sprintf($this->pl->txt("alert_file_exists"), $file_name), true);
+        }
+
+        // Adjust white list
+        self::dic()->settings()->set("suffix_custom_white_list", "ggb");
+
+        $upload->moveOneFileTo(
+            $uploadResult,
+            self::DATA_FOLDER,
+            Location::WEB
+        );
     }
 
 
@@ -250,9 +274,103 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
 
     protected function loadJS()
     {
-        // TEST IF TEMPLATE/PL WORKS
         self::dic()->ui()->mainTemplate()->addJavaScript($this->pl->getDirectory() . '/js/deployggb.js');
         self::dic()->ui()->mainTemplate()->addJavaScript($this->pl->getDirectory() . '/js/ggb_create.js');
+    }
+
+
+    protected function loadCSS(){
+        self::dic()->ui()->mainTemplate()->addCss($this->pl->getDirectory() . '/css/geogebra_sheet.css');
+    }
+
+
+    protected function setSubTabs($active) {
+        self::dic()->tabs()->addSubTab(
+            self::SUBTAB_GENERIC_SETTINGS,
+            $this->pl->txt(self::SUBTAB_GENERIC_SETTINGS),
+            self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT)
+        );
+        self::dic()->tabs()->addSubTab(
+            self::SUBTAB_ADVANCED_SETTINGS,
+            $this->pl->txt(self::SUBTAB_ADVANCED_SETTINGS),
+            self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT_ADVANCED)
+        );
+        self::dic()->tabs()->setSubTabActive($active);
+    }
+
+
+    protected function updateCustomProperties() {
+        $existing_properties = $this->getProperties();
+
+        foreach ($existing_properties as $key => $existing_property) {
+            if (strpos($key, "custom_") === 0) {
+                $postKey = str_replace("custom_", "", $key);
+                $existing_properties[$key] = $_POST[$postKey];
+            }
+        }
+
+        $this->updateElement($existing_properties);
+    }
+
+
+    protected function updateAdvancedProperties() {
+        $existing_properties = $this->getProperties();
+
+        foreach ($existing_properties as $key => $existing_property) {
+            if (strpos($key, "advanced_") === 0) {
+                $postKey = str_replace("advanced_", "", $key);
+                $existing_properties[$key] = $_POST[$postKey];
+            }
+        }
+
+        $this->updateElement($existing_properties);
+        $this->editAdvanced();
+    }
+
+
+    protected function convertValueByType($type, $value) {
+        if ($type === Config::TYPE_INTEGER) {
+            return intval($value);
+        } else if ($type === Config::TYPE_DOUBLE) {
+            return doubleval($value);
+        } else if ($type === Config::TYPE_BOOLEAN) {
+            return boolval($value);
+        }
+
+        return $value;
+    }
+
+
+    protected function fetchCustomFieldTypes($field_name) {
+        switch ($field_name) {
+            case "width":
+            case "height":
+                return Config::TYPE_INTEGER;
+                break;
+            case "enableShiftDragZoom":
+            case "showResetIcon":
+                return Config::TYPE_BOOLEAN;
+                break;
+        }
+
+        return Config::TYPE_STRING;
+    }
+
+
+    protected function convertPropertyValueTypes(&$properties) {
+        foreach ($properties as $key => $property) {
+            if (strpos($key, "custom_") === 0) {
+                $postKey = str_replace("custom_", "", $key);
+                $field_type = $this->fetchCustomFieldTypes($postKey);
+                $properties[$key] = $this->convertValueByType($field_type, $property);
+            }
+
+            if (strpos($key, "advanced_") === 0) {
+                $postKey = str_replace("advanced_", "", $key);
+                $field_type = Repository::getInstance()->getFields()[$postKey][0];
+                $properties[$key] = $this->convertValueByType($field_type, $property);
+            }
+        }
     }
 
 
@@ -267,13 +385,16 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $file_name = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . self::DATA_FOLDER . '/' . $a_properties["fileName"];
 
         $this->loadJS();
+        $this->loadCSS();
 
         $tpl = $template = self::plugin()->template("tpl.geogebra.html");
         $tpl->setVariable("ID", $id);
 
-        self::dic()->ui()->mainTemplate()->addOnLoadCode('GeogebraPageComponent.create("' . $id . '", "' . $plugin_dir . '", "' . $file_name . '", "' . $a_properties["settings"] . '");');
+        // $a_properties value types need to be converted here as values only get saved as strings
+        $this->convertPropertyValueTypes($a_properties);
+
+        self::dic()->ui()->mainTemplate()->addOnLoadCode('GeogebraPageComponent.create("' . $id . '", "' . $plugin_dir . '", "' . $file_name . '", ' . json_encode($a_properties). ');');
 
         return $tpl->get();
     }
-
 }

@@ -52,11 +52,11 @@ final class Factory extends AbstractFactory
     /**
      * @param ilSrGeogebraConfigGUI $parent
      *
-     * @return ConfigFormGUI
+     * @return ConfigAdvancedGeogebraFormGUI
      */
-    public function newFormInstance(ilSrGeogebraConfigGUI $parent) : ConfigFormGUI
+    public function newFormInstance(ilSrGeogebraConfigGUI $parent) : ConfigAdvancedGeogebraFormGUI
     {
-        $form = new ConfigFormGUI($parent);
+        $form = new ConfigAdvancedGeogebraFormGUI($parent);
 
         return $form;
     }

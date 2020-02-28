@@ -105,4 +105,6 @@ class ilSrGeogebraPlugin extends ilPageComponentPlugin
     {
         self::srGeogebra()->dropTables();
     }
+
+
 }

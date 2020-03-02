@@ -1,6 +1,17 @@
 include:
   remote: https://git.studer-raimann.ch/gitlab-ci/templates/review_apps.yml
 
+test:
+  stage: test
+  tags:
+    - php7
+  before_script:
+    # TODO: Install phpunit, etc.
+    - php --version
+  script:
+    # TODO: Run unit tests, etc.
+    - echo "Running unit tests..."
+
 review:
   extends: .review_deployment
   environment:

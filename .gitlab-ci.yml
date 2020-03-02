@@ -1,6 +1,10 @@
 include:
   remote: https://git.studer-raimann.ch/gitlab-ci/templates/review_apps.yml
 
+variables:
+  REVIEW_APP_IMAGE: sturai/ilias-dev:latest
+  REVIEW_APP_DEST: /var/www/html/Customizing/global/plugins/Services/COPage/PageComponent/SrGeogebra
+
 test:
   stage: test
   tags:

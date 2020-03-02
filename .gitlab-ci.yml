@@ -2,14 +2,14 @@ include:
   remote: https://git.studer-raimann.ch/gitlab-ci/templates/review_apps.yml
 
 review:
-  <<: *review_deployment
+  extends: .review_deployment
   environment:
     on_stop: stop_review
   script:
     - srag-review deploy
 
 stop_review:
-  <<: *review_deployment
+  extends: .review_deployment
   environment:
     action: stop
   script:

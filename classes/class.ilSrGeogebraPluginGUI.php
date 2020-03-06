@@ -379,6 +379,10 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      */
     public function getElementHTML(/*string*/ $a_mode, array $a_properties, /*string*/ $plugin_version) : string
     {
+        // Workaround fix learning module override global template
+        self::dic()->dic()->offsetUnset("tpl");
+        self::dic()->dic()->offsetSet("tpl", $GLOBALS["tpl"]);
+
         self::$id_counter += 1;
         $id = self::ID_PREFIX . self::$id_counter;
         $plugin_dir = $this->pl->getDirectory();

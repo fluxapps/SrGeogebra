@@ -96,7 +96,7 @@ final class Repository extends AbstractRepository
             BaseAdvancedGeogebraFormGUI::KEY_USE_BROWSER_FOR_JS => [Config::TYPE_BOOLEAN, false],
             BaseAdvancedGeogebraFormGUI::KEY_SHOW_LOGGING => [Config::TYPE_BOOLEAN, false],
             BaseAdvancedGeogebraFormGUI::KEY_CAPTURING_THRESHOLD => [Config::TYPE_DOUBLE, 3],
-            BaseAdvancedGeogebraFormGUI::KEY_ENABLE_3D => [Config::TYPE_BOOLEAN, false],
+            BaseAdvancedGeogebraFormGUI::KEY_ENABLE_3D => [Config::TYPE_BOOLEAN, true],
             BaseAdvancedGeogebraFormGUI::KEY_ENABLE_CAS => [Config::TYPE_BOOLEAN, false],
             BaseAdvancedGeogebraFormGUI::KEY_ALGEBRA_INPUT_POSITION => Config::TYPE_STRING,
             BaseAdvancedGeogebraFormGUI::KEY_PREVENT_FOCUS => [Config::TYPE_BOOLEAN, false],

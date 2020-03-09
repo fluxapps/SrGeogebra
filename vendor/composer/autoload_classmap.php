@@ -117,6 +117,7 @@ return array(
     'srag\\Plugins\\SrGeogebra\\Forms\\GeogebraFormGUI' => $baseDir . '/src/Forms/GeogebraFormGUI.php',
     'srag\\Plugins\\SrGeogebra\\Forms\\SettingsAdvancedGeogebraFormGUI' => $baseDir . '/src/Forms/SettingsAdvancedGeogebraFormGUI.php',
     'srag\\Plugins\\SrGeogebra\\Repository' => $baseDir . '/src/Repository.php',
+    'srag\\Plugins\\SrGeogebra\\Upload\\UploadService' => $baseDir . '/src/Upload/UploadService.php',
     'srag\\Plugins\\SrGeogebra\\Utils\\SrGeogebraTrait' => $baseDir . '/src/Utils/SrGeogebraTrait.php',
     'srag\\RemovePluginDataConfirm\\SrGeogebra\\BasePluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/BasePluginUninstallTrait.php',
     'srag\\RemovePluginDataConfirm\\SrGeogebra\\PluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/PluginUninstallTrait.php',

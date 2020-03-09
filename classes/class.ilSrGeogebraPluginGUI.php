@@ -7,6 +7,7 @@ use srag\ActiveRecordConfig\SrGeogebra\Config\Config;
 use srag\Plugins\SrGeogebra\Config\Repository;
 use srag\Plugins\SrGeogebra\Forms\GeogebraFormGUI;
 use srag\Plugins\SrGeogebra\Forms\SettingsAdvancedGeogebraFormGUI;
+use srag\Plugins\SrGeogebra\Upload\UploadService;
 use srag\Plugins\SrGeogebra\Utils\SrGeogebraTrait;
 use srag\DIC\SrGeogebra\DICTrait;
 
@@ -35,7 +36,6 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     const CMD_UPDATE_ADVANCED_PROPERTIES = "updateAdvancedProperties";
     const SUBTAB_GENERIC_SETTINGS = "subtab_generic_settings";
     const SUBTAB_ADVANCED_SETTINGS = "subtab_advanced_settings";
-    const DATA_FOLDER = "geogebra";
     const ID_PREFIX = "geogebra_page_component_";
 
 
@@ -43,7 +43,10 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      * @var int
      */
     protected static $id_counter = 0;
-
+    /**
+     * @var UploadService
+     */
+    protected $uploader;
     protected $pl;
 
 
@@ -54,6 +57,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     {
         parent::__construct();
         $this->pl = new ilSrGeogebraPlugin();
+        $this->uploader = new UploadService();
     }
 
 
@@ -127,7 +131,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             return;
         }
 
-        $file_name = $this->handleUpload($form, $_FILES["file"]["name"]);
+        $file_name = $this->uploader->handleUpload($form, $_FILES["file"]["name"]);
 
         $properties = [
             "title" => $_POST["title"],
@@ -215,73 +219,17 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         }
 
         if (!empty($_FILES["file"]["name"])) {
-            $fileName = $this->handleUpload($form, $_FILES["file"]["name"]);
+            $fileName = $this->uploader->handleUpload($form, $_FILES["file"]["name"]);
 
             $properties["legacyFileName"] = $fileName;
             $properties["fileName"] = $fileName;
-
-            $this->updateElement($properties);
         }
+
+        $properties["title"] = $_POST["title"];
+        $this->updateElement($properties);
 
         $this->updateCustomProperties();
-        $properties["title"] = $_POST["title"];
-        $this->updateElement($this->getProperties());
         $this->returnToParent();
-    }
-
-
-    public function handleUpload($form, $file_name) {
-        $upload = self::dic()->upload();
-
-        if (!$upload->hasUploads() || $upload->hasBeenProcessed()) {
-            $form->setValuesByPost();
-
-            return $form->getHTML();
-        }
-
-        $upload->process();
-        $uploadResult = array_values($upload->getResults())[0];
-
-        if (!$uploadResult || $uploadResult->getStatus()->getCode() !== ProcessingStatus::OK) {
-            $form->setValuesByPost();
-
-            return $form->getHTML();
-        }
-
-        $file_name = $this->evaluateFileName($file_name);
-
-        // Adjust white list
-        self::dic()->settings()->set("suffix_custom_white_list", "ggb");
-
-        $upload->moveOneFileTo(
-            $uploadResult,
-            self::DATA_FOLDER,
-            Location::WEB,
-            $file_name
-        );
-
-        return $file_name;
-    }
-
-
-    public function evaluateFileName($file_name, $inc = null) {
-        $legacyFileName = $file_name;
-
-        $file_name = rtrim($file_name, ".ggb");
-        $file_name_extra = is_null($inc) ? "" : sprintf("_%s", $inc);
-        $file_name .= $file_name_extra . ".ggb";
-        $path = sprintf("%s/%s", self::DATA_FOLDER, $file_name);
-
-        // If path not found -> File name is available
-        if (!self::dic()->filesystem()->web()->has($path)) {
-            return $file_name;
-        }
-
-        // Otherwise evaluate a valid file name by appending an incremented number
-        // Calculate increment
-        $inc = is_null($inc) ? 2 : $inc + 1;
-
-        return $this->evaluateFileName($legacyFileName, $inc);
     }
 
 
@@ -408,7 +356,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         self::$id_counter += 1;
         $id = self::ID_PREFIX . self::$id_counter;
         $plugin_dir = $this->pl->getDirectory();
-        $file_name = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . self::DATA_FOLDER . '/' . $a_properties["fileName"];
+        $file_name = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/' . $a_properties["fileName"];
 
         $this->loadJS();
         $this->loadCSS();

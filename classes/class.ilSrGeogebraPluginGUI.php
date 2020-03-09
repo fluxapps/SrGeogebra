@@ -127,12 +127,12 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             return;
         }
 
-        $this->handleUpload($form, $_FILES["file"]["name"]);
+        $file_name = $this->handleUpload($form, $_FILES["file"]["name"]);
 
         $properties = [
             "title" => $_POST["title"],
-            "legacyFileName" => $_FILES["file"]["name"],
-            "fileName"       => $_FILES["file"]["name"]
+            "legacyFileName" => $file_name,
+            "fileName"       => $file_name
         ];
 
         $properties = $this->mergeCustomSettings($properties);
@@ -215,10 +215,10 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         }
 
         if (!empty($_FILES["file"]["name"])) {
-            $this->handleUpload($form, $_FILES["file"]["name"]);
+            $fileName = $this->handleUpload($form, $_FILES["file"]["name"]);
 
-            $properties["legacyFileName"] = $_FILES["file"]["name"];
-            $properties["fileName"] = $_FILES["file"]["name"];
+            $properties["legacyFileName"] = $fileName;
+            $properties["fileName"] = $fileName;
 
             $this->updateElement($properties);
         }
@@ -248,9 +248,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             return $form->getHTML();
         }
 
-        if (self::dic()->filesystem()->web()->has(self::DATA_FOLDER . '/' . $file_name)) {
-            ilUtil::sendInfo(sprintf($this->pl->txt("alert_file_exists"), $file_name), true);
-        }
+        $file_name = $this->evaluateFileName($file_name);
 
         // Adjust white list
         self::dic()->settings()->set("suffix_custom_white_list", "ggb");
@@ -258,8 +256,32 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $upload->moveOneFileTo(
             $uploadResult,
             self::DATA_FOLDER,
-            Location::WEB
+            Location::WEB,
+            $file_name
         );
+
+        return $file_name;
+    }
+
+
+    public function evaluateFileName($file_name, $inc = null) {
+        $legacyFileName = $file_name;
+
+        $file_name = rtrim($file_name, ".ggb");
+        $file_name_extra = is_null($inc) ? "" : sprintf("_%s", $inc);
+        $file_name .= $file_name_extra . ".ggb";
+        $path = sprintf("%s/%s", self::DATA_FOLDER, $file_name);
+
+        // If path not found -> File name is available
+        if (!self::dic()->filesystem()->web()->has($path)) {
+            return $file_name;
+        }
+
+        // Otherwise evaluate a valid file name by appending an incremented number
+        // Calculate increment
+        $inc = is_null($inc) ? 2 : $inc + 1;
+
+        return $this->evaluateFileName($legacyFileName, $inc);
     }
 
 

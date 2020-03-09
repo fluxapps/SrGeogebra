@@ -1,7 +1,8 @@
 GeogebraPageComponent = {
     create: function (dom_element_id, plugin_dir, file_name, properties) {
+        // Double encoding required
+        file_name = encodeURI(file_name);
         properties = GeogebraPageComponent.parseProperties(properties, file_name);
-        console.log(JSON.stringify(properties));
         var ggbApp = new GGBApplet(properties, true);
 
         //window.addEventListener("load", function () {

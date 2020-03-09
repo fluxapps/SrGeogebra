@@ -114,8 +114,7 @@ class GeogebraFormGUI extends PropertyFormGUI
     {
         $this->fields = [
             self::KEY_TITLE => [
-                self::PROPERTY_CLASS    => ilTextInputGUI::class,
-                self::PROPERTY_REQUIRED => true
+                self::PROPERTY_CLASS    => ilTextInputGUI::class
             ],
             self::KEY_FILE => [
                 self::PROPERTY_CLASS    => ilFileInputGUI::class
@@ -138,9 +137,11 @@ class GeogebraFormGUI extends PropertyFormGUI
 
         if (empty($this->properties)) {
             $this->fields[self::KEY_TITLE][self::PROPERTY_REQUIRED] = true;
+            $this->fields[self::KEY_FILE][self::PROPERTY_REQUIRED] = true;
         } else {
             $this->fields[self::KEY_TITLE]["setValue"] = $this->properties["title"];
             $this->fields[self::KEY_TITLE][self::PROPERTY_REQUIRED] = false;
+            $this->fields[self::KEY_FILE][self::PROPERTY_REQUIRED] = false;
             $this->fields[self::KEY_FILE]["setValue"] = $this->properties["legacyFileName"];
         }
     }

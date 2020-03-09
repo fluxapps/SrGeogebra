@@ -157,6 +157,7 @@ class ComposerStaticInit360cecbda728a7f017372b0e507c9ed1
         'srag\\Plugins\\SrGeogebra\\Forms\\GeogebraFormGUI' => __DIR__ . '/../..' . '/src/Forms/GeogebraFormGUI.php',
         'srag\\Plugins\\SrGeogebra\\Forms\\SettingsAdvancedGeogebraFormGUI' => __DIR__ . '/../..' . '/src/Forms/SettingsAdvancedGeogebraFormGUI.php',
         'srag\\Plugins\\SrGeogebra\\Repository' => __DIR__ . '/../..' . '/src/Repository.php',
+        'srag\\Plugins\\SrGeogebra\\Upload\\UploadService' => __DIR__ . '/../..' . '/src/Upload/UploadService.php',
         'srag\\Plugins\\SrGeogebra\\Utils\\SrGeogebraTrait' => __DIR__ . '/../..' . '/src/Utils/SrGeogebraTrait.php',
         'srag\\RemovePluginDataConfirm\\SrGeogebra\\BasePluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/BasePluginUninstallTrait.php',
         'srag\\RemovePluginDataConfirm\\SrGeogebra\\PluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/PluginUninstallTrait.php',

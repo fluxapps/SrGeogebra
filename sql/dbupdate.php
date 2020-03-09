@@ -1,4 +1,11 @@
 <#1>
 <?php
-\srag\Plugins\SrGeogebra\Repository::getInstance()->installTables();
+srag\Plugins\SrGeogebra\Repository::getInstance()->installTables();
+?>
+<#2>
+<?php
+use srag\Plugins\SrGeogebra\Config\Repository;
+use srag\Plugins\SrGeogebra\Forms\BaseAdvancedGeogebraFormGUI;
+
+Repository::getInstance()->setValue(BaseAdvancedGeogebraFormGUI::KEY_ENABLE_3D, true);
 ?>

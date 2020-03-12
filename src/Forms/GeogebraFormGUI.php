@@ -100,7 +100,7 @@ class GeogebraFormGUI extends PropertyFormGUI
         if ($this->mode === self::MODE_CREATE) {
             $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_CREATE, self::plugin()->translate("create", "form"));
         } else if ($this->mode === self::MODE_EDIT) {
-            $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_UPDATE, self::plugin()->translate("edit", "form"));
+            $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_UPDATE, self::plugin()->translate("save", "form"));
         }
 
         $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_CANCEL, self::plugin()->translate("cancel", "form"));

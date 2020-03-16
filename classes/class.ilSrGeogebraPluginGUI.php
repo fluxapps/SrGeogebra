@@ -152,7 +152,8 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             "custom_width",
             "custom_height",
             "custom_enableShiftDragZoom",
-            "custom_showResetIcon"
+            "custom_showResetIcon",
+            "custom_alignment"
         ];
 
         $formatedCustomSettings = [];
@@ -189,6 +190,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         if (!empty($this->getProperties())) {
             $this->setSubTabs(self::SUBTAB_GENERIC_SETTINGS);
         }
+
         $form = $this->getForm($this->getProperties());
 
         self::output()->output($form);
@@ -358,11 +360,15 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $plugin_dir = $this->pl->getDirectory();
         $file_name = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/' . $a_properties["fileName"];
 
+        $raw_alignment = $a_properties["custom_alignment"];
+        $alignment = is_null($raw_alignment) || empty($raw_alignment) ? GeogebraFormGUI::DEFAULT_ALIGNMENT : $raw_alignment;
+
         $this->loadJS();
         $this->loadCSS();
 
         $tpl = $template = self::plugin()->template("tpl.geogebra.html");
         $tpl->setVariable("ID", $id);
+        $tpl->setVariable("ALIGNMENT", $alignment);
 
         // $a_properties value types need to be converted here as values only get saved as strings
         $this->convertPropertyValueTypes($a_properties);

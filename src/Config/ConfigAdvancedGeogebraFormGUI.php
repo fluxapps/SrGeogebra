@@ -4,8 +4,10 @@ namespace srag\Plugins\SrGeogebra\Config;
 
 use ilCheckboxInputGUI;
 use ilNumberInputGUI;
+use ilSelectInputGUI;
 use ilSrGeogebraConfigGUI;
 use srag\Plugins\SrGeogebra\Forms\BaseAdvancedGeogebraFormGUI;
+use srag\Plugins\SrGeogebra\Forms\GeogebraFormGUI;
 
 /**
  * Class ConfigFormGUI
@@ -22,12 +24,23 @@ class ConfigAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
     const KEY_DEFAULT_HEIGHT = "default_height";
     const KEY_DEFAULT_DRAG_ZOOM = "default_enableShiftDragZoom";
     const KEY_DEFAULT_RESET = "default_showResetIcon";
+    const KEY_DEFAULT_ALIGNMENT = "default_alignment";
 
     protected function initFields()
     {
         parent::initFields();
 
         // Add at the beginning of fields array
+        $this->fields = [self::KEY_DEFAULT_ALIGNMENT => [
+                self::PROPERTY_CLASS => ilSelectInputGUI::class,
+                self::PROPERTY_OPTIONS => [
+                    GeogebraFormGUI::ALIGNMENT_LEFT => GeogebraFormGUI::ALIGNMENT_LEFT,
+                    GeogebraFormGUI::ALIGNMENT_CENTER => GeogebraFormGUI::ALIGNMENT_CENTER,
+                    GeogebraFormGUI::ALIGNMENT_RIGHT => GeogebraFormGUI::ALIGNMENT_RIGHT
+                ]
+            ]
+        ] + $this->fields;
+
         $this->fields = [self::KEY_DEFAULT_RESET => [
                 self::PROPERTY_CLASS    => ilCheckboxInputGUI::class
             ]

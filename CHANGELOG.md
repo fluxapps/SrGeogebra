@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0]
+- Add alignment functionality
+- Adjust edit button text
+
 ## [0.2.1]
 - Fix Firefox
 - Fix working in learn modules

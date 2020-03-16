@@ -3,6 +3,7 @@
 ## [0.3.0]
 - Add alignment functionality
 - Adjust edit button text
+- Fix alignment editing on old objects
 
 ## [0.2.1]
 - Fix Firefox

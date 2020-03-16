@@ -28,6 +28,14 @@ final class Repository extends AbstractRepository
      */
     protected static $instance = null;
 
+    const CUSTOM_SETTINGS = [
+        "custom_width",
+        "custom_height",
+        "custom_enableShiftDragZoom",
+        "custom_showResetIcon",
+        "custom_alignment"
+    ];
+
 
     /**
      * @return self

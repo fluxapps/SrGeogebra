@@ -148,14 +148,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
 
 
     protected function mergeCustomSettings(&$properties) {
-        $customSettings = [
-            "custom_width",
-            "custom_height",
-            "custom_enableShiftDragZoom",
-            "custom_showResetIcon",
-            "custom_alignment"
-        ];
-
+        $customSettings = Repository::CUSTOM_SETTINGS;
         $formatedCustomSettings = [];
 
         foreach ($customSettings as $custom_setting) {
@@ -273,8 +266,18 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
 
     protected function updateCustomProperties() {
         $existing_properties = $this->getProperties();
+        $all_custom_properties = Repository::CUSTOM_SETTINGS;
 
         foreach ($existing_properties as $key => $existing_property) {
+            if (strpos($key, "custom_") === 0) {
+                unset($all_custom_properties[$key]);
+                $postKey = str_replace("custom_", "", $key);
+                $existing_properties[$key] = $_POST[$postKey];
+            }
+        }
+
+        // Add remaining, newly added properties
+        foreach ($all_custom_properties as $key) {
             if (strpos($key, "custom_") === 0) {
                 $postKey = str_replace("custom_", "", $key);
                 $existing_properties[$key] = $_POST[$postKey];

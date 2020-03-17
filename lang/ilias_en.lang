@@ -16,6 +16,7 @@ config_default_showResetIcon#:#Default "Enable Reset Icon" Value
 config_default_enableShiftDragZoom#:#Default "Enable Dragging And Zooming" Value
 config_default_height#:#Default Height
 config_default_width#:#Default Width
+config_default_alignment#:#Default Alignment
 config_appName#:#App Name
 config_width#:#Width
 config_height#:#Height
@@ -55,6 +56,10 @@ form_zoom#:#Enable Dragging And Zooming
 form_reset#:#Enable Reset Icon
 form_title_create#:#Create Geogebra object
 form_title_edit#:#Edit Geogebra object
+form_alignment#:#Alignment
+form_alignment_left#:#Left
+form_alignment_center#:#Center
+form_alignment_right#:#Right
 subtab_generic_settings#:#Generic Settings
 subtab_advanced_settings#:#Advanced Settings
 alert_file_exists#:#The file "%1$s" already exists on the server. Automatically using the existing file. Please check if the displayed Geogebra object is correct. If the displayed Geogebra object is incorrect consider renaming the uploaded file and retry.

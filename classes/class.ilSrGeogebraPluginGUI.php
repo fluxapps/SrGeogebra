@@ -148,13 +148,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
 
 
     protected function mergeCustomSettings(&$properties) {
-        $customSettings = [
-            "custom_width",
-            "custom_height",
-            "custom_enableShiftDragZoom",
-            "custom_showResetIcon"
-        ];
-
+        $customSettings = Repository::CUSTOM_SETTINGS;
         $formatedCustomSettings = [];
 
         foreach ($customSettings as $custom_setting) {
@@ -189,6 +183,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         if (!empty($this->getProperties())) {
             $this->setSubTabs(self::SUBTAB_GENERIC_SETTINGS);
         }
+
         $form = $this->getForm($this->getProperties());
 
         self::output()->output($form);
@@ -271,8 +266,18 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
 
     protected function updateCustomProperties() {
         $existing_properties = $this->getProperties();
+        $all_custom_properties = Repository::CUSTOM_SETTINGS;
 
         foreach ($existing_properties as $key => $existing_property) {
+            if (strpos($key, "custom_") === 0) {
+                unset($all_custom_properties[$key]);
+                $postKey = str_replace("custom_", "", $key);
+                $existing_properties[$key] = $_POST[$postKey];
+            }
+        }
+
+        // Add remaining, newly added properties
+        foreach ($all_custom_properties as $key) {
             if (strpos($key, "custom_") === 0) {
                 $postKey = str_replace("custom_", "", $key);
                 $existing_properties[$key] = $_POST[$postKey];
@@ -358,11 +363,15 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $plugin_dir = $this->pl->getDirectory();
         $file_name = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/' . $a_properties["fileName"];
 
+        $raw_alignment = $a_properties["custom_alignment"];
+        $alignment = is_null($raw_alignment) || empty($raw_alignment) ? GeogebraFormGUI::DEFAULT_ALIGNMENT : $raw_alignment;
+
         $this->loadJS();
         $this->loadCSS();
 
         $tpl = $template = self::plugin()->template("tpl.geogebra.html");
         $tpl->setVariable("ID", $id);
+        $tpl->setVariable("ALIGNMENT", $alignment);
 
         // $a_properties value types need to be converted here as values only get saved as strings
         $this->convertPropertyValueTypes($a_properties);

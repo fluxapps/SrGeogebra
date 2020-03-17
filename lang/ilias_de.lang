@@ -16,6 +16,7 @@ config_default_showResetIcon#:#Standardwert "Neu laden aktivieren"
 config_default_enableShiftDragZoom#:#Standardwert "Zoom & Bewegen aktivieren"
 config_default_height#:#Standardhöhe
 config_default_width#:#Standardbreite
+config_default_alignment#:#Standardausrichtung
 config_appName#:#App Name
 config_width#:#Default-Breite
 config_height#:#Default-Höhe
@@ -55,6 +56,10 @@ form_zoom#:#Zoom & Bewegen aktivieren
 form_reset#:#Neu laden aktivieren
 form_title_create#:#Geogebra-Objekt erstellen
 form_title_edit#:#Geogebra-Objekt bearbeiten
+form_alignment#:#Ausrichtung
+form_alignment_left#:#Linksbündig
+form_alignment_center#:#Mittig
+form_alignment_right#:#Rechtsbündig
 subtab_generic_settings#:#Spezifische Einstellungen
 subtab_advanced_settings#:#Erweiterte Einstellungen
 alert_file_exists#:#Die Datei "%1$s" existiert bereits auf dem Server. Die bereits existierende Datei wird priorisiert. Bitte überprüfen Sie, ob das angezeigte Geogebra-Objekt korrekt ist. Ändern Sie den Dateinamen und laden Sie die das Geogebra-Objekt erneut hoch, falls ein falsches Geogebra-Objekt angezeigt wird.

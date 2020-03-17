@@ -28,6 +28,14 @@ final class Repository extends AbstractRepository
      */
     protected static $instance = null;
 
+    const CUSTOM_SETTINGS = [
+        "custom_width",
+        "custom_height",
+        "custom_enableShiftDragZoom",
+        "custom_showResetIcon",
+        "custom_alignment"
+    ];
+
 
     /**
      * @return self
@@ -81,6 +89,7 @@ final class Repository extends AbstractRepository
             ConfigAdvancedGeogebraFormGUI::KEY_DEFAULT_HEIGHT => [Config::TYPE_INTEGER, 600],
             ConfigAdvancedGeogebraFormGUI::KEY_DEFAULT_DRAG_ZOOM => [Config::TYPE_BOOLEAN, true],
             ConfigAdvancedGeogebraFormGUI::KEY_DEFAULT_RESET => [Config::TYPE_BOOLEAN, false],
+            ConfigAdvancedGeogebraFormGUI::KEY_DEFAULT_ALIGNMENT => [Config::TYPE_STRING, "left"],
             BaseAdvancedGeogebraFormGUI::KEY_APP_NAME => [Config::TYPE_STRING, "classic"],
             BaseAdvancedGeogebraFormGUI::KEY_BORDER_COLOR => [Config::TYPE_STRING, "ffffff"],
             BaseAdvancedGeogebraFormGUI::KEY_ENABLE_RIGHT => [Config::TYPE_BOOLEAN, true],

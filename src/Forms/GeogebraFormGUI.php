@@ -6,6 +6,8 @@ use ilCheckboxInputGUI;
 use ilColorPickerInputGUI;
 use ilFileInputGUI;
 use ilNumberInputGUI;
+use ilRadioGroupInputGUI;
+use ilRadioOption;
 use ilSelectInputGUI;
 use ilSrGeogebraPluginGUI;
 use srag\Plugins\SrGeogebra\Config\Repository;
@@ -35,9 +37,14 @@ class GeogebraFormGUI extends PropertyFormGUI
     const KEY_HEIGHT = "height";
     const KEY_DRAG_ZOOM = "enableShiftDragZoom";
     const KEY_RESET = "showResetIcon";
+    const KEY_ALIGNMENT = "alignment";
     const LANG_MODULE = "form";
     const MODE_CREATE = 1;
     const MODE_EDIT = 2;
+    const ALIGNMENT_LEFT = "left";
+    const ALIGNMENT_CENTER = "center";
+    const ALIGNMENT_RIGHT = "right";
+    const DEFAULT_ALIGNMENT = self::ALIGNMENT_LEFT;
 
     protected $mode;
     protected $properties;
@@ -72,6 +79,7 @@ class GeogebraFormGUI extends PropertyFormGUI
                 case "height":
                 case "enableShiftDragZoom":
                 case "showResetIcon":
+                case "alignment":
                     $adjustedKey = "default_" . $key;
                     return Repository::getInstance()->getValue($adjustedKey);
             }
@@ -85,6 +93,10 @@ class GeogebraFormGUI extends PropertyFormGUI
                 case "file":
                     return $this->properties["legacyFileName"];
                     break;
+                case "alignment":
+                    $raw_alignment = $this->properties["custom_" . $key];
+                    $alignment = is_null($raw_alignment) || empty($raw_alignment) ? self::DEFAULT_ALIGNMENT : $raw_alignment;
+                    return $alignment;
                 default:
                     return $this->properties["custom_" . $key];
             }
@@ -100,7 +112,7 @@ class GeogebraFormGUI extends PropertyFormGUI
         if ($this->mode === self::MODE_CREATE) {
             $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_CREATE, self::plugin()->translate("create", "form"));
         } else if ($this->mode === self::MODE_EDIT) {
-            $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_UPDATE, self::plugin()->translate("edit", "form"));
+            $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_UPDATE, self::plugin()->translate("save", "form"));
         }
 
         $this->addCommandButton(ilSrGeogebraPluginGUI::CMD_CANCEL, self::plugin()->translate("cancel", "form"));
@@ -132,8 +144,26 @@ class GeogebraFormGUI extends PropertyFormGUI
             ],
             self::KEY_RESET => [
                 self::PROPERTY_CLASS    => ilCheckboxInputGUI::class
+            ],
+            self::KEY_ALIGNMENT => [
+                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
+                self::PROPERTY_REQUIRED => true,
+                self::PROPERTY_SUBITEMS  => [
+                    self::ALIGNMENT_LEFT => [
+                        self::PROPERTY_CLASS    => ilRadioOption::class,
+                        "setDisabled"          => false,
+                    ],
+                    self::ALIGNMENT_CENTER => [
+                        self::PROPERTY_CLASS    => ilRadioOption::class,
+                    ],
+                    self::ALIGNMENT_RIGHT => [
+                        self::PROPERTY_CLASS    => ilRadioOption::class,
+                    ],
+                ],
             ]
         ];
+
+
 
         if (empty($this->properties)) {
             $this->fields[self::KEY_TITLE][self::PROPERTY_REQUIRED] = true;

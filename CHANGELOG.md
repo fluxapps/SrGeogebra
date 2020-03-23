@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.3.1]
+- Fix vertical whitespace on scaling
+
 ## [0.3.0]
 - Add alignment functionality
 - Adjust edit button text

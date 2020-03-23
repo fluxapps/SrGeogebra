@@ -349,6 +349,21 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     }
 
 
+    protected function calculateScalingHeight(&$properties_after_change) {
+        $scaling_height = $properties_after_change["custom_height"];
+        $scale_factor = $properties_after_change["advanced_scale"];
+
+        if (!is_null($scale_factor) && $scale_factor !== floatval(1)) {
+            // Force left alignment
+            $properties_after_change["custom_alignment"] = GeogebraFormGUI::ALIGNMENT_LEFT;
+
+            $scaling_height *= $scale_factor;
+        }
+
+        return $scaling_height . "px";
+    }
+
+
     /**
      * @inheritDoc
      */
@@ -363,18 +378,23 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $plugin_dir = $this->pl->getDirectory();
         $file_name = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/' . $a_properties["fileName"];
 
-        $raw_alignment = $a_properties["custom_alignment"];
-        $alignment = is_null($raw_alignment) || empty($raw_alignment) ? GeogebraFormGUI::DEFAULT_ALIGNMENT : $raw_alignment;
-
         $this->loadJS();
         $this->loadCSS();
 
         $tpl = $template = self::plugin()->template("tpl.geogebra.html");
         $tpl->setVariable("ID", $id);
-        $tpl->setVariable("ALIGNMENT", $alignment);
 
         // $a_properties value types need to be converted here as values only get saved as strings
         $this->convertPropertyValueTypes($a_properties);
+
+        // Adjust scaling dimensions so whitespaces don't appear
+        $scale_height = $this->calculateScalingHeight($a_properties);
+        $tpl->setVariable("SCALE_WRAPPER_HEIGHT", $scale_height);
+
+        // Align
+        $raw_alignment = $a_properties["custom_alignment"];
+        $alignment = is_null($raw_alignment) || empty($raw_alignment) ? GeogebraFormGUI::DEFAULT_ALIGNMENT : $raw_alignment;
+        $tpl->setVariable("ALIGNMENT", $alignment);
 
         self::dic()->ui()->mainTemplate()->addOnLoadCode('GeogebraPageComponent.create("' . $id . '", "' . $plugin_dir . '", "' . $file_name . '", ' . json_encode($a_properties). ');');
 

@@ -60,6 +60,7 @@ form_alignment#:#Alignment
 form_alignment_left#:#Left
 form_alignment_center#:#Center
 form_alignment_right#:#Right
+form_alignment_info#:#Scaled objects are always aligned to the left.
 subtab_generic_settings#:#Generic Settings
 subtab_advanced_settings#:#Advanced Settings
 alert_file_exists#:#The file "%1$s" already exists on the server. Automatically using the existing file. Please check if the displayed Geogebra object is correct. If the displayed Geogebra object is incorrect consider renaming the uploaded file and retry.

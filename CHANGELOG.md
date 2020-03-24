@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.3.2]
+- Restrict scaling to only work on downscaling
+
 ## [0.3.1]
 - Fix vertical whitespace on scaling
 

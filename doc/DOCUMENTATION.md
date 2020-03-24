@@ -92,3 +92,4 @@ The administrator is now able to edit the default settings by changing the value
 ### Hints
 
 * Scaled objects are always forced to be aligned to the left
+* Only downscaling is currently supported

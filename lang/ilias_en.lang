@@ -52,6 +52,7 @@ config_rounding#:#Show Rounding
 config_buttonShadows#:#Button Shadows
 config_buttonRounding#:#Button Rounding
 config_form_title_edit#:#Edit Geogebra object advanced properties
+config_scale_info#:#Only downscaling is currently supported.
 form_zoom#:#Enable Dragging And Zooming
 form_reset#:#Enable Reset Icon
 form_title_create#:#Create Geogebra object
@@ -60,6 +61,7 @@ form_alignment#:#Alignment
 form_alignment_left#:#Left
 form_alignment_center#:#Center
 form_alignment_right#:#Right
+form_alignment_info#:#Scaled objects are always aligned to the left.
 subtab_generic_settings#:#Generic Settings
 subtab_advanced_settings#:#Advanced Settings
 alert_file_exists#:#The file "%1$s" already exists on the server. Automatically using the existing file. Please check if the displayed Geogebra object is correct. If the displayed Geogebra object is incorrect consider renaming the uploaded file and retry.

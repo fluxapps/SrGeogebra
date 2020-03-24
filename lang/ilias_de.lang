@@ -52,6 +52,7 @@ config_rounding#:#Rundung
 config_buttonShadows#:#Knopfschatten anzeigen
 config_buttonRounding#:#Knopfrundung
 config_form_title_edit#:#Geogebra-Objekt erweiterte Einstellungen bearbeiten
+config_scale_info#:#Momentan wird nur die Herunterskalierung unterstützt.
 form_zoom#:#Zoom & Bewegen aktivieren
 form_reset#:#Neu laden aktivieren
 form_title_create#:#Geogebra-Objekt erstellen
@@ -60,6 +61,7 @@ form_alignment#:#Ausrichtung
 form_alignment_left#:#Linksbündig
 form_alignment_center#:#Mittig
 form_alignment_right#:#Rechtsbündig
+form_alignment_info#:#Skalierte Objekte sind immer linksbündig.
 subtab_generic_settings#:#Spezifische Einstellungen
 subtab_advanced_settings#:#Erweiterte Einstellungen
 alert_file_exists#:#Die Datei "%1$s" existiert bereits auf dem Server. Die bereits existierende Datei wird priorisiert. Bitte überprüfen Sie, ob das angezeigte Geogebra-Objekt korrekt ist. Ändern Sie den Dateinamen und laden Sie die das Geogebra-Objekt erneut hoch, falls ein falsches Geogebra-Objekt angezeigt wird.

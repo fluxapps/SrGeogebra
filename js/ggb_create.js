@@ -5,10 +5,8 @@ GeogebraPageComponent = {
         properties = GeogebraPageComponent.parseProperties(properties, file_name);
         var ggbApp = new GGBApplet(properties, true);
 
-        //window.addEventListener("load", function () {
-            ggbApp.setHTML5Codebase(plugin_dir + "/html/web3d/");
-            ggbApp.inject(dom_element_id);
-        //});
+        ggbApp.setHTML5Codebase(plugin_dir + "/html/web3d/");
+        ggbApp.inject(dom_element_id);
     },
 
 

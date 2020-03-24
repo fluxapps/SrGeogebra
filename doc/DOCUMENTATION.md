@@ -6,6 +6,8 @@ SrGeogebra is an ILIAS Plugin used to display GeoGebra (.ggb) files inside the I
 
 https://www.geogebra.org/
 
+> This documentation will teach you how to use the SrGeoGebra plugin within ILIAS learning modules.
+
 ### Usage
 
 * Create SrGeoGebra objects
@@ -73,9 +75,9 @@ The user must accept the prompt by selecting "OK". The object has now been delet
 
 ##### Note
 
-Default settings are values that are automatically used in place of undefined values. The 5 top inputs starting with "Default" are generic settings while all the other inputs are advanced settings. When creating a new SrGeoGebra object, the top 5 inputs are merely used as a template for new objects and can be edited. As all the other inputs are advanced settings that can't be defined when creating a new SrGeoGebra object, the values defined in here will automatically transfer onto newly created objects.
+Default settings are values that are automatically used in place of undefined values. The 5 top inputs starting with "Default" within the configuration are generic settings while all the other inputs are advanced settings. When creating a new SrGeoGebra object, the top 5 inputs are merely used as a template for new objects and can be edited. As all the other inputs are advanced settings that can't be defined when creating a new SrGeoGebra object, the values defined in here will automatically transfer onto newly created objects.
 
-> Most advanced settings used in this plugin are listed here: https://wiki.geogebra.org/en/Reference:GeoGebra_App_Parameters
+> All advanced settings used in this plugin are listed here: https://wiki.geogebra.org/en/Reference:GeoGebra_App_Parameters
 
 ##### Usage
 
@@ -89,4 +91,4 @@ The administrator is now able to edit the default settings by changing the value
 
 ### Hints
 
-* Scaled objects are always automatically aligned to the left
+* Scaled objects are always forced to be aligned to the left

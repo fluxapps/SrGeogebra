@@ -151,7 +151,8 @@ abstract class BaseAdvancedGeogebraFormGUI extends PropertyFormGUI
             ],
             self::KEY_SCALE => [
                 self::PROPERTY_CLASS    => ilNumberInputGUI::class,
-                "allowDecimals" => true
+                "allowDecimals" => true,
+                "setInfo" => $this->txt("scale_info")
             ],
             self::KEY_SHOW_ANIMATION_BUTTON => [
                 self::PROPERTY_CLASS    => ilCheckboxInputGUI::class

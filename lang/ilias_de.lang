@@ -52,6 +52,7 @@ config_rounding#:#Rundung
 config_buttonShadows#:#Knopfschatten anzeigen
 config_buttonRounding#:#Knopfrundung
 config_form_title_edit#:#Geogebra-Objekt erweiterte Einstellungen bearbeiten
+config_scale_info#:#Momentan wird nur die Herunterskalierung unterstützt.
 form_zoom#:#Zoom & Bewegen aktivieren
 form_reset#:#Neu laden aktivieren
 form_title_create#:#Geogebra-Objekt erstellen

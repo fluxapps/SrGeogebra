@@ -174,6 +174,7 @@ class GeogebraFormGUI extends PropertyFormGUI
             $this->fields[self::KEY_TITLE][self::PROPERTY_REQUIRED] = false;
             $this->fields[self::KEY_FILE][self::PROPERTY_REQUIRED] = false;
             $this->fields[self::KEY_FILE]["setValue"] = $this->properties["legacyFileName"];
+            $this->fields[self::KEY_ALIGNMENT]["setInfo"] = "";
 
             // Scaled objects can only be aligned to the left
             if ($this->isScaled()) {
@@ -185,7 +186,7 @@ class GeogebraFormGUI extends PropertyFormGUI
 
 
     protected function isScaled() {
-        return !empty($this->properties["advanced_scale"]) && $this->properties["advanced_scale"] !== "1";
+        return !empty($this->properties["advanced_scale"]) && $this->properties["advanced_scale"] < "1";
     }
 
 

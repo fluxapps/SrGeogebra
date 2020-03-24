@@ -353,7 +353,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $scaling_height = $properties_after_change["custom_height"];
         $scale_factor = $properties_after_change["advanced_scale"];
 
-        if (!is_null($scale_factor) && $scale_factor !== floatval(1)) {
+        if (!is_null($scale_factor) && $scale_factor < floatval(1)) {
             // Force left alignment
             $properties_after_change["custom_alignment"] = GeogebraFormGUI::ALIGNMENT_LEFT;
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.3.3]
+- Enforce enable3d rule to prevent certain unfathomable bugs
+
 ## [0.3.2]
 - Restrict scaling to only work on downscaling
 

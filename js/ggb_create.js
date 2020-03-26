@@ -40,6 +40,9 @@ GeogebraPageComponent = {
         // Add filename to properties
         adjustedProperties["filename"] = file_name;
 
+        // Enforce enable 3d rule
+        adjustedProperties["enable3d"] = true;
+
         return adjustedProperties;
     }
 };

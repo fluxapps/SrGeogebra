@@ -134,7 +134,9 @@ abstract class BaseAdvancedGeogebraFormGUI extends PropertyFormGUI
                 "setInfo" => $this->txt('enable3d_info')
             ],
             self::KEY_ENABLE_CAS => [
-                self::PROPERTY_CLASS    => ilCheckboxInputGUI::class
+                self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
+                "setDisabled" => true,
+                "setInfo" => $this->txt('enableCAS_info')
             ],
             self::KEY_ALGEBRA_INPUT_POSITION => [
                 self::PROPERTY_CLASS    => ilTextInputGUI::class
@@ -179,6 +181,18 @@ abstract class BaseAdvancedGeogebraFormGUI extends PropertyFormGUI
                 "allowDecimals" => true
             ]
         ];
+    }
+
+
+    protected function getValue($key)
+    {
+        switch ($key) {
+            case "enable3d":
+            case "enableCAS":
+                return true;
+            default:
+                return null;
+        }
     }
 
 

@@ -40,8 +40,9 @@ GeogebraPageComponent = {
         // Add filename to properties
         adjustedProperties["filename"] = file_name;
 
-        // Enforce enable 3d rule
+        // Enforce certain rules
         adjustedProperties["enable3d"] = true;
+        adjustedProperties["enableCAS"] = true;
 
         return adjustedProperties;
     }

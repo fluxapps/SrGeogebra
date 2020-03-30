@@ -54,6 +54,7 @@ config_buttonRounding#:#Knopfrundung
 config_form_title_edit#:#Geogebra-Objekt erweiterte Einstellungen bearbeiten
 config_scale_info#:#Momentan wird nur die Herunterskalierung unterstützt.
 config_enable3d_info#:#Immer aktiviert, um einige unerklärliche Bugs zu vermeiden.
+config_enableCAS_info#:#Immer aktiviert, um einige unerklärliche Bugs zu vermeiden.
 form_zoom#:#Zoom & Bewegen aktivieren
 form_reset#:#Neu laden aktivieren
 form_title_create#:#Geogebra-Objekt erstellen

@@ -32,12 +32,13 @@ class SettingsAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
      */
     protected function getValue($key)
     {
-        switch ($key) {
-            case "enable3d":
-                return true;
-            default:
-                return $this->properties["advanced_" . $key];
+        $parent_result = parent::getValue($key);
+
+        if (!is_null($parent_result)) {
+            return $parent_result;
         }
+
+        return $this->properties["advanced_" . $key];
     }
 
 

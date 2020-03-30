@@ -68,12 +68,13 @@ class ConfigAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
      */
     protected function getValue(/*string*/ $key)
     {
-        switch ($key) {
-            case "enable3d":
-                return true;
-            default:
-                return self::srGeogebra()->config()->getValue($key);
+        $parent_result = parent::getValue($key);
+
+        if (!is_null($parent_result)) {
+            return $parent_result;
         }
+
+        return self::srGeogebra()->config()->getValue($key);
     }
 
 

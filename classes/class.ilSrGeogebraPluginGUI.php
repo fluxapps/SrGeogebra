@@ -237,18 +237,6 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
     }
 
 
-    protected function loadJS()
-    {
-        self::dic()->ui()->mainTemplate()->addJavaScript($this->pl->getDirectory() . '/js/deployggb.js');
-        self::dic()->ui()->mainTemplate()->addJavaScript($this->pl->getDirectory() . '/js/ggb_create.js');
-    }
-
-
-    protected function loadCSS(){
-        self::dic()->ui()->mainTemplate()->addCss($this->pl->getDirectory() . '/css/geogebra_sheet.css');
-    }
-
-
     protected function setSubTabs($active) {
         self::dic()->tabs()->addSubTab(
             self::SUBTAB_GENERIC_SETTINGS,
@@ -369,35 +357,48 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      */
     public function getElementHTML(/*string*/ $a_mode, array $a_properties, /*string*/ $plugin_version) : string
     {
-        // Workaround fix learning module override global template
-        self::dic()->dic()->offsetUnset("tpl");
-        self::dic()->dic()->offsetSet("tpl", $GLOBALS["tpl"]);
-
         self::$id_counter += 1;
         $id = self::ID_PREFIX . self::$id_counter;
         $plugin_dir = $this->pl->getDirectory();
         $file_name = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/' . $a_properties["fileName"];
 
-        $this->loadJS();
-        $this->loadCSS();
-
-        $tpl = $template = self::plugin()->template("tpl.geogebra.html");
-        $tpl->setVariable("ID", $id);
-
-        // $a_properties value types need to be converted here as values only get saved as strings
-        $this->convertPropertyValueTypes($a_properties);
-
         // Adjust scaling dimensions so whitespaces don't appear
         $scale_height = $this->calculateScalingHeight($a_properties);
-        $tpl->setVariable("SCALE_WRAPPER_HEIGHT", $scale_height);
 
-        // Align
-        $raw_alignment = $a_properties["custom_alignment"];
-        $alignment = is_null($raw_alignment) || empty($raw_alignment) ? GeogebraFormGUI::DEFAULT_ALIGNMENT : $raw_alignment;
-        $tpl->setVariable("ALIGNMENT", $alignment);
+        if (!empty($iframe_id = filter_input(INPUT_GET, "iframe"))) {
+            if ($iframe_id === $id) {
+                $tpl = $template = self::plugin()->template("tpl.geogebra_iframe.html");
+                $tpl->setVariable("ID", $id);
 
-        self::dic()->ui()->mainTemplate()->addOnLoadCode('GeogebraPageComponent.create("' . $id . '", "' . $plugin_dir . '", "' . $file_name . '", ' . json_encode($a_properties). ');');
+                // $a_properties value types need to be converted here as values only get saved as strings
+                $this->convertPropertyValueTypes($a_properties);
 
-        return $tpl->get();
+                $tpl->setVariable("SCALE_WRAPPER_HEIGHT", $scale_height);
+
+                // Align
+                $raw_alignment = $a_properties["custom_alignment"];
+                $alignment = is_null($raw_alignment) || empty($raw_alignment) ? GeogebraFormGUI::DEFAULT_ALIGNMENT : $raw_alignment;
+                $tpl->setVariable("ALIGNMENT", $alignment);
+
+                $tpl->setVariable("PLUGIN_DIR", $plugin_dir);
+                $tpl->setVariable("FILE_NAME", $file_name);
+                $tpl->setVariable("PROPERTIES", json_encode($a_properties));
+
+                echo $tpl->get();
+                die();
+            } else {
+                // Not current properties, check next
+                return " ";
+            }
+        } else {
+            $tpl = $template = self::plugin()->template("tpl.geogebra.html");
+            $tpl->setVariable("ID", $id);
+
+            $tpl->setVariable("URL", filter_input(INPUT_SERVER, "REQUEST_URI") . '&iframe=' . $id);
+
+            $tpl->setVariable("SCALE_WRAPPER_HEIGHT", $scale_height);
+
+            return $tpl->get();
+        }
     }
 }

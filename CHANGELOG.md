@@ -1,5 +1,8 @@
 # Changelog
 
+## [x]
+- Fix may some bugs by loading in iframe
+
 ## [0.3.4]
 - Enforce enableCAS rule to prevent certain unfathomable bugs
 

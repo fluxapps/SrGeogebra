@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html style="overflow: hidden">
+<head>
+	<link rel="stylesheet" type="text/css" href="{PLUGIN_DIR}/css/geogebra_sheet.css" media="screen" />
+	<script type="text/javascript" src="{PLUGIN_DIR}/js/deployggb.js"></script>
+	<script type="text/javascript" src="{PLUGIN_DIR}/js/ggb_create.js"></script>
+</head>
+<body>
+<div style="height: {SCALE_WRAPPER_HEIGHT} !important">
+	<div class='geogebra_container'>
+		<div id='{ID}' class='geogebra_object {ALIGNMENT}'></div>
+	</div>
+</div>
+<script>
+    addEventListener("load", function () {
+        GeogebraPageComponent.create("{ID}", "{PLUGIN_DIR}", "{FILE_NAME}", {PROPERTIES});
+    });
+</script>
+</body>
+</html>

@@ -1,3 +1,7 @@
+body {
+	margin: 0;
+}
+
 .geogebra_container {
 	width:100%;
 	margin-top:    3px;
@@ -6,6 +10,10 @@
 
 .geogebra_object {
 	display: table;
+}
+
+.geogebra_object.right > .applet_scaler {
+	transform: none !important;
 }
 
 .center {

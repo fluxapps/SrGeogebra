@@ -47,3 +47,14 @@ GeogebraPageComponent = {
         return adjustedProperties;
     }
 };
+
+addEventListener("click", function (e) {
+    e = new MouseEvent(e.type, {
+        // Correct absolute positions
+        clientX: e.clientX + frameElement.getBoundingClientRect().x + parent.scrollX,
+        clientY: e.clientY + frameElement.getBoundingClientRect().y + parent.scrollY
+    });
+
+    // Pass click inside iframe to parent for support edit page component overlay
+    frameElement.parentElement.dispatchEvent(e);
+});

@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.0]
+- Migrate to iframe
+- Fix "?" on 2 ggb objects using the CAS funtion on the same page
+- Fix unnecessary whitespaces of ggb objects aligned to the right
+
 ## [0.3.4]
 - Enforce enableCAS rule to prevent certain unfathomable bugs
 

@@ -8,6 +8,7 @@ use ILIAS\FileUpload\Location;
 class UploadService
 {
     const DATA_FOLDER = "geogebra";
+    const FILE_SUFFIX = "ggb";
 
 
     public function handleUpload($form, $file_name) {
@@ -32,9 +33,6 @@ class UploadService
 
         $file_name = $this->evaluateFileName($file_name);
 
-        // Adjust white list
-        $DIC->settings()->set("suffix_custom_white_list", "ggb");
-
         $upload->moveOneFileTo(
             $uploadResult,
             self::DATA_FOLDER,
@@ -43,6 +41,20 @@ class UploadService
         );
 
         return $file_name;
+    }
+
+
+    public function uploadAllowed() {
+        global $DIC;
+
+        $whitelist = explode(",", $DIC->settings()->get("suffix_custom_white_list"));
+
+        // Error if file extension "ggb" is not whitelisted upon plugin activation
+        if (!in_array(UploadService::FILE_SUFFIX, $whitelist)) {
+            return false;
+        }
+
+        return true;
     }
 
 

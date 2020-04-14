@@ -17,6 +17,22 @@ https://www.geogebra.org/
 * Delete SrGeoGebra objects
 * Set default values of new SrGeoGebra objects
 
+### Setting up
+
+To use this plugin it is required to add the file extension "ggb" into the ILIAS file upload whitelist.
+
+Select the "Administration" tab and choose the entry "Files".
+
+![Setup Administration](images/setup_administration.png)
+
+1. Switch to the tab "Upload Settings".
+2. Enter the value "ggb" inside the "Custom Suffix Whitelist" text area.
+3. Click "Save".
+
+> Some values may already be inside the "Custom Suffix Whitelist" text area. In that case, separate each value with a comma. (E.g. "xyz, ggb")
+
+![Setup Add ggb](images/setup_add.png)
+
 #### Create SrGeoGebra objects
 
 A user is able to create a new SrGeoGebra object by clicking the button "Click here to add content" and selecting the menu entry "Insert GeoGebra Object".

@@ -131,6 +131,12 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             return;
         }
 
+        if (!$this->uploader->uploadAllowed()) {
+            ilUtil::sendFailure(self::plugin()->translate("form_upload_error"), true);
+            $this->returnToParent();
+            return;
+        }
+
         $file_name = $this->uploader->handleUpload($form, $_FILES["file"]["name"]);
 
         $properties = [
@@ -214,6 +220,12 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         }
 
         if (!empty($_FILES["file"]["name"])) {
+            if (!$this->uploader->uploadAllowed()) {
+                ilUtil::sendFailure(self::plugin()->translate("form_upload_error"), true);
+                $this->returnToParent();
+                return;
+            }
+
             $fileName = $this->uploader->handleUpload($form, $_FILES["file"]["name"]);
 
             $properties["legacyFileName"] = $fileName;

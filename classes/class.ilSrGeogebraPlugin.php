@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\Plugins\SrGeogebra\Upload\UploadService;
 use srag\Plugins\SrGeogebra\Utils\SrGeogebraTrait;
 use srag\RemovePluginDataConfirm\SrGeogebra\PluginUninstallTrait;
 
@@ -107,4 +108,29 @@ class ilSrGeogebraPlugin extends ilPageComponentPlugin
     }
 
 
+    protected function beforeActivation()
+    {
+        return $this->checkSuffixAvailable("config_activation_error");
+    }
+
+
+    protected function beforeUpdate()
+    {
+        return $this->checkSuffixAvailable("config_update_error");
+    }
+
+
+    protected function checkSuffixAvailable($error_msg) {
+        global $DIC;
+
+        $whitelist = explode(",", $DIC->settings()->get("suffix_custom_white_list"));
+
+        // Error if file extension "ggb" is not whitelisted upon plugin activation
+        if (!in_array(UploadService::FILE_SUFFIX, $whitelist)) {
+            ilUtil::sendFailure(self::plugin()->translate($error_msg), true);
+            return false;
+        }
+
+        return true;
+    }
 }

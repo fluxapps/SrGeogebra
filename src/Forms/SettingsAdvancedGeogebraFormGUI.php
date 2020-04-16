@@ -85,6 +85,7 @@ class SettingsAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
         foreach (Repository::getInstance()->getValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE) as $immutable) {
             if (strpos($immutable, "default_") !== 0) {
                 $this->fields[$immutable][self::PROPERTY_DISABLED] = true;
+                $this->fields[$immutable][self::PROPERTY_REQUIRED] = false;
             }
         }
     }

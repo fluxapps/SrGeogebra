@@ -4,6 +4,7 @@ use ILIAS\FileUpload\DTO\ProcessingStatus;
 use ILIAS\FileUpload\DTO\UploadResult;
 use ILIAS\FileUpload\Location;
 use srag\ActiveRecordConfig\SrGeogebra\Config\Config;
+use srag\Plugins\SrGeogebra\Config\ConfigAdvancedGeogebraFormGUI;
 use srag\Plugins\SrGeogebra\Config\GlobalConfigTransformer;
 use srag\Plugins\SrGeogebra\Config\Repository;
 use srag\Plugins\SrGeogebra\Forms\GeogebraFormGUI;
@@ -155,12 +156,21 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
 
 
     protected function mergeCustomSettings(&$properties) {
+        $immutable_fields = Repository::getInstance()->getValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE);
         $customSettings = Repository::CUSTOM_SETTINGS;
         $formatedCustomSettings = [];
 
         foreach ($customSettings as $custom_setting) {
             $key = str_replace("custom_", "", $custom_setting);
-            $formatedCustomSettings[$custom_setting] = $_POST[$key];
+            $config_key = sprintf("default_%s", $key);
+
+            // If field is immutable, use the value from the config instead
+            if (in_array($config_key, $immutable_fields)) {
+                $formatedCustomSettings[$custom_setting] = Repository::getInstance()->getValue($config_key);
+            } else {
+                // If field is not set as immutable, normally use the POST value
+                $formatedCustomSettings[$custom_setting] = $_POST[$key];
+            }
         }
 
         return array_merge($properties, $formatedCustomSettings);
@@ -172,9 +182,13 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $advancedSettings = [];
 
         foreach ($occurringValues as $key => $occurring_value) {
-            if (strpos($key, "default_") !== 0) {
-                $value = Repository::getInstance()->getValue($key);
-                $advancedSettings["advanced_" . $key] = $value;
+            // No need to check for immutable fields, all advanced config options are used anyway
+            // This if-statement just makes sure, the immutability field isn't used as an advanced option
+            if ($key !== ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE) {
+                if (strpos($key, "default_") !== 0) {
+                    $value = Repository::getInstance()->getValue($key);
+                    $advancedSettings["advanced_" . $key] = $value;
+                }
             }
         }
 
@@ -266,22 +280,29 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
 
 
     protected function updateCustomProperties() {
+        $immutable_fields = Repository::getInstance()->getValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE);
         $existing_properties = $this->getProperties();
         $all_custom_properties = Repository::CUSTOM_SETTINGS;
 
         foreach ($existing_properties as $key => $existing_property) {
-            if (strpos($key, "custom_") === 0) {
-                unset($all_custom_properties[$key]);
-                $postKey = str_replace("custom_", "", $key);
-                $existing_properties[$key] = $_POST[$postKey];
+            // Only change value if mutable
+            if (!in_array(str_replace("custom_", "default_", $key), $immutable_fields)) {
+                if (strpos($key, "custom_") === 0) {
+                    unset($all_custom_properties[$key]);
+                    $postKey = str_replace("custom_", "", $key);
+                    $existing_properties[$key] = $_POST[$postKey];
+                }
             }
         }
 
         // Add remaining, newly added properties
         foreach ($all_custom_properties as $key) {
-            if (strpos($key, "custom_") === 0) {
-                $postKey = str_replace("custom_", "", $key);
-                $existing_properties[$key] = $_POST[$postKey];
+            // Only change value if mutable
+            if (!in_array(str_replace("custom_", "default_", $key), $immutable_fields)) {
+                if (strpos($key, "custom_") === 0) {
+                    $postKey = str_replace("custom_", "", $key);
+                    $existing_properties[$key] = $_POST[$postKey];
+                }
             }
         }
 
@@ -290,12 +311,16 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
 
 
     protected function updateAdvancedProperties() {
+        $immutable_fields = Repository::getInstance()->getValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE);
         $existing_properties = $this->getProperties();
 
         foreach ($existing_properties as $key => $existing_property) {
-            if (strpos($key, "advanced_") === 0) {
-                $postKey = str_replace("advanced_", "", $key);
-                $existing_properties[$key] = $_POST[$postKey];
+            // Only change value if mutable
+            if (!in_array(str_replace("advanced_", "", $key), $immutable_fields)) {
+                if (strpos($key, "advanced_") === 0) {
+                    $postKey = str_replace("advanced_", "", $key);
+                    $existing_properties[$key] = $_POST[$postKey];
+                }
             }
         }
 
@@ -375,6 +400,10 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
         $plugin_dir = $this->pl->getDirectory();
         $file_name = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/' . $a_properties["fileName"];
 
+        // Override properties with forced, immutable config fields
+        $transformer = new GlobalConfigTransformer();
+        $transformer->transformProperties($a_properties);
+
         // Adjust scaling dimensions so whitespaces don't appear
         $scale_height = $this->calculateScalingHeight($a_properties);
 
@@ -392,9 +421,6 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
                 $raw_alignment = $a_properties["custom_alignment"];
                 $alignment = is_null($raw_alignment) || empty($raw_alignment) ? GeogebraFormGUI::DEFAULT_ALIGNMENT : $raw_alignment;
                 $tpl->setVariable("ALIGNMENT", $alignment);
-
-                $transformer = new GlobalConfigTransformer();
-                $transformer->transformProperties($a_properties);
 
                 $tpl->setVariable("PLUGIN_DIR", $plugin_dir);
                 $tpl->setVariable("FILE_NAME", $file_name);

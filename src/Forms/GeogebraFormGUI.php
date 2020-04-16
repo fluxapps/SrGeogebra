@@ -202,6 +202,7 @@ class GeogebraFormGUI extends PropertyFormGUI
             if (strpos($immutable, "default_") === 0) {
                 $key = str_replace("default_", "", $immutable);
                 $this->fields[$key][self::PROPERTY_DISABLED] = true;
+                $this->fields[$key][self::PROPERTY_REQUIRED] = false;
             }
         }
     }

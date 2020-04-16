@@ -2,6 +2,13 @@
 
 namespace srag\Plugins\SrGeogebra\Config;
 
+/**
+ * Class GlobalConfigTransformer
+ *
+ * @package srag\Plugins\SrGeogebra\Config
+ *
+ * @author  studer + raimann ag - Team Core 2
+ */
 class GlobalConfigTransformer
 {
     public function transformProperties(&$a_properties) {
@@ -11,8 +18,6 @@ class GlobalConfigTransformer
         foreach ($updated_config_values as $old_designation => $new_designation) {
             $a_properties[$new_designation] = Repository::getInstance()->getValue($old_designation);
         }
-
-
     }
 
     public function adjustConfigToPropertySyntax($immutable_config_values) {

@@ -71,4 +71,3 @@ subtab_generic_settings#:#Spezifische Einstellungen
 subtab_advanced_settings#:#Erweiterte Einstellungen
 alert_file_exists#:#Die Datei "%1$s" existiert bereits auf dem Server. Die bereits existierende Datei wird priorisiert. Bitte überprüfen Sie, ob das angezeigte Geogebra-Objekt korrekt ist. Ändern Sie den Dateinamen und laden Sie die das Geogebra-Objekt erneut hoch, falls ein falsches Geogebra-Objekt angezeigt wird.
 config_activation_error#:#Aktivierung fehlgeschlagen. Bitte fügen Sie die Dateiendung "ggb" in die Whitelist der ILIAS Upload-Einstellungen hinzu.
-config_update_error#:#Aktualisierung fehlgeschlagen. Bitte fügen Sie die Dateiendung "ggb" in die Whitelist der ILIAS Upload-Einstellungen hinzu.

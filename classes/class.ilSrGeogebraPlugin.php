@@ -21,6 +21,8 @@ class ilSrGeogebraPlugin extends ilPageComponentPlugin
     const PLUGIN_ID = "srgg";
     const PLUGIN_NAME = "SrGeogebra";
     const PLUGIN_CLASS_NAME = self::class;
+    // Can't be in language file as languages aren't updated on a failed update
+    const UPDATE_ERROR_MSG = "Update failed. Please add the file extension \"ggb\" into the ILIAS file upload whitelist. Please consult the documentation for more info.";
     /**
      * @var self|null
      */
@@ -110,13 +112,13 @@ class ilSrGeogebraPlugin extends ilPageComponentPlugin
 
     protected function beforeActivation()
     {
-        return $this->checkSuffixAvailable("config_activation_error");
+        return $this->checkSuffixAvailable(self::plugin()->translate("config_activation_error"));
     }
 
 
     protected function beforeUpdate()
     {
-        return $this->checkSuffixAvailable("config_update_error");
+        return $this->checkSuffixAvailable(self::UPDATE_ERROR_MSG);
     }
 
 
@@ -127,7 +129,7 @@ class ilSrGeogebraPlugin extends ilPageComponentPlugin
 
         // Error if file extension "ggb" is not whitelisted upon plugin activation
         if (!in_array(UploadService::FILE_SUFFIX, $whitelist)) {
-            ilUtil::sendFailure(self::plugin()->translate($error_msg), true);
+            ilUtil::sendFailure($error_msg, true);
             return false;
         }
 

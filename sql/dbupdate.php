@@ -16,3 +16,10 @@ use srag\Plugins\SrGeogebra\Config\ConfigAdvancedGeogebraFormGUI;
 
 Repository::getInstance()->setValue(ConfigAdvancedGeogebraFormGUI::KEY_DEFAULT_ALIGNMENT, "left");
 ?>
+<#4>
+<?php
+use srag\Plugins\SrGeogebra\Config\Repository;
+use srag\Plugins\SrGeogebra\Config\ConfigAdvancedGeogebraFormGUI;
+
+Repository::getInstance()->setValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE, []);
+?>

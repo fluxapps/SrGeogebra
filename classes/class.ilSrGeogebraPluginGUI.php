@@ -4,6 +4,7 @@ use ILIAS\FileUpload\DTO\ProcessingStatus;
 use ILIAS\FileUpload\DTO\UploadResult;
 use ILIAS\FileUpload\Location;
 use srag\ActiveRecordConfig\SrGeogebra\Config\Config;
+use srag\Plugins\SrGeogebra\Config\GlobalConfigTransformer;
 use srag\Plugins\SrGeogebra\Config\Repository;
 use srag\Plugins\SrGeogebra\Forms\GeogebraFormGUI;
 use srag\Plugins\SrGeogebra\Forms\SettingsAdvancedGeogebraFormGUI;
@@ -391,6 +392,9 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
                 $raw_alignment = $a_properties["custom_alignment"];
                 $alignment = is_null($raw_alignment) || empty($raw_alignment) ? GeogebraFormGUI::DEFAULT_ALIGNMENT : $raw_alignment;
                 $tpl->setVariable("ALIGNMENT", $alignment);
+
+                $transformer = new GlobalConfigTransformer();
+                $transformer->transformProperties($a_properties);
 
                 $tpl->setVariable("PLUGIN_DIR", $plugin_dir);
                 $tpl->setVariable("FILE_NAME", $file_name);

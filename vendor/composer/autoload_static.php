@@ -152,6 +152,7 @@ class ComposerStaticInit360cecbda728a7f017372b0e507c9ed1
         'srag\\LibrariesNamespaceChanger\\PHP7Backport' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/PHP7Backport.php',
         'srag\\Plugins\\SrGeogebra\\Config\\ConfigAdvancedGeogebraFormGUI' => __DIR__ . '/../..' . '/src/Config/ConfigAdvancedGeogebraFormGUI.php',
         'srag\\Plugins\\SrGeogebra\\Config\\Factory' => __DIR__ . '/../..' . '/src/Config/Factory.php',
+        'srag\\Plugins\\SrGeogebra\\Config\\GlobalConfigTransformer' => __DIR__ . '/../..' . '/src/Config/GlobalConfigTransformer.php',
         'srag\\Plugins\\SrGeogebra\\Config\\Repository' => __DIR__ . '/../..' . '/src/Config/Repository.php',
         'srag\\Plugins\\SrGeogebra\\Forms\\BaseAdvancedGeogebraFormGUI' => __DIR__ . '/../..' . '/src/Forms/BaseAdvancedGeogebraFormGUI.php',
         'srag\\Plugins\\SrGeogebra\\Forms\\GeogebraFormGUI' => __DIR__ . '/../..' . '/src/Forms/GeogebraFormGUI.php',

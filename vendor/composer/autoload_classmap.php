@@ -112,6 +112,7 @@ return array(
     'srag\\LibrariesNamespaceChanger\\PHP7Backport' => $vendorDir . '/srag/librariesnamespacechanger/src/PHP7Backport.php',
     'srag\\Plugins\\SrGeogebra\\Config\\ConfigAdvancedGeogebraFormGUI' => $baseDir . '/src/Config/ConfigAdvancedGeogebraFormGUI.php',
     'srag\\Plugins\\SrGeogebra\\Config\\Factory' => $baseDir . '/src/Config/Factory.php',
+    'srag\\Plugins\\SrGeogebra\\Config\\GlobalConfigTransformer' => $baseDir . '/src/Config/GlobalConfigTransformer.php',
     'srag\\Plugins\\SrGeogebra\\Config\\Repository' => $baseDir . '/src/Config/Repository.php',
     'srag\\Plugins\\SrGeogebra\\Forms\\BaseAdvancedGeogebraFormGUI' => $baseDir . '/src/Forms/BaseAdvancedGeogebraFormGUI.php',
     'srag\\Plugins\\SrGeogebra\\Forms\\GeogebraFormGUI' => $baseDir . '/src/Forms/GeogebraFormGUI.php',

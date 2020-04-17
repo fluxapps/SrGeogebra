@@ -105,6 +105,38 @@ The administrator is now able to edit the default settings by changing the value
 
 ![Configure SrGeoGebra Form](images/configure_form.png)
 
+#### Immutable fields
+
+##### Note
+
+> This feature requires at least version 0.5.1 of the SrGeoGebra plugin
+
+Immutable fields are fields that cannot be changed within SrGeoGebra objects and always use the value from the plugin configuration instead.
+
+##### Usage
+
+An administrator is able to manage immutable fields by accessing the plugin configuration under __Administration -> Plugins -> Actions/Configure__.
+
+![Configure SrGeoGebra](images/configure_path.png)
+
+The administrator is now able to manage immutable fields by clicking into the "Immutable Fields" field. A context menu with all possible configuration settings will pop up. Select the fields that you wish to make unchangeable.
+
+![Configure SrGeoGebra](images/immutable_add_entries.png)
+
+Entires may be removed by selecting the "x" next to each name.
+
+![Configure SrGeoGebra](images/immutable_added_entries.png)
+
+Click the button "Save" if you are finished. The immutable fields have now been set.
+
+#### Result
+
+Every existing GeoGebra object will be forced to use the unchangeable values within the configuration. Maintainers of SrGeoGebra objects are not able to change these values by editing their SrGeoGebra objects. However, they are able to detect unchangeable values as they remain greyed out.
+
+![Configure SrGeoGebra](images/immutable_greyed.png)
+
+> Please note that the values of exisiting objects are not replaced upon changing a field to immutable. However, these objects prioritize the value from the configuration. (E.g. a SrGeoGebra object has a width of 400. The width then gets changed to an immutable field with the value 1000. The user then reverts the width back to a changeable field, keeping the value 400 from earlier.)
+
 ### Hints
 
 * Scaled objects are always forced to be aligned to the left

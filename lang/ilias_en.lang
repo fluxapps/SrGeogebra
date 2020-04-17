@@ -55,6 +55,8 @@ config_form_title_edit#:#Edit Geogebra object advanced properties
 config_scale_info#:#Only downscaling is currently supported.
 config_enable3d_info#:#Always active to prevent certain unfathomable bugs.
 config_enableCAS_info#:#Always active to prevent certain unfathomable bugs.
+config_immutable#:#Immutable Fields
+config_immutable_info#:#Fields added to this list cannot be changed within GeoGebra objects. The values specified in this configuration will always be used instead.
 form_zoom#:#Enable Dragging And Zooming
 form_reset#:#Enable Reset Icon
 form_title_create#:#Create Geogebra object
@@ -69,4 +71,3 @@ subtab_generic_settings#:#Generic Settings
 subtab_advanced_settings#:#Advanced Settings
 alert_file_exists#:#The file "%1$s" already exists on the server. Automatically using the existing file. Please check if the displayed Geogebra object is correct. If the displayed Geogebra object is incorrect consider renaming the uploaded file and retry.
 config_activation_error#:#Activation failed. Please add the file extension "ggb" into the ILIAS file upload whitelist.
-config_update_error#:#Update failed. Please add the file extension "ggb" into the ILIAS file upload whitelist.

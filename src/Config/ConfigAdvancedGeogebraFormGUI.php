@@ -6,6 +6,7 @@ use ilCheckboxInputGUI;
 use ilNumberInputGUI;
 use ilSelectInputGUI;
 use ilSrGeogebraConfigGUI;
+use srag\CustomInputGUIs\SrGeogebra\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
 use srag\Plugins\SrGeogebra\Forms\BaseAdvancedGeogebraFormGUI;
 use srag\Plugins\SrGeogebra\Forms\GeogebraFormGUI;
 
@@ -20,11 +21,15 @@ use srag\Plugins\SrGeogebra\Forms\GeogebraFormGUI;
  */
 class ConfigAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
 {
+    const KEY_IMMUTABLE = "immutable";
     const KEY_DEFAULT_WIDTH = "default_width";
     const KEY_DEFAULT_HEIGHT = "default_height";
     const KEY_DEFAULT_DRAG_ZOOM = "default_enableShiftDragZoom";
     const KEY_DEFAULT_RESET = "default_showResetIcon";
     const KEY_DEFAULT_ALIGNMENT = "default_alignment";
+    const IMMUTABLE_BLACKLIST = [
+        self::KEY_IMMUTABLE
+    ];
 
     protected function initFields()
     {
@@ -60,6 +65,26 @@ class ConfigAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
                 self::PROPERTY_CLASS    => ilNumberInputGUI::class
             ]
         ] + $this->fields;
+
+        $this->fields = [self::KEY_IMMUTABLE => [
+                self::PROPERTY_CLASS    => MultiSelectSearchNewInputGUI::class,
+                "setOptions" => [$this->prepareImmutableOptions()],
+                "setInfo" => $this->txt("immutable_info")
+            ]
+        ] + $this->fields;
+    }
+
+
+    protected function prepareImmutableOptions() {
+        $options = [];
+
+        foreach (Repository::getInstance()->getFieldNames() as $field_name) {
+            if (!in_array($field_name, self::IMMUTABLE_BLACKLIST)) {
+                $options[$field_name] = $this->txt($field_name);
+            };
+        }
+
+        return $options;
     }
 
 

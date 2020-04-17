@@ -85,6 +85,7 @@ final class Repository extends AbstractRepository
     public function getFields() : array
     {
         return [
+            ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE => [Config::TYPE_JSON],
             ConfigAdvancedGeogebraFormGUI::KEY_DEFAULT_WIDTH => [Config::TYPE_INTEGER, 800],
             ConfigAdvancedGeogebraFormGUI::KEY_DEFAULT_HEIGHT => [Config::TYPE_INTEGER, 600],
             ConfigAdvancedGeogebraFormGUI::KEY_DEFAULT_DRAG_ZOOM => [Config::TYPE_BOOLEAN, true],
@@ -121,5 +122,17 @@ final class Repository extends AbstractRepository
             BaseAdvancedGeogebraFormGUI::KEY_BUTTON_SHADOWS => [Config::TYPE_BOOLEAN, false],
             BaseAdvancedGeogebraFormGUI::KEY_BUTTON_ROUNDING => [Config::TYPE_DOUBLE, 0.2]
         ];
+    }
+
+
+    public function getFieldNames() {
+        $fields = $this->getFields();
+        $names = [];
+
+        foreach ($fields as $key => $value) {
+            $names[] = $key;
+        }
+
+        return $names;
     }
 }

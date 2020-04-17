@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1]
+- Fix invalid immutable field value
+
+## [0.5.0]
+- Add functionality to change fields to be immutable within the config
+- Fix obfuscated error message if ggb file extension is not whitelisted
+
 ## [0.4.2]
 - Fix invalid error message
 

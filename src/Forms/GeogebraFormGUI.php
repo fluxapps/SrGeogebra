@@ -10,6 +10,7 @@ use ilRadioGroupInputGUI;
 use ilRadioOption;
 use ilSelectInputGUI;
 use ilSrGeogebraPluginGUI;
+use srag\Plugins\SrGeogebra\Config\ConfigAdvancedGeogebraFormGUI;
 use srag\Plugins\SrGeogebra\Config\Repository;
 use srag\Plugins\SrGeogebra\Utils\SrGeogebraTrait;
 use ilSrGeogebraConfigGUI;
@@ -47,7 +48,14 @@ class GeogebraFormGUI extends PropertyFormGUI
     const DEFAULT_ALIGNMENT = self::ALIGNMENT_LEFT;
 
     protected $mode;
+    /**
+     * @var array
+     */
     protected $properties;
+    /**
+     * @var array
+     */
+    protected $immutable_values;
 
 
     /**
@@ -64,6 +72,8 @@ class GeogebraFormGUI extends PropertyFormGUI
             $this->properties = $properties;
         }
 
+        $this->immutable_values = Repository::getInstance()->getValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE);
+
         parent::__construct($parent);
     }
 
@@ -73,6 +83,12 @@ class GeogebraFormGUI extends PropertyFormGUI
      */
     protected function getValue(/*string*/ $key)
     {
+        $target_key = sprintf("default_%s", $key);
+
+        if (in_array($target_key, $this->immutable_values)) {
+            return Repository::getInstance()->getValue($target_key);
+        }
+
         if ($this->mode === self::MODE_CREATE) {
             switch ($key) {
                 case "width":
@@ -100,6 +116,7 @@ class GeogebraFormGUI extends PropertyFormGUI
                 default:
                     return $this->properties["custom_" . $key];
             }
+
         }
     }
 
@@ -163,8 +180,6 @@ class GeogebraFormGUI extends PropertyFormGUI
             ]
         ];
 
-
-
         if (empty($this->properties)) {
             $this->fields[self::KEY_TITLE][self::PROPERTY_REQUIRED] = true;
             $this->fields[self::KEY_FILE][self::PROPERTY_REQUIRED] = true;
@@ -180,6 +195,14 @@ class GeogebraFormGUI extends PropertyFormGUI
             if ($this->isScaled()) {
                 $this->fields[self::KEY_ALIGNMENT]["setDisabled"] = true;
                 $this->fields[self::KEY_ALIGNMENT]["setInfo"] = $this->txt('alignment_info');
+            }
+        }
+
+        foreach (Repository::getInstance()->getValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE) as $immutable) {
+            if (strpos($immutable, "default_") === 0) {
+                $key = str_replace("default_", "", $immutable);
+                $this->fields[$key][self::PROPERTY_DISABLED] = true;
+                $this->fields[$key][self::PROPERTY_REQUIRED] = false;
             }
         }
     }

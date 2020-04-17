@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.2]
+- Fix invalid error message
+
 ## [0.4.1]
 - Change whitelisting of "ggb" file extension to be necessary
 

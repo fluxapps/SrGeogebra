@@ -1,5 +1,82 @@
 # Changelog
 
+## [0.11.2]
+- auto_version_tag_ci
+
+## [0.11.1]
+- auto_version_tag_ci
+
+## [0.11.0]
+- auto_version_tag_ci
+
+## [0.10.4]
+- Fix `getOldPluginVar` may contains `"`
+
+## [0.10.3]
+- PHP72Backport fix `&`
+
+## [0.10.2]
+- Remove repository object check
+
+## [0.10.1]
+- Add plugin name to `composer.json`
+
+## [0.10.0]
+- Auto update `LuceneObjectDefinition.xml` for repository objects
+- Auto update slot path in `README.md`
+- Update missing infos in `composer.json` before generate
+- Log changes
+
+## [0.9.7]
+- Add some regexp to `PHP72Backport`
+- Skip some folders
+
+## [0.9.6]
+- `GeneratePluginPhpAndXml`: No empty `<events>`
+
+## [0.9.5]
+- `GeneratePluginPhpAndXml`: `learning_progress` and `supports_export`
+
+## [0.9.4]
+- Fix
+
+## [0.9.3]
+- Fix
+
+## [0.9.2]
+- `UpdatePluginReadme`
+
+## [0.9.1]
+- Fix
+
+## [0.9.0]
+- `GeneratePluginPhpAndXml`
+
+## [0.8.7]
+- Fix
+
+## [0.8.6]
+- Fix
+
+## [0.8.5]
+- Fix
+
+## [0.8.4]
+- Fix
+
+## [0.8.3]
+- Fix
+
+## [0.8.2]
+- Fix
+
+## [0.8.1]
+- Fix
+
+## [0.8.0]
+- Min. PHP 7.0
+- PHP72Backport
+
 ## [0.7.0]
 - Support all srag libraries
 

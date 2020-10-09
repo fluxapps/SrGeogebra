@@ -184,7 +184,7 @@ abstract class BaseAdvancedGeogebraFormGUI extends PropertyFormGUI
     }
 
 
-    protected function getValue($key)
+    protected function getValue(string $key)
     {
         switch ($key) {
             case "enable3d":

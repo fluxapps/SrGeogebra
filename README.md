@@ -18,7 +18,7 @@ git clone https://github.com/studer-raimann/SrGeogebra.git SrGeogebra
 Update, activate and config the plugin in the ILIAS Plugin Administration
 
 ### Requirements
-* ILIAS 5.4
+* ILIAS 5.4 or ILIAS 6
 * PHP >=7.0
 
 ### Adjustment suggestions

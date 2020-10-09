@@ -40,6 +40,8 @@ class ActiveRecordConfig extends Config
 
     /**
      * @return ActiveRecordConfigRepository
+     *
+     * @deprecated
      */
     protected static function config() : ActiveRecordConfigRepository
     {
@@ -159,7 +161,7 @@ final class ActiveRecordConfigRepository extends AbstractRepository
 {
 
     /**
-     * @var self
+     * @var self|null
      *
      * @deprecated
      */
@@ -263,7 +265,7 @@ final class ActiveRecordConfigFactory extends AbstractFactory
 {
 
     /**
-     * @var self
+     * @var self|null
      *
      * @deprecated
      */
@@ -290,7 +292,7 @@ final class ActiveRecordConfigFactory extends AbstractFactory
      *
      * @deprecated
      */
-    private function __construct()
+    protected function __construct()
     {
         parent::__construct();
     }

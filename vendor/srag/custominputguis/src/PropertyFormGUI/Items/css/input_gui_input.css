@@ -1,8 +1,7 @@
 .input_gui_input > label {
-  display: block !important;
-  min-height: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  text-align: left !important;
+	display:    block !important;
+	min-height: 0 !important;
+	padding:    0 !important;
+	margin:     0 !important;
+	text-align: left !important
 }
-/*# sourceMappingURL=input_gui_input.css.map */

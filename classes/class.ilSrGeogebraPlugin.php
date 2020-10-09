@@ -2,6 +2,8 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use ILIAS\DI\Container;
+use srag\CustomInputGUIs\SrGeogebra\Loader\CustomInputGUIsLoaderDetector;
 use srag\Plugins\SrGeogebra\Upload\UploadService;
 use srag\Plugins\SrGeogebra\Utils\SrGeogebraTrait;
 use srag\RemovePluginDataConfirm\SrGeogebra\PluginUninstallTrait;
@@ -134,5 +136,20 @@ class ilSrGeogebraPlugin extends ilPageComponentPlugin
         }
 
         return true;
+    }
+
+
+    /**
+     * @return bool
+     */
+    protected function shouldUseOneUpdateStepOnly() : bool
+    {
+        return false;
+    }
+
+
+    public function exchangeUIRendererAfterInitialization(Container $dic) : Closure
+    {
+        return CustomInputGUIsLoaderDetector::exchangeUIRendererAfterInitialization();
     }
 }

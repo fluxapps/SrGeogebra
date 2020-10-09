@@ -91,7 +91,7 @@ class ConfigAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
     /**
      * @inheritDoc
      */
-    protected function getValue(/*string*/ $key)
+    protected function getValue(string $key)
     {
         $parent_result = parent::getValue($key);
 
@@ -106,7 +106,7 @@ class ConfigAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(string $key, $value)/*: void*/
     {
         switch ($key) {
             default:

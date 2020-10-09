@@ -81,7 +81,7 @@ class GeogebraFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function getValue(/*string*/ $key)
+    protected function getValue(string $key)
     {
         $target_key = sprintf("default_%s", $key);
 
@@ -238,7 +238,7 @@ class GeogebraFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(string $key, $value)/*: void*/
     {
 
     }

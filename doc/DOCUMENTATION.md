@@ -21,9 +21,13 @@ https://www.geogebra.org/
 
 To use this plugin it is required to add the file extension "ggb" into the ILIAS file upload whitelist.
 
-Select the "Administration" tab and choose the entry "Files".
+**ILIAS 5.4**: Select the "Administration" tab and choose the entry "Files".
 
 ![Setup Administration](images/setup_administration.png)
+
+**ILIAS 6**: Select the "Administration" tab, expand "Repository and Objects" by clicking on it and choose the entry "Files".
+
+![Setup Administration](images/setup_administration_ilias_6.png)
 
 1. Switch to the tab "Upload Settings".
 2. Enter the value "ggb" inside the "Custom Suffix Whitelist" text area.

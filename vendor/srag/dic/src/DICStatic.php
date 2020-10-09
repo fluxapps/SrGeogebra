@@ -5,7 +5,6 @@ namespace srag\DIC\SrGeogebra;
 use ilLogLevel;
 use ilPlugin;
 use srag\DIC\SrGeogebra\DIC\DICInterface;
-use srag\DIC\SrGeogebra\DIC\Implementation\ILIAS53DIC;
 use srag\DIC\SrGeogebra\DIC\Implementation\ILIAS54DIC;
 use srag\DIC\SrGeogebra\DIC\Implementation\ILIAS60DIC;
 use srag\DIC\SrGeogebra\Exception\DICException;
@@ -45,6 +44,15 @@ final class DICStatic implements DICStaticInterface
 
 
     /**
+     * DICStatic constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @inheritDoc
      *
      * @deprecated
@@ -65,16 +73,11 @@ final class DICStatic implements DICStaticInterface
     {
         if (self::$dic === null) {
             switch (true) {
-                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_5_3)):
+                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_5_4)):
                     throw new DICException("DIC not supports ILIAS " . self::version()->getILIASVersion() . " anymore!");
                     break;
 
-                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_5_4)):
-                    global $DIC;
-                    self::$dic = new ILIAS53DIC($DIC);
-                    break;
-
-                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_6_0)):
+                case (self::version()->isLower(VersionInterface::ILIAS_VERSION_6)):
                     global $DIC;
                     self::$dic = new ILIAS54DIC($DIC);
                     break;
@@ -142,14 +145,5 @@ final class DICStatic implements DICStaticInterface
         }
 
         return self::$version;
-    }
-
-
-    /**
-     * DICStatic constructor
-     */
-    private function __construct()
-    {
-
     }
 }

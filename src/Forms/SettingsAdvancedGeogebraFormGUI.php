@@ -30,7 +30,7 @@ class SettingsAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
      * @param string $key
      * @param mixed  $value
      */
-    protected function storeValue($key, $value)
+    protected function storeValue(string $key, $value)
     {
 
     }
@@ -41,7 +41,7 @@ class SettingsAdvancedGeogebraFormGUI extends BaseAdvancedGeogebraFormGUI
      *
      * @return mixed
      */
-    protected function getValue($key)
+    protected function getValue(string $key)
     {
         $parent_result = parent::getValue($key);
 

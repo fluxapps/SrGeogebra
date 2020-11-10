@@ -2,6 +2,7 @@
 
 namespace srag\Plugins\SrGeogebra\Upload;
 
+use ilFileUtils;
 use ILIAS\FileUpload\DTO\ProcessingStatus;
 use ILIAS\FileUpload\Location;
 
@@ -47,7 +48,7 @@ class UploadService
     public function uploadAllowed() {
         global $DIC;
 
-        $whitelist = explode(",", $DIC->settings()->get("suffix_custom_white_list"));
+        $whitelist = ilFileUtils::getValidExtensions();
 
         // Error if file extension "ggb" is not whitelisted upon plugin activation
         if (!in_array(UploadService::FILE_SUFFIX, $whitelist)) {

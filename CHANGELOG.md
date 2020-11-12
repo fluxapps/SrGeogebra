@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.0.0]
+- Stable version
+
 ## [0.6.0]
 - ILIAS 6 support
 - Adjust documentation to fit ILIAS 6

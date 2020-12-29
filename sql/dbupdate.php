@@ -50,14 +50,15 @@ foreach ($resultAssoc as $entry) {
         $old_file_location = sprintf("./data/default/geogebra/%s", $file_name);
 
         if (file_exists($old_file_location) && !empty($page_id) && !empty($parent_id)) {
-            $new_file_location = UploadService::evaluateFileName($file_name, $page_id, $parent_id);
+            $new_file_name = UploadService::evaluateFileName($file_name, $page_id, $parent_id);
+            $new_file_location = sprintf("./data/default/geogebra/%s", $new_file_name);
 
-            //rename($old_file_location, $new_file_location);
+            rename($old_file_location, $new_file_location);
 
             $prop_file_name = $xml->PageContent->Plugged->xpath("PluggedProperty[@Name='fileName']");
             $prop_legacy_file_name = $xml->PageContent->Plugged->xpath("PluggedProperty[@Name='legacyFileName']");
-            $prop_file_name[0][0] = $new_file_location;
-            $prop_legacy_file_name[0][0] = $new_file_location;
+            $prop_file_name[0][0] = $new_file_name;
+            $prop_legacy_file_name[0][0] = $new_file_name;
 
             $update_query = sprintf("UPDATE page_object SET content = %s WHERE page_id = %s AND parent_id = %s", $ilDB->quote(str_replace("<?xml version=\"1.0\"?>\n", '', $xml->asXML()), 'text'), $page_id, $parent_id);
 

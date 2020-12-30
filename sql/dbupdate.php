@@ -67,7 +67,7 @@ foreach ($resultAssoc as $entry) {
                     mkdir(dirname($new_file_location), 0777, true);
                 }
 
-                rename($old_file_location, $new_file_location);
+                copy($old_file_location, $new_file_location);
 
                 $legacy_file_name = $xml->PageContent->Plugged->xpath("//PluggedProperty[@Name='legacyFileName'][$counter]");
 
@@ -83,6 +83,15 @@ foreach ($resultAssoc as $entry) {
                 $ilDB->manipulate($update_query);
             }
         }
+    }
+}
+
+// Delete remaining, lingering, old files
+$old_file_directory = sprintf("%s/%s/geogebra", ILIAS_WEB_DIR, CLIENT_ID);
+$files = glob($old_file_directory);
+foreach ($files as $file){
+    if (is_file($file)) {
+        unlink($file);
     }
 }
 ?>

@@ -27,7 +27,7 @@ Repository::getInstance()->setValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE
 <?php
 use srag\Plugins\SrGeogebra\Upload\UploadService;
 global $DIC;
-$ilDB = $DIC->database();
+$ilDB = $DIC['ilDB'];
 
 $result = $ilDB->query("SELECT page_id, parent_id, content FROM page_object");
 
@@ -41,28 +41,45 @@ foreach ($resultAssoc as $entry) {
     }
 
     $plugin_name = (string) $xml->PageContent->Plugged->attributes()->PluginName;
-    $file_name = (string) $xml->PageContent->Plugged->xpath("PluggedProperty[@Name='fileName']")[0];
+    $file_names = $xml->PageContent->Plugged->xpath("//PluggedProperty[@Name='fileName']");
 
     if (!is_null($plugin_name) && !empty($plugin_name) && $plugin_name === "SrGeogebra") {
         $page_id = $entry["page_id"];
         $parent_id = $entry["parent_id"];
 
-        $old_file_location = sprintf("./data/default/geogebra/%s", $file_name);
+        foreach ($file_names as $file_entry) {
+            $file_name = (string) $file_entry[0];
 
-        if (file_exists($old_file_location) && !empty($page_id) && !empty($parent_id)) {
-            $new_file_name = UploadService::evaluateFileName($file_name, $page_id, $parent_id);
-            $new_file_location = sprintf("./data/default/geogebra/%s", $new_file_name);
+            // Check if already converted (contains /)
+            if (preg_match('/^([\s\S]+)\/([\s\S]+)\/([\s\S]+)$/', $file_name)) {
+                continue;
+            }
 
-            rename($old_file_location, $new_file_location);
+            $old_file_location = sprintf("%s/%s/geogebra/%s", ILIAS_WEB_DIR, CLIENT_ID, $file_name);
 
-            $prop_file_name = $xml->PageContent->Plugged->xpath("PluggedProperty[@Name='fileName']");
-            $prop_legacy_file_name = $xml->PageContent->Plugged->xpath("PluggedProperty[@Name='legacyFileName']");
-            $prop_file_name[0][0] = $new_file_name;
-            $prop_legacy_file_name[0][0] = $new_file_name;
+            if (file_exists($old_file_location) && !empty($page_id) && !empty($parent_id)) {
+                $new_file_name = UploadService::evaluateFileName($file_name, $page_id, $parent_id);
+                $new_file_location = sprintf("%s/%s/geogebra/%s", ILIAS_WEB_DIR, CLIENT_ID, $new_file_name);
 
-            $update_query = sprintf("UPDATE page_object SET content = %s WHERE page_id = %s AND parent_id = %s", $ilDB->quote(str_replace("<?xml version=\"1.0\"?>\n", '', $xml->asXML()), 'text'), $page_id, $parent_id);
+                if (!is_dir(dirname($new_file_location))) {
+                    mkdir(dirname($new_file_location), 0777, true);
+                }
 
-            $ilDB->query($update_query);
+                rename($old_file_location, $new_file_location);
+
+                $prop_file_name = $xml->PageContent->Plugged->xpath("PluggedProperty[@Name='fileName']");
+                $prop_legacy_file_name = $xml->PageContent->Plugged->xpath("PluggedProperty[@Name='legacyFileName']");
+                $prop_file_name[0][0] = $new_file_name;
+                $prop_legacy_file_name[0][0] = $new_file_name;
+
+                $result_xml = str_replace("<" . "?xml version=\"1.0\"?" . ">\n", '', $xml->asXML());
+
+                $update_query = "UPDATE page_object SET content = ". $ilDB->quote($result_xml, 'text')
+                    . " WHERE page_id = " . $ilDB->quote($page_id, 'integer')
+                    . " AND parent_id = " . $ilDB->quote($parent_id, 'integer');
+
+                $ilDB->manipulate($update_query);
+            }
         }
     }
 }

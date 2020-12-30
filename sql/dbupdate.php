@@ -47,7 +47,9 @@ foreach ($resultAssoc as $entry) {
         $page_id = $entry["page_id"];
         $parent_id = $entry["parent_id"];
 
+        $counter = 0;
         foreach ($file_names as $file_entry) {
+            $counter++;
             $file_name = (string) $file_entry[0];
 
             // Check if already converted (contains /)
@@ -67,10 +69,10 @@ foreach ($resultAssoc as $entry) {
 
                 rename($old_file_location, $new_file_location);
 
-                $prop_file_name = $xml->PageContent->Plugged->xpath("PluggedProperty[@Name='fileName']");
-                $prop_legacy_file_name = $xml->PageContent->Plugged->xpath("PluggedProperty[@Name='legacyFileName']");
-                $prop_file_name[0][0] = $new_file_name;
-                $prop_legacy_file_name[0][0] = $new_file_name;
+                $legacy_file_name = $xml->PageContent->Plugged->xpath("//PluggedProperty[@Name='legacyFileName'][$counter]");
+
+                $file_entry[0] = $new_file_name;
+                $legacy_file_name[0][0] = $new_file_name;
 
                 $result_xml = str_replace("<" . "?xml version=\"1.0\"?" . ">\n", '', $xml->asXML());
 

@@ -69,10 +69,10 @@ foreach ($resultAssoc as $entry) {
 
                 copy($old_file_location, $new_file_location);
 
-                $legacy_file_name = $xml->PageContent->Plugged->xpath("//PluggedProperty[@Name='legacyFileName'][$counter]");
+                $legacy_file_name = $xml->PageContent->Plugged->xpath("//PluggedProperty[@Name='legacyFileName']")[$counter];
 
                 $file_entry[0] = $new_file_name;
-                $legacy_file_name[0][0] = $new_file_name;
+                $legacy_file_name[0] = $new_file_name;
 
                 $result_xml = str_replace("<" . "?xml version=\"1.0\"?" . ">\n", '', $xml->asXML());
 
@@ -87,7 +87,7 @@ foreach ($resultAssoc as $entry) {
 }
 
 // Delete remaining, lingering, old files
-$old_file_directory = sprintf("%s/%s/geogebra", ILIAS_WEB_DIR, CLIENT_ID);
+$old_file_directory = sprintf("%s/%s/geogebra/*", ILIAS_WEB_DIR, CLIENT_ID);
 $files = glob($old_file_directory);
 foreach ($files as $file){
     if (is_file($file)) {

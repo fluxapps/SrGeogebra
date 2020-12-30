@@ -69,11 +69,7 @@ foreach ($resultAssoc as $entry) {
 
                 copy($old_file_location, $new_file_location);
 
-                $legacy_file_name = $xml->PageContent->Plugged->xpath("//PluggedProperty[@Name='legacyFileName']")[$counter];
-
                 $file_entry[0] = $new_file_name;
-                $legacy_file_name[0] = $new_file_name;
-
                 $result_xml = str_replace("<" . "?xml version=\"1.0\"?" . ">\n", '', $xml->asXML());
 
                 $update_query = "UPDATE page_object SET content = ". $ilDB->quote($result_xml, 'text')

@@ -79,9 +79,23 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
     {
         self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
 
+        ini_set("xdebug.var_display_max_children", '-1');
+        ini_set("xdebug.var_display_max_data", '-1');
+        ini_set("xdebug.var_display_max_depth", '-1');
+
         $form = self::srGeogebra()->config()->factory()->newFormInstance($this);
 
-        self::output()->output($form);
+        $tpl = new ilTemplate(
+            "tpl.geogebra_config.html",
+            false,
+            false,
+            ilSrGeogebraPlugin::DIRECTORY
+        );
+
+
+        //die(var_dump($form->getHTML()));
+
+        self::output()->output($tpl);
     }
 
 

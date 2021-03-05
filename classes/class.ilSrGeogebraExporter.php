@@ -73,6 +73,8 @@ class ilSrGeogebraExporter extends ilPageComponentPluginExporter
             $this->ds->setExportDirectories( ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/export',  ILIAS_ABSOLUTE_PATH . '/'. ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/exort');
             ilUtil::makeDirParents($this->getAbsoluteExportDirectory());
 
+            copy(ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/' . $prop["fileName"], $this->getAbsoluteExportDirectory() . "/" . basename($prop["fileName"]));
+
             return '<data>' . htmlentities(json_encode($prop, 1)) . '</data>';
 
             return $xml;

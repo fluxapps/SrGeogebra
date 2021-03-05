@@ -1,12 +1,12 @@
-<form>
+<form id="form_" class="form-horizontal preventDoubleSubmission" method="post" action="ilias.php?ref_id=31&admin_mode=settings&ctype=Services&cname=COPage&slot_id=pgcp&pname=SrGeogebra&cmd=post&cmdClass=ilsrgeogebraconfiggui&cmdNode=1d:l1:z3&baseClass=ilAdministrationGUI&rtoken=b6481d449439e051065a986902d067e8" novalidate="novalidate" >
     <div class="form-group" id="il_prop_cont_default_width">
         <label  for="default_width"  class="col-sm-3 control-label">Default Width</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="default_width" {immutable_default_width_checked} />
         </div>
         <div class="col-sm-8">
             <div class="form-inline">
-                <input style="text-align:right;" class="form-control" type="text" size="40" id="default_width" maxlength="200" name="default_width" value="800"   />
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="default_width" maxlength="200" name="default_width" value="{default_width}"   />
                 <div class="help-block"></div>
                 <!--
                 <script language="JavaScript" type="text/javascript">
@@ -24,11 +24,11 @@
     <div class="form-group" id="il_prop_cont_default_height">
         <label  for="default_height"  class="col-sm-3 control-label">Default Height</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="default_height" {immutable_default_height_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="form-inline">
-                <input style="text-align:right;" class="form-control" type="text" size="40" id="default_height" maxlength="200" name="default_height" value="600"   />
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="default_height" maxlength="200" name="default_height" value="{default_height}"   />
                 <div class="help-block"></div>
                 <!--
                 <script language="JavaScript" type="text/javascript">
@@ -46,12 +46,12 @@
     <div class="form-group" id="il_prop_cont_default_enableShiftDragZoom">
         <label  for="default_enableShiftDragZoom"  class="col-sm-3 control-label">Default "Enable Dragging And Zooming" Value</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="default_enableShiftDragZoom" {immutable_default_enableShiftDragZoom_checked} />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Default &quot;Enable Dragging And Zooming&quot; Value" onclick="il.Form.showSubForm('subform_default_enableShiftDragZoom','il_prop_cont_default_enableShiftDragZoom', this);" type="checkbox" id="default_enableShiftDragZoom" name="default_enableShiftDragZoom" value="1" checked="checked"   />
+                    <input aria-label="Default &quot;Enable Dragging And Zooming&quot; Value" onclick="il.Form.showSubForm('subform_default_enableShiftDragZoom','il_prop_cont_default_enableShiftDragZoom', this);" type="checkbox" id="default_enableShiftDragZoom" name="default_enableShiftDragZoom"  {default_enableShiftDragZoom_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -64,12 +64,12 @@
     <div class="form-group" id="il_prop_cont_default_showResetIcon">
         <label  for="default_showResetIcon"  class="col-sm-3 control-label">Default "Enable Reset Icon" Value</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="default_showResetIcon" {immutable_default_showResetIcon_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Default &quot;Enable Reset Icon&quot; Value" onclick="il.Form.showSubForm('subform_default_showResetIcon','il_prop_cont_default_showResetIcon', this);" type="checkbox" id="default_showResetIcon" name="default_showResetIcon" value="1"    />
+                    <input aria-label="Default &quot;Enable Reset Icon&quot; Value" onclick="il.Form.showSubForm('subform_default_showResetIcon','il_prop_cont_default_showResetIcon', this);" type="checkbox" id="default_showResetIcon" name="default_showResetIcon"  {default_showResetIcon_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -82,16 +82,16 @@
     <div class="form-group" id="il_prop_cont_default_alignment">
         <label  for="default_alignment"  class="col-sm-3 control-label">Default Alignment</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="default_alignment" {immutable_default_alignment_checked}  />
         </div>
         <div class="col-sm-8">
-            <select aria-label="Default Alignment" class="form-control" id="default_alignment" name="default_alignment"  >
+            <select aria-label="Default Alignment" class="form-control" id="default_alignment" name="default_alignment" >
 
-                <option value="left" selected="selected">left</option>
+                <option value="left" {default_alignment_left} >left</option>
 
-                <option value="center" >center</option>
+                <option value="center" {default_alignment_center} >center</option>
 
-                <option value="right" >right</option>
+                <option value="right" {default_alignment_right} >right</option>
 
             </select>
         </div>
@@ -104,18 +104,18 @@
     <div class="form-group" id="il_prop_cont_appName">
         <label  for="appName"  class="col-sm-3 control-label">App Name</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="appName" {immutable_appName_checked}  />
         </div>
         <div class="col-sm-8">
-            <select aria-label="App Name" class="form-control" id="appName" name="appName"  >
+            <select aria-label="App Name" class="form-control" id="appName" name="appName" >
 
-                <option value="classic" selected="selected">classic</option>
+                <option value="classic" {appName_classic} >classic</option>
 
-                <option value="graphing" >graphing</option>
+                <option value="graphing" {appName_graphing} >graphing</option>
 
-                <option value="geometry" >geometry</option>
+                <option value="geometry" {appName_geometry} >geometry</option>
 
-                <option value="3d" >3d</option>
+                <option value="3d" {appName_3d} >3d</option>
 
             </select>
         </div>
@@ -128,7 +128,7 @@
     <div class="form-group" id="il_prop_cont_borderColor">
         <label  for="borderColor"  class="col-sm-3 control-label">Border Color</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="borderColor" {immutable_borderColor_checked}  />
         </div>
         <div class="col-sm-8">
             <script>
@@ -282,7 +282,7 @@
 
 
             <div class="yui-skin-sam form-inline">
-                <input type="text" class="form-control" id="borderColor" size="15" maxlength="21" name="borderColor" value="FFFFFF" />
+                <input type="text" class="form-control" id="borderColor" size="15" maxlength="21" name="borderColor" value="{borderColor}" />
                 <span style="vertical-align:bottom;" id="borderColor-bc"></span>
             </div>
         </div>
@@ -295,12 +295,12 @@
     <div class="form-group" id="il_prop_cont_enableRightClick">
         <label  for="enableRightClick"  class="col-sm-3 control-label">Enable Right Click</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="enableRightClick" {immutable_enableRightClick_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Enable Right Click" onclick="il.Form.showSubForm('subform_enableRightClick','il_prop_cont_enableRightClick', this);" type="checkbox" id="enableRightClick" name="enableRightClick" value="1" checked="checked"   />
+                    <input aria-label="Enable Right Click" onclick="il.Form.showSubForm('subform_enableRightClick','il_prop_cont_enableRightClick', this);" type="checkbox" id="enableRightClick" name="enableRightClick"  {enableRightClick_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -313,12 +313,12 @@
     <div class="form-group" id="il_prop_cont_enableLabelDrags">
         <label  for="enableLabelDrags"  class="col-sm-3 control-label">Enable Label Drags</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="enableLabelDrags" {immutable_enableLabelDrags_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Enable Label Drags" onclick="il.Form.showSubForm('subform_enableLabelDrags','il_prop_cont_enableLabelDrags', this);" type="checkbox" id="enableLabelDrags" name="enableLabelDrags" value="1" checked="checked"   />
+                    <input aria-label="Enable Label Drags" onclick="il.Form.showSubForm('subform_enableLabelDrags','il_prop_cont_enableLabelDrags', this);" type="checkbox" id="enableLabelDrags" name="enableLabelDrags"  {enableLabelDrags_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -331,12 +331,12 @@
     <div class="form-group" id="il_prop_cont_showZoomButtons">
         <label  for="showZoomButtons"  class="col-sm-3 control-label">Show Zoom Buttons</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showZoomButtons" {immutable_showZoomButtons_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Zoom Buttons" onclick="il.Form.showSubForm('subform_showZoomButtons','il_prop_cont_showZoomButtons', this);" type="checkbox" id="showZoomButtons" name="showZoomButtons" value="1"    />
+                    <input aria-label="Show Zoom Buttons" onclick="il.Form.showSubForm('subform_showZoomButtons','il_prop_cont_showZoomButtons', this);" type="checkbox" id="showZoomButtons" name="showZoomButtons"  {showZoomButtons_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -349,12 +349,12 @@
     <div class="form-group" id="il_prop_cont_errorDialogsActive">
         <label  for="errorDialogsActive"  class="col-sm-3 control-label">Show Error Dialogs</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="errorDialogsActive" {immutable_errorDialogsActive_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Error Dialogs" onclick="il.Form.showSubForm('subform_errorDialogsActive','il_prop_cont_errorDialogsActive', this);" type="checkbox" id="errorDialogsActive" name="errorDialogsActive" value="1" checked="checked"   />
+                    <input aria-label="Show Error Dialogs" onclick="il.Form.showSubForm('subform_errorDialogsActive','il_prop_cont_errorDialogsActive', this);" type="checkbox" id="errorDialogsActive" name="errorDialogsActive"  {errorDialogsActive_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -367,12 +367,12 @@
     <div class="form-group" id="il_prop_cont_showMenuBar">
         <label  for="showMenuBar"  class="col-sm-3 control-label">Show Menu Bar / Undo Button</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showMenuBar" {immutable_showMenuBar_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Menu Bar / Undo Button" onclick="il.Form.showSubForm('subform_showMenuBar','il_prop_cont_showMenuBar', this);" type="checkbox" id="showMenuBar" name="showMenuBar" value="1"    />
+                    <input aria-label="Show Menu Bar / Undo Button" onclick="il.Form.showSubForm('subform_showMenuBar','il_prop_cont_showMenuBar', this);" type="checkbox" id="showMenuBar" name="showMenuBar"  {showMenuBar_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -385,12 +385,12 @@
     <div class="form-group" id="il_prop_cont_showToolBar">
         <label  for="showToolBar"  class="col-sm-3 control-label">Show Tool Bar</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showToolBar" {immutable_showToolBar_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Tool Bar" onclick="il.Form.showSubForm('subform_showToolBar','il_prop_cont_showToolBar', this);" type="checkbox" id="showToolBar" name="showToolBar" value="1"    />
+                    <input aria-label="Show Tool Bar" onclick="il.Form.showSubForm('subform_showToolBar','il_prop_cont_showToolBar', this);" type="checkbox" id="showToolBar" name="showToolBar"  {showToolBar_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -403,12 +403,12 @@
     <div class="form-group" id="il_prop_cont_showToolBarHelp">
         <label  for="showToolBarHelp"  class="col-sm-3 control-label">Show Tool Bar Help</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showToolBarHelp" {immutable_showToolBarHelp_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Tool Bar Help" onclick="il.Form.showSubForm('subform_showToolBarHelp','il_prop_cont_showToolBarHelp', this);" type="checkbox" id="showToolBarHelp" name="showToolBarHelp" value="1"    />
+                    <input aria-label="Show Tool Bar Help" onclick="il.Form.showSubForm('subform_showToolBarHelp','il_prop_cont_showToolBarHelp', this);" type="checkbox" id="showToolBarHelp" name="showToolBarHelp"  {showToolBarHelp_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -421,12 +421,12 @@
     <div class="form-group" id="il_prop_cont_showAlgebraInput">
         <label  for="showAlgebraInput"  class="col-sm-3 control-label">Show Algebra Input</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showAlgebraInput" {immutable_showAlgebraInput_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Algebra Input" onclick="il.Form.showSubForm('subform_showAlgebraInput','il_prop_cont_showAlgebraInput', this);" type="checkbox" id="showAlgebraInput" name="showAlgebraInput" value="1"    />
+                    <input aria-label="Show Algebra Input" onclick="il.Form.showSubForm('subform_showAlgebraInput','il_prop_cont_showAlgebraInput', this);" type="checkbox" id="showAlgebraInput" name="showAlgebraInput"  {showAlgebraInput_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -439,10 +439,10 @@
     <div class="form-group" id="il_prop_cont_language">
         <label  for="language"  class="col-sm-3 control-label">Language</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="language" {immutable_language_checked}  />
         </div>
         <div class="col-sm-8">
-            <input aria-label="Language" class="form-control"  type="text"  id="language"  maxlength="200" name="language" value="en"   />
+            <input aria-label="Language" class="form-control"  type="text"  id="language"  maxlength="200" name="language" value="{language}"   />
         </div>
     </div> <!-- end of ilFormRow -->
     <!-- <script type="text/javascript">
@@ -453,12 +453,12 @@
     <div class="form-group" id="il_prop_cont_allowStyleBar">
         <label  for="allowStyleBar"  class="col-sm-3 control-label">Show Style Bar</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="allowStyleBar" {immutable_allowStyleBar_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Style Bar" onclick="il.Form.showSubForm('subform_allowStyleBar','il_prop_cont_allowStyleBar', this);" type="checkbox" id="allowStyleBar" name="allowStyleBar" value="1"    />
+                    <input aria-label="Show Style Bar" onclick="il.Form.showSubForm('subform_allowStyleBar','il_prop_cont_allowStyleBar', this);" type="checkbox" id="allowStyleBar" name="allowStyleBar"  {allowStyleBar_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -471,12 +471,12 @@
     <div class="form-group" id="il_prop_cont_useBrowserForJS">
         <label  for="useBrowserForJS"  class="col-sm-3 control-label">Use Browser For JS</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="useBrowserForJS" {immutable_useBrowserForJS_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Use Browser For JS" onclick="il.Form.showSubForm('subform_useBrowserForJS','il_prop_cont_useBrowserForJS', this);" type="checkbox" id="useBrowserForJS" name="useBrowserForJS" value="1"    />
+                    <input aria-label="Use Browser For JS" onclick="il.Form.showSubForm('subform_useBrowserForJS','il_prop_cont_useBrowserForJS', this);" type="checkbox" id="useBrowserForJS" name="useBrowserForJS"  {useBrowserForJS_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -489,12 +489,12 @@
     <div class="form-group" id="il_prop_cont_showLogging">
         <label  for="showLogging"  class="col-sm-3 control-label">Show Logging</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showLogging" {immutable_showLogging_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Logging" onclick="il.Form.showSubForm('subform_showLogging','il_prop_cont_showLogging', this);" type="checkbox" id="showLogging" name="showLogging" value="1"    />
+                    <input aria-label="Show Logging" onclick="il.Form.showSubForm('subform_showLogging','il_prop_cont_showLogging', this);" type="checkbox" id="showLogging" name="showLogging"  {showLogging_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -507,11 +507,11 @@
     <div class="form-group" id="il_prop_cont_capturingThreshold">
         <label  for="capturingThreshold"  class="col-sm-3 control-label">Capturing Threshold</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="capturingThreshold" {immutable_capturingThreshold_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="form-inline">
-                <input style="text-align:right;" class="form-control" type="text" size="40" id="capturingThreshold" maxlength="200" name="capturingThreshold" value="3"   />
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="capturingThreshold" maxlength="200" name="capturingThreshold" value="{capturingThreshold}"   />
                 <div class="help-block"></div>
                 <!--
                 <script language="JavaScript" type="text/javascript">
@@ -529,15 +529,15 @@
     <div class="form-group" id="il_prop_cont_enable3d">
         <label  for="enable3d"  class="col-sm-3 control-label">Enable 3D</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="enable3d" {immutable_enable3d_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Enable 3D" onclick="il.Form.showSubForm('subform_enable3d','il_prop_cont_enable3d', this);" type="checkbox" id="enable3d" name="enable3d" value="1" checked="checked" disabled="disabled"  />
+                    <input aria-label="Enable 3D" onclick="il.Form.showSubForm('subform_enable3d','il_prop_cont_enable3d', this);" type="checkbox" id="enable3d" name="enable3d"  disabled="disabled" checked="checked" />
                     &nbsp;</label>
             </div>
-            <div class="help-block">Always active to prevent certain unfathomable bugs.</div>
+            <div class="help-block">Always active</div>
         </div>
     </div> <!-- end of ilFormRow -->
     <!-- <script type="text/javascript">
@@ -548,15 +548,15 @@
     <div class="form-group" id="il_prop_cont_enableCAS">
         <label  for="enableCAS"  class="col-sm-3 control-label">Enable CAS</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="enableCAS" {immutable_enableCAS_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Enable CAS" onclick="il.Form.showSubForm('subform_enableCAS','il_prop_cont_enableCAS', this);" type="checkbox" id="enableCAS" name="enableCAS" value="1" checked="checked" disabled="disabled"  />
+                    <input aria-label="Enable CAS" onclick="il.Form.showSubForm('subform_enableCAS','il_prop_cont_enableCAS', this);" type="checkbox" id="enableCAS" name="enableCAS"  disabled="disabled" checked="checked" />
                     &nbsp;</label>
             </div>
-            <div class="help-block">Always active to prevent certain unfathomable bugs.</div>
+            <div class="help-block">Always active</div>
         </div>
     </div> <!-- end of ilFormRow -->
     <!-- <script type="text/javascript">
@@ -567,10 +567,10 @@
     <div class="form-group" id="il_prop_cont_algebraInputPosition">
         <label  for="algebraInputPosition"  class="col-sm-3 control-label">Algebra Input Position</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="algebraInputPosition" {immutable_algebraInputPosition_checked}  />
         </div>
         <div class="col-sm-8">
-            <input aria-label="Algebra Input Position" class="form-control"  type="text"  id="algebraInputPosition"  maxlength="200" name="algebraInputPosition"   />
+            <input aria-label="Algebra Input Position" class="form-control"  type="text"  id="algebraInputPosition"  maxlength="200" name="algebraInputPosition" value="algebraInputPosition"  />
         </div>
     </div> <!-- end of ilFormRow -->
     <!-- <script type="text/javascript">
@@ -581,12 +581,12 @@
     <div class="form-group" id="il_prop_cont_preventFocus">
         <label  for="preventFocus"  class="col-sm-3 control-label">Prevent Focus</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="preventFocus" {immutable_preventFocus_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Prevent Focus" onclick="il.Form.showSubForm('subform_preventFocus','il_prop_cont_preventFocus', this);" type="checkbox" id="preventFocus" name="preventFocus" value="1"    />
+                    <input aria-label="Prevent Focus" onclick="il.Form.showSubForm('subform_preventFocus','il_prop_cont_preventFocus', this);" type="checkbox" id="preventFocus" name="preventFocus"  {preventFocus_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -599,12 +599,12 @@
     <div class="form-group" id="il_prop_cont_autoHeight">
         <label  for="autoHeight"  class="col-sm-3 control-label">Auto Height</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="autoHeight" {immutable_autoHeight_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Auto Height" onclick="il.Form.showSubForm('subform_autoHeight','il_prop_cont_autoHeight', this);" type="checkbox" id="autoHeight" name="autoHeight" value="1"    />
+                    <input aria-label="Auto Height" onclick="il.Form.showSubForm('subform_autoHeight','il_prop_cont_autoHeight', this);" type="checkbox" id="autoHeight" name="autoHeight"  {autoHeight_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -617,12 +617,12 @@
     <div class="form-group" id="il_prop_cont_allowUpscale">
         <label  for="allowUpscale"  class="col-sm-3 control-label">Allow Upscale</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="allowUpscale" {immutable_allowUpscale_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Allow Upscale" onclick="il.Form.showSubForm('subform_allowUpscale','il_prop_cont_allowUpscale', this);" type="checkbox" id="allowUpscale" name="allowUpscale" value="1"    />
+                    <input aria-label="Allow Upscale" onclick="il.Form.showSubForm('subform_allowUpscale','il_prop_cont_allowUpscale', this);" type="checkbox" id="allowUpscale" name="allowUpscale"  {allowUpscale_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -635,12 +635,12 @@
     <div class="form-group" id="il_prop_cont_playButton">
         <label  for="playButton"  class="col-sm-3 control-label">Show Play Button</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="playButton" {immutable_playButton_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Play Button" onclick="il.Form.showSubForm('subform_playButton','il_prop_cont_playButton', this);" type="checkbox" id="playButton" name="playButton" value="1"    />
+                    <input aria-label="Show Play Button" onclick="il.Form.showSubForm('subform_playButton','il_prop_cont_playButton', this);" type="checkbox" id="playButton" name="playButton"  {playButton_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -653,11 +653,11 @@
     <div class="form-group" id="il_prop_cont_scale">
         <label  for="scale"  class="col-sm-3 control-label">Scale</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="scale" {immutable_scale_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="form-inline">
-                <input style="text-align:right;" class="form-control" type="text" size="40" id="scale" maxlength="200" name="scale" value="1"   />
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="scale" maxlength="200" name="scale" value="{scale}"   />
                 <div class="help-block"></div>
                 <!--
                 <script language="JavaScript" type="text/javascript">
@@ -676,12 +676,12 @@
     <div class="form-group" id="il_prop_cont_showAnimationButton">
         <label  for="showAnimationButton"  class="col-sm-3 control-label">Show Animation Button</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showAnimationButton" {immutable_showAnimationButton_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Animation Button" onclick="il.Form.showSubForm('subform_showAnimationButton','il_prop_cont_showAnimationButton', this);" type="checkbox" id="showAnimationButton" name="showAnimationButton" value="1"    />
+                    <input aria-label="Show Animation Button" onclick="il.Form.showSubForm('subform_showAnimationButton','il_prop_cont_showAnimationButton', this);" type="checkbox" id="showAnimationButton" name="showAnimationButton"  {showAnimationButton_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -694,12 +694,12 @@
     <div class="form-group" id="il_prop_cont_showFullscreenButton">
         <label  for="showFullscreenButton"  class="col-sm-3 control-label">Show Fullscreen Button</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showFullscreenButton" {immutable_showFullscreenButton_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Fullscreen Button" onclick="il.Form.showSubForm('subform_showFullscreenButton','il_prop_cont_showFullscreenButton', this);" type="checkbox" id="showFullscreenButton" name="showFullscreenButton" value="1"    />
+                    <input aria-label="Show Fullscreen Button" onclick="il.Form.showSubForm('subform_showFullscreenButton','il_prop_cont_showFullscreenButton', this);" type="checkbox" id="showFullscreenButton" name="showFullscreenButton"  {showFullscreenButton_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -712,12 +712,12 @@
     <div class="form-group" id="il_prop_cont_showSuggestionButtons">
         <label  for="showSuggestionButtons"  class="col-sm-3 control-label">Show Suggestion Buttons</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showSuggestionButtons" {immutable_showSuggestionButtons_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Suggestion Buttons" onclick="il.Form.showSubForm('subform_showSuggestionButtons','il_prop_cont_showSuggestionButtons', this);" type="checkbox" id="showSuggestionButtons" name="showSuggestionButtons" value="1"    />
+                    <input aria-label="Show Suggestion Buttons" onclick="il.Form.showSubForm('subform_showSuggestionButtons','il_prop_cont_showSuggestionButtons', this);" type="checkbox" id="showSuggestionButtons" name="showSuggestionButtons"  {showSuggestionButtons_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -730,12 +730,12 @@
     <div class="form-group" id="il_prop_cont_showStartTooltip">
         <label  for="showStartTooltip"  class="col-sm-3 control-label">Show Start Tooltip</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="showStartTooltip" {immutable_showStartTooltip_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Show Start Tooltip" onclick="il.Form.showSubForm('subform_showStartTooltip','il_prop_cont_showStartTooltip', this);" type="checkbox" id="showStartTooltip" name="showStartTooltip" value="1"    />
+                    <input aria-label="Show Start Tooltip" onclick="il.Form.showSubForm('subform_showStartTooltip','il_prop_cont_showStartTooltip', this);" type="checkbox" id="showStartTooltip" name="showStartTooltip"  {showStartTooltip_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -748,10 +748,10 @@
     <div class="form-group" id="il_prop_cont_rounding">
         <label  for="rounding"  class="col-sm-3 control-label">Show Rounding</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="rounding" {immutable_rounding_checked}  />
         </div>
         <div class="col-sm-8">
-            <input aria-label="Show Rounding" class="form-control"  type="text"  id="rounding"  maxlength="200" name="rounding"   />
+            <input aria-label="Show Rounding" class="form-control"  type="text"  id="rounding"  maxlength="200" name="rounding" value="{rounding}"   />
         </div>
     </div> <!-- end of ilFormRow -->
     <!-- <script type="text/javascript">
@@ -762,12 +762,12 @@
     <div class="form-group" id="il_prop_cont_buttonShadows">
         <label  for="buttonShadows"  class="col-sm-3 control-label">Button Shadows</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="buttonShadows" {immutable_buttonShadows_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="checkbox">
                 <label class="checkbox-inline">
-                    <input aria-label="Button Shadows" onclick="il.Form.showSubForm('subform_buttonShadows','il_prop_cont_buttonShadows', this);" type="checkbox" id="buttonShadows" name="buttonShadows" value="1"    />
+                    <input aria-label="Button Shadows" onclick="il.Form.showSubForm('subform_buttonShadows','il_prop_cont_buttonShadows', this);" type="checkbox" id="buttonShadows" name="buttonShadows"  {buttonShadows_checked} />
                     &nbsp;</label>
             </div>
         </div>
@@ -780,11 +780,11 @@
     <div class="form-group" id="il_prop_cont_buttonRounding">
         <label  for="buttonRounding"  class="col-sm-3 control-label">Button Rounding</label>
         <div class="col-sm-1">
-            <input type="checkbox" id="showToolBar" name="showToolBar" value="0" />
+            <input type="checkbox" name="immutable[]" value="buttonRounding" {immutable_buttonRounding_checked}  />
         </div>
         <div class="col-sm-8">
             <div class="form-inline">
-                <input style="text-align:right;" class="form-control" type="text" size="40" id="buttonRounding" maxlength="200" name="buttonRounding" value="0.2"   />
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="buttonRounding" maxlength="200" name="buttonRounding" value="{buttonRounding}"   />
                 <div class="help-block"></div>
                 <!--
                 <script language="JavaScript" type="text/javascript">

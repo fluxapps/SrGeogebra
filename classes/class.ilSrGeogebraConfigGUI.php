@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\Plugins\SrGeogebra\Config\Repository;
 use srag\Plugins\SrGeogebra\Utils\SrGeogebraTrait;
 use srag\DIC\SrGeogebra\DICTrait;
 
@@ -85,6 +86,11 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
 
         $form = self::srGeogebra()->config()->factory()->newFormInstance($this);
 
+
+        $conf_rep = Repository::getInstance();
+        $fields = $conf_rep->getFields();
+
+
         $tpl = new ilTemplate(
             "tpl.geogebra_config.html",
             false,
@@ -92,10 +98,32 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
             ilSrGeogebraPlugin::DIRECTORY
         );
 
+        //die(var_dump($fields));
+        $values = [];
 
-        //die(var_dump($form->getHTML()));
+        foreach ($fields as $key => $value) {
+            $fetched_value = $conf_rep->getValue($key);
+            if ($key === "default_alignment" || $key === "appName") {
+                $key = $key . "_" . $fetched_value;
+                $tpl->setVariable($key, "selected='selected'");
+            } else if ($key === "immutable") {
+                foreach ($fetched_value as $immutable_key) {
+                    $tpl->setVariable("immutable_" . $immutable_key . "_checked", "checked='checked'");
+                }
+            } else if ($key !== "immutable") {
+                if (is_bool($fetched_value)) {
+                    if ($fetched_value === true) {
+                        $tpl->setVariable($key . "_checked", "checked='checked'");
+                    }
+                    $fetched_value = intval($fetched_value);
+                }
+                $tpl->setVariable($key, $fetched_value);
 
-        self::output()->output($tpl);
+
+            }
+        }
+
+        self::output()->output($tpl->get());
     }
 
 
@@ -104,8 +132,10 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
      */
     protected function updateConfigure()/*: void*/
     {
+        //die(var_dump($_POST));
         self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
 
+        $conf_rep = Repository::getInstance();
         $form = self::srGeogebra()->config()->factory()->newFormInstance($this);
 
         if (!$form->storeForm()) {
@@ -114,7 +144,15 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
             return;
         }
 
-        ilUtil::sendSuccess(self::plugin()->translate("configuration_saved", self::LANG_MODULE), true);
+        //die(var_dump($form->getItems()));
+
+        foreach ($form->getItems() as $item) {
+            if ($item instanceof ilCheckboxInputGUI) {
+                $conf_rep->setValue($item->getPostvar(), $item->getChecked());
+            } else {
+                $conf_rep->setValue($item->getPostvar(), $item->getValue());
+            }
+        }
 
         self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE);
     }

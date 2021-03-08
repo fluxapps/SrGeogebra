@@ -116,9 +116,55 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
                     $fetched_value = intval($fetched_value);
                 }
                 $tpl->setVariable($key, $fetched_value);
-
-
             }
+        }
+
+        // Inject language
+        $field_language_keys = [
+            "default_width",
+            "default_height",
+            "default_enableShiftDragZoom",
+            "default_showResetIcon",
+            "default_alignment",
+            "appName",
+            "borderColor",
+            "enableRightClick",
+            "enableLabelDrags",
+            "showZoomButtons",
+            "errorDialogsActive",
+            "showMenuBar",
+            "showToolBar",
+            "showToolBarHelp",
+            "showAlgebraInput",
+            "language",
+            "allowStyleBar",
+            "useBrowserForJS",
+            "showLogging",
+            "capturingThreshold",
+            "enable3d",
+            "enableCAS",
+            "algebraInputPosition",
+            "preventFocus",
+            "autoHeight",
+            "allowUpscale",
+            "playButton",
+            "scale",
+            "showAnimationButton",
+            "showFullscreenButton",
+            "showSuggestionButtons",
+            "showStartTooltip",
+            "rounding",
+            "buttonShadows",
+            "buttonRounding"
+        ];
+
+        $tpl->setVariable("configuration", self::plugin()->translate("configuration", self::LANG_MODULE));
+        $tpl->setVariable("header_immutable", self::plugin()->translate("header_immutable", self::LANG_MODULE));
+        $tpl->setVariable("header_value", self::plugin()->translate("header_value", self::LANG_MODULE));
+        $tpl->setVariable("save", self::plugin()->translate("save", self::LANG_MODULE));
+
+        foreach ($field_language_keys as $field_language_key) {
+            $tpl->setVariable("txt_" . $field_language_key, self::plugin()->translate($field_language_key, self::LANG_MODULE));
         }
 
         self::output()->output($tpl->get());

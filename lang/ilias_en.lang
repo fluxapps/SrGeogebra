@@ -57,6 +57,8 @@ config_enable3d_info#:#Always active to prevent certain unfathomable bugs.
 config_enableCAS_info#:#Always active to prevent certain unfathomable bugs.
 config_immutable#:#Immutable Fields
 config_immutable_info#:#Fields added to this list cannot be changed within GeoGebra objects. The values specified in this configuration will always be used instead.
+config_header_immutable#:#Immutable
+config_header_value#:#Value
 form_zoom#:#Enable Dragging And Zooming
 form_reset#:#Enable Reset Icon
 form_title_create#:#Create Geogebra object

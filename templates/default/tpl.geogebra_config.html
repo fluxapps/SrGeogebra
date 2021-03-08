@@ -1,6 +1,24 @@
 <form id="form_" class="form-horizontal preventDoubleSubmission" method="post" action="{FORM_ACTION}" novalidate="novalidate" >
+    <div class="ilFormHeader">
+        <h2 class="ilHeader">{configuration}</h2>
+        <div class="ilFormCmds">
+            <input class="btn btn-default btn-sm" type="SUBMIT" name="cmd[updateConfigure]" value="{save}" />
+        </div>
+        <div class="ilHeaderDesc"></div>
+    </div>
+    <div style="padding-bottom: 40px">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-1">
+            <h2>{header_immutable}</h2>
+        </div>
+        <div class="col-sm-8">
+            <h2>{header_value}</h2>
+        </div>
+    </div>
+
     <div class="form-group" id="il_prop_cont_default_width">
-        <label  for="default_width"  class="col-sm-3 control-label">Default Width</label>
+        <label  for="default_width"  class="col-sm-3 control-label">{txt_default_width}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -25,7 +43,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_default_height">
-        <label  for="default_height"  class="col-sm-3 control-label">Default Height</label>
+        <label  for="default_height"  class="col-sm-3 control-label">{txt_default_height}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -50,7 +68,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_default_enableShiftDragZoom">
-        <label  for="default_enableShiftDragZoom"  class="col-sm-3 control-label">Default "Enable Dragging And Zooming" Value</label>
+        <label  for="default_enableShiftDragZoom"  class="col-sm-3 control-label">{txt_default_enableShiftDragZoom}</label>
         <div class="col-sm-1">
             <div class="checkbox">
                 <label class="checkbox-inline"> 
@@ -72,7 +90,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_default_showResetIcon">
-        <label  for="default_showResetIcon"  class="col-sm-3 control-label">Default "Enable Reset Icon" Value</label>
+        <label  for="default_showResetIcon"  class="col-sm-3 control-label">{txt_default_showResetIcon}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -92,7 +110,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_default_alignment">
-        <label  for="default_alignment"  class="col-sm-3 control-label">Default Alignment</label>
+        <label  for="default_alignment"  class="col-sm-3 control-label">{txt_default_alignment}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -116,7 +134,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_appName">
-        <label  for="appName"  class="col-sm-3 control-label">App Name</label>
+        <label  for="appName"  class="col-sm-3 control-label">{txt_appName}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -142,7 +160,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_borderColor">
-        <label  for="borderColor"  class="col-sm-3 control-label">Border Color</label>
+        <label  for="borderColor"  class="col-sm-3 control-label">{txt_borderColor}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -311,7 +329,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_enableRightClick">
-        <label  for="enableRightClick"  class="col-sm-3 control-label">Enable Right Click</label>
+        <label  for="enableRightClick"  class="col-sm-3 control-label">{txt_enableRightClick}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -331,7 +349,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_enableLabelDrags">
-        <label  for="enableLabelDrags"  class="col-sm-3 control-label">Enable Label Drags</label>
+        <label  for="enableLabelDrags"  class="col-sm-3 control-label">{txt_enableLabelDrags}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -351,7 +369,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showZoomButtons">
-        <label  for="showZoomButtons"  class="col-sm-3 control-label">Show Zoom Buttons</label>
+        <label  for="showZoomButtons"  class="col-sm-3 control-label">{txt_showZoomButtons}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -371,7 +389,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_errorDialogsActive">
-        <label  for="errorDialogsActive"  class="col-sm-3 control-label">Show Error Dialogs</label>
+        <label  for="errorDialogsActive"  class="col-sm-3 control-label">{txt_errorDialogsActive}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -391,7 +409,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showMenuBar">
-        <label  for="showMenuBar"  class="col-sm-3 control-label">Show Menu Bar / Undo Button</label>
+        <label  for="showMenuBar"  class="col-sm-3 control-label">{txt_showMenuBar}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -411,7 +429,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showToolBar">
-        <label  for="showToolBar"  class="col-sm-3 control-label">Show Tool Bar</label>
+        <label  for="showToolBar"  class="col-sm-3 control-label">{txt_showToolBar}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -431,7 +449,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showToolBarHelp">
-        <label  for="showToolBarHelp"  class="col-sm-3 control-label">Show Tool Bar Help</label>
+        <label  for="showToolBarHelp"  class="col-sm-3 control-label">{txt_showToolBarHelp}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -451,7 +469,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showAlgebraInput">
-        <label  for="showAlgebraInput"  class="col-sm-3 control-label">Show Algebra Input</label>
+        <label  for="showAlgebraInput"  class="col-sm-3 control-label">{txt_showAlgebraInput}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -471,7 +489,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_language">
-        <label  for="language"  class="col-sm-3 control-label">Language</label>
+        <label  for="language"  class="col-sm-3 control-label">{txt_language}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -487,7 +505,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_allowStyleBar">
-        <label  for="allowStyleBar"  class="col-sm-3 control-label">Show Style Bar</label>
+        <label  for="allowStyleBar"  class="col-sm-3 control-label">{txt_allowStyleBar}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -507,7 +525,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_useBrowserForJS">
-        <label  for="useBrowserForJS"  class="col-sm-3 control-label">Use Browser For JS</label>
+        <label  for="useBrowserForJS"  class="col-sm-3 control-label">{txt_useBrowserForJS}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -527,7 +545,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showLogging">
-        <label  for="showLogging"  class="col-sm-3 control-label">Show Logging</label>
+        <label  for="showLogging"  class="col-sm-3 control-label">{txt_showLogging}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -547,7 +565,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_capturingThreshold">
-        <label  for="capturingThreshold"  class="col-sm-3 control-label">Capturing Threshold</label>
+        <label  for="capturingThreshold"  class="col-sm-3 control-label">{txt_capturingThreshold}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -571,7 +589,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_enable3d">
-        <label  for="enable3d"  class="col-sm-3 control-label">Enable 3D</label>
+        <label  for="enable3d"  class="col-sm-3 control-label">{txt_enable3d}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -592,7 +610,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_enableCAS">
-        <label  for="enableCAS"  class="col-sm-3 control-label">Enable CAS</label>
+        <label  for="enableCAS"  class="col-sm-3 control-label">{txt_enableCAS}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -613,7 +631,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_algebraInputPosition">
-        <label  for="algebraInputPosition"  class="col-sm-3 control-label">Algebra Input Position</label>
+        <label  for="algebraInputPosition"  class="col-sm-3 control-label">{txt_algebraInputPosition}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -629,7 +647,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_preventFocus">
-        <label  for="preventFocus"  class="col-sm-3 control-label">Prevent Focus</label>
+        <label  for="preventFocus"  class="col-sm-3 control-label">{txt_preventFocus}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -649,7 +667,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_autoHeight">
-        <label  for="autoHeight"  class="col-sm-3 control-label">Auto Height</label>
+        <label  for="autoHeight"  class="col-sm-3 control-label">{txt_autoHeight}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -669,7 +687,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_allowUpscale">
-        <label  for="allowUpscale"  class="col-sm-3 control-label">Allow Upscale</label>
+        <label  for="allowUpscale"  class="col-sm-3 control-label">{txt_allowUpscale}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -689,7 +707,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_playButton">
-        <label  for="playButton"  class="col-sm-3 control-label">Show Play Button</label>
+        <label  for="playButton"  class="col-sm-3 control-label">{txt_playButton}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -709,7 +727,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_scale">
-        <label  for="scale"  class="col-sm-3 control-label">Scale</label>
+        <label  for="scale"  class="col-sm-3 control-label">{txt_scale}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -734,7 +752,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showAnimationButton">
-        <label  for="showAnimationButton"  class="col-sm-3 control-label">Show Animation Button</label>
+        <label  for="showAnimationButton"  class="col-sm-3 control-label">{txt_showAnimationButton}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -754,7 +772,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showFullscreenButton">
-        <label  for="showFullscreenButton"  class="col-sm-3 control-label">Show Fullscreen Button</label>
+        <label  for="showFullscreenButton"  class="col-sm-3 control-label">{txt_showFullscreenButton}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -774,7 +792,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showSuggestionButtons">
-        <label  for="showSuggestionButtons"  class="col-sm-3 control-label">Show Suggestion Buttons</label>
+        <label  for="showSuggestionButtons"  class="col-sm-3 control-label">{txt_showSuggestionButtons}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -794,7 +812,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_showStartTooltip">
-        <label  for="showStartTooltip"  class="col-sm-3 control-label">Show Start Tooltip</label>
+        <label  for="showStartTooltip"  class="col-sm-3 control-label">{txt_showStartTooltip}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -814,7 +832,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_rounding">
-        <label  for="rounding"  class="col-sm-3 control-label">Show Rounding</label>
+        <label  for="rounding"  class="col-sm-3 control-label">{txt_rounding}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -830,7 +848,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_buttonShadows">
-        <label  for="buttonShadows"  class="col-sm-3 control-label">Button Shadows</label>
+        <label  for="buttonShadows"  class="col-sm-3 control-label">{txt_buttonShadows}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -850,7 +868,7 @@
     });
     </script> -->
     <div class="form-group" id="il_prop_cont_buttonRounding">
-        <label  for="buttonRounding"  class="col-sm-3 control-label">Button Rounding</label>
+        <label  for="buttonRounding"  class="col-sm-3 control-label">{txt_buttonRounding}</label>
         <div class="col-sm-1">
             <div class="checkbox">
             <label class="checkbox-inline">
@@ -880,7 +898,7 @@
             &nbsp;</div>
         <div class="col-sm-6 ilFormCmds">
 
-            <input class="btn btn-default btn-sm" type="submit" name="cmd[updateConfigure]" value="Save"  />
+            <input class="btn btn-default btn-sm" type="submit" name="cmd[updateConfigure]" value="{save}"  />
 
         </div>
     </div>

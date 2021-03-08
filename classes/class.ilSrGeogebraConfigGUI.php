@@ -86,7 +86,6 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
 
         $form = self::srGeogebra()->config()->factory()->newFormInstance($this);
 
-
         $conf_rep = Repository::getInstance();
         $fields = $conf_rep->getFields();
 
@@ -98,8 +97,7 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
             ilSrGeogebraPlugin::DIRECTORY
         );
 
-        //die(var_dump($fields));
-        $values = [];
+        $tpl->setVariable("FORM_ACTION", $form->getFormAction());
 
         foreach ($fields as $key => $value) {
             $fetched_value = $conf_rep->getValue($key);
@@ -132,6 +130,7 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
      */
     protected function updateConfigure()/*: void*/
     {
+        //die(var_dump($_POST));
         self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
 
         $conf_rep = Repository::getInstance();

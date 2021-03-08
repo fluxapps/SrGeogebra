@@ -1,6 +1,7 @@
 cmd_insert#:#Geogebra-Objekt einfügen
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
+config_configuration_failed#:#Konfiguration konnte nicht gespeichert werden. Versichern Sie, dass alle Eingabefelder korrekte Werte enthalten.
 config_save#:#Speichern
 form_create#:#Erstellen
 form_save#:#Speichern

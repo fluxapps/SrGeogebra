@@ -183,12 +183,10 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
         $form = self::srGeogebra()->config()->factory()->newFormInstance($this);
 
         if (!$form->storeForm()) {
-            self::output()->output($form);
+            ilUtil::sendFailure(self::plugin()->translate("configuration_failed", self::LANG_MODULE), true);
 
-            return;
+            self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE);
         }
-
-        //die(var_dump($form->getItems()));
 
         foreach ($form->getItems() as $item) {
             if ($item instanceof ilCheckboxInputGUI) {
@@ -198,6 +196,7 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
             }
         }
 
+        ilUtil::sendSuccess(self::plugin()->translate("configuration_failed", self::LANG_MODULE), true);
         self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE);
     }
 }

@@ -1,6 +1,7 @@
 cmd_insert#:#Insert GeoGebra Object
 config_configuration#:#Configuration
 config_configuration_saved#:#Configuration saved
+config_configuration_failed#:#Configuration couldn't be saved. Ensure all input fields contain valid values.
 config_save#:#Save
 form_create#:#Create
 form_save#:#Save

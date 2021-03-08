@@ -4,105 +4,65 @@
 
 include_once('./Services/COPage/classes/class.ilPageComponentPluginExporter.php');
 
+use srag\Plugins\SrGeogebra\Upload\UploadService;
+
 /**
  * Class ilTestPageComponentExporter
  */
-class ilSrGeogebraImporter extends ilXmlImporter
+class ilSrGeogebraImporter extends ilPageComponentPluginImporter
 {
     /**
-     * Properties of exportable plugged page contents
-     * The id has the following format:
-     *        <parent_type>:<page_id>:<lang>:<pc_id>
-     * This format, however, should be irrelevant to child classes
+     * Import xml representation
      *
-     * @var array $pc_properties id => [ name => value, ... ]
+     * @param	string			$a_entity
+     * @param	string			$a_id
+     * @param	string			$a_xml
+     * @param	ilImportMapping	$a_mapping
      */
-    protected static $pc_properties = array();
-
-    /**
-     * Plugin versions of exportable plugged page contents
-     *
-     * @var array $pc_version id => version
-     */
-    protected static $pc_version = array();
-
-
-    /**
-     * Set the properties of a plugged page content
-     * This method is used by ilCOPageExporter to provide the properties
-     *
-     * @param string $a_id
-     * @param array $a_properties
-     */
-    public static function setPCProperties($a_id, $a_properties)
-    {
-        self::$pc_properties[$a_id] = $a_properties;
-    }
-
-    /**
-     * Get the properties of a plugged page content
-     *
-     * @param string $a_id
-     * @return mixed|null
-     */
-    public static function getPCProperties($a_id)
-    {
-        if (isset(self::$pc_properties[$a_id])) {
-            return self::$pc_properties[$a_id];
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Set the version of a plugged page content
-     * This method is used by ilCOPageExporter to provide the version
-     *
-     * @param string $a_id
-     * @param string $a_version
-     */
-    public static function setPCVersion($a_id, $a_version)
-    {
-        self::$pc_version[$a_id] = $a_version;
-    }
-
-    /**
-     * Get the version of a plugged page content
-     *
-     * @param string $a_id
-     * @return string|null
-     */
-    public static function getPCVersion($a_id)
-    {
-        if (isset(self::$pc_version[$a_id])) {
-            return self::$pc_version[$a_id];
-        } else {
-            return null;
-        }
-    }
-
-
-    /**
-     * Get the id of the mapped page content
-     * The id structure should be irrelevant to child classes
-     * The mapped ID shold be used both for getPCProperties() and setPCProperties()
-     * when being called in their importXmlRepresentation()
-     *
-     * @param string $a_id
-     * @param ilImportMapping $a_mapping
-     */
-    public
-    static function getPCMapping($a_id, $a_mapping)
-    {
-        $parts = explode(':', $a_id);
-        $old_page_id = $parts[0] . ':' . $parts[1];
-        $new_page_id = $a_mapping->getMapping('Services/COPage', 'pg', $old_page_id);
-
-        return $new_page_id . ':' . $parts[2] . ':' . $parts[3];
-    }
-
     public function importXmlRepresentation($a_entity, $a_id, $a_xml, $a_mapping)
     {
-        // TODO: Implement importXmlRepresentation() method.
+        $new_id = self::getPCMapping($a_id, $a_mapping);
+
+        $properties = self::getPCProperties($new_id);
+        $version = self::getPCVersion($new_id);
+
+        // TODO: No getAbsoluteImportDirectory or such exists, so manually search after the gbb file
+        $import_gbb_dir = $this->getImportDirectory() . "/Plugins/" . ilSrGeogebraPlugin::PLUGIN_NAME;
+        $gbb_import_files = [];
+        $set_num = 1;
+        do {
+            $import_gbb_set_dir = $import_gbb_dir . "/set_" . $set_num;
+            $exp_num = 1;
+            do {
+                $import_gbb_set_exp_dir = $import_gbb_set_dir . "/expDir_" . $exp_num;
+                $gbb_file = $import_gbb_set_exp_dir . "/" . $properties["fileName"];
+                if (file_exists($gbb_file)) {
+                    $gbb_import_files[] = $gbb_file;
+                }
+                $exp_num++;
+            } while (is_dir($import_gbb_set_exp_dir));
+            $set_num++;
+        } while (is_dir($import_gbb_set_dir));
+        if (empty($gbb_import_files)) {
+            throw new LogicException("No gbb files found for " . $properties["fileName"] . " in " . $import_gbb_dir);
+        }
+        if (count($gbb_import_files) !== 1) {
+            throw new LogicException("Multiple gbb files found for " . $properties["fileName"] . " in " . $import_gbb_dir);
+        }
+
+        $page_id = explode(":", $new_id)[1];
+        $obj_id = $a_mapping->getMapping("Services/Object", "obj", substr(explode("/", $properties["fileName"])[0], 4));
+
+        $import_gbb_file = $gbb_import_files[0];
+
+        $properties["fileName"] = $properties["legacyFileName"] = UploadService::evaluateFileName(basename($import_gbb_file), $page_id, $obj_id);
+
+        $dest_gbb_file = ILIAS_WEB_DIR . '/' . CLIENT_ID . '/' . UploadService::DATA_FOLDER . '/' . $properties["fileName"];
+
+        ilUtil::makeDirParents(dirname($dest_gbb_file));
+        copy($import_gbb_file, $dest_gbb_file);
+
+        self::setPCProperties($new_id, $properties);
+        self::setPCVersion($new_id, $version);
     }
 }

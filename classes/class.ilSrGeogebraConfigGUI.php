@@ -132,7 +132,6 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
      */
     protected function updateConfigure()/*: void*/
     {
-        //die(var_dump($_POST));
         self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
 
         $conf_rep = Repository::getInstance();

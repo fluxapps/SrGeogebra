@@ -162,6 +162,9 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
         $tpl->setVariable("header_immutable", self::plugin()->translate("header_immutable", self::LANG_MODULE));
         $tpl->setVariable("header_value", self::plugin()->translate("header_value", self::LANG_MODULE));
         $tpl->setVariable("save", self::plugin()->translate("save", self::LANG_MODULE));
+        $tpl->setVariable("enableCAS_info", self::plugin()->translate("enableCAS_info", self::LANG_MODULE));
+        $tpl->setVariable("enable3d_info", self::plugin()->translate("enable3d_info", self::LANG_MODULE));
+        $tpl->setVariable("scale_info", self::plugin()->translate("scale_info", self::LANG_MODULE));
 
         foreach ($field_language_keys as $field_language_key) {
             $tpl->setVariable("txt_" . $field_language_key, self::plugin()->translate($field_language_key, self::LANG_MODULE));
@@ -196,7 +199,7 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
             }
         }
 
-        ilUtil::sendSuccess(self::plugin()->translate("configuration_failed", self::LANG_MODULE), true);
+        ilUtil::sendSuccess(self::plugin()->translate("configuration_saved", self::LANG_MODULE), true);
         self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE);
     }
 }

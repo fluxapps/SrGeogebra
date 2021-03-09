@@ -53,9 +53,9 @@ config_rounding#:#Show Rounding
 config_buttonShadows#:#Button Shadows
 config_buttonRounding#:#Button Rounding
 config_form_title_edit#:#Edit Geogebra object advanced properties
-config_scale_info#:#Only downscaling is currently supported.
-config_enable3d_info#:#Always active to prevent certain unfathomable bugs.
-config_enableCAS_info#:#Always active to prevent certain unfathomable bugs.
+config_scale_info#:#Only downscaling is currently supported
+config_enable3d_info#:#Always active
+config_enableCAS_info#:#Always active
 config_immutable#:#Immutable Fields
 config_immutable_info#:#Fields added to this list cannot be changed within GeoGebra objects. The values specified in this configuration will always be used instead.
 config_header_immutable#:#Immutable

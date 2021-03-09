@@ -1,0 +1,905 @@
+<form id="form_" class="form-horizontal preventDoubleSubmission" method="post" action="{FORM_ACTION}" novalidate="novalidate" >
+    <div class="ilFormHeader">
+        <h2 class="ilHeader">{configuration}</h2>
+        <div class="ilFormCmds">
+            <input class="btn btn-default btn-sm" type="SUBMIT" name="cmd[updateConfigure]" value="{save}" />
+        </div>
+        <div class="ilHeaderDesc"></div>
+    </div>
+    <div style="padding-bottom: 40px">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-1" style="overflow:hidden">
+            <h6>{header_immutable}</h6>
+        </div>
+        <div class="col-sm-8">
+            <h6>{header_value}</h6>
+        </div>
+    </div>
+
+    <div class="form-group" id="il_prop_cont_default_width">
+        <label  for="default_width"  class="col-sm-3 control-label">{txt_default_width}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="default_width" {immutable_default_width_checked} />
+            </label></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="form-inline">
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="default_width" maxlength="200" name="default_width" value="{default_width}"   />
+                <div class="help-block"></div>
+                <!--
+                <script language="JavaScript" type="text/javascript">
+                il.Form.initNumericCheck("default_width", "");
+                </script>
+                -->
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_default_height">
+        <label  for="default_height"  class="col-sm-3 control-label">{txt_default_height}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="default_height" {immutable_default_height_checked}  />
+            </label></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="form-inline">
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="default_height" maxlength="200" name="default_height" value="{default_height}"   />
+                <div class="help-block"></div>
+                <!--
+                <script language="JavaScript" type="text/javascript">
+                il.Form.initNumericCheck("default_height", "");
+                </script>
+                -->
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_default_enableShiftDragZoom">
+        <label  for="default_enableShiftDragZoom"  class="col-sm-3 control-label">{txt_default_enableShiftDragZoom}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+                <label class="checkbox-inline"> 
+                    <input type="checkbox" name="immutable[]" value="default_enableShiftDragZoom" {immutable_default_enableShiftDragZoom_checked} />
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Default &quot;Enable Dragging And Zooming&quot; Value" onclick="il.Form.showSubForm('subform_default_enableShiftDragZoom','il_prop_cont_default_enableShiftDragZoom', this);" type="checkbox" id="default_enableShiftDragZoom" name="default_enableShiftDragZoom"  {default_enableShiftDragZoom_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_default_showResetIcon">
+        <label  for="default_showResetIcon"  class="col-sm-3 control-label">{txt_default_showResetIcon}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="default_showResetIcon" {immutable_default_showResetIcon_checked}  />
+        </label></div>  </div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Default &quot;Enable Reset Icon&quot; Value" onclick="il.Form.showSubForm('subform_default_showResetIcon','il_prop_cont_default_showResetIcon', this);" type="checkbox" id="default_showResetIcon" name="default_showResetIcon"  {default_showResetIcon_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_default_alignment">
+        <label  for="default_alignment"  class="col-sm-3 control-label">{txt_default_alignment}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="default_alignment" {immutable_default_alignment_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <select aria-label="Default Alignment" class="form-control" id="default_alignment" name="default_alignment" >
+
+                <option value="left" {default_alignment_left} >left</option>
+
+                <option value="center" {default_alignment_center} >center</option>
+
+                <option value="right" {default_alignment_right} >right</option>
+
+            </select>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });                                             
+    </script> -->
+    <div class="form-group" id="il_prop_cont_appName">
+        <label  for="appName"  class="col-sm-3 control-label">{txt_appName}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="appName" {immutable_appName_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <select aria-label="App Name" class="form-control" id="appName" name="appName" >
+
+                <option value="classic" {appName_classic} >classic</option>
+
+                <option value="graphing" {appName_graphing} >graphing</option>
+
+                <option value="geometry" {appName_geometry} >geometry</option>
+
+                <option value="3d" {appName_3d} >3d</option>
+
+            </select>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_borderColor">
+        <label  for="borderColor"  class="col-sm-3 control-label">{txt_borderColor}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="borderColor" {immutable_borderColor_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <script>
+                YAHOO.util.Event.onContentReady("borderColor-bc", function () {
+
+                    // added color initialisation
+                    // Init color label
+                    YAHOO.util.Event.onContentReady("borderColor-current-color", function () {
+                        YAHOO.util.Dom.setStyle("borderColor-current-color", "backgroundColor", "#FFFFFF");
+                    });
+
+                    // Update color label on key up
+                    YAHOO.util.Event.on('borderColor', 'keyup', function (e) {
+                        var field = document.getElementById("borderColor");
+                        YAHOO.util.Dom.setStyle("borderColor-current-color", "backgroundColor", '#' + field.value);
+                    });
+
+
+                    // Create a Menu instance to house the ColorPicker instance
+                    var oColorPickerMenu = new YAHOO.widget.Menu("borderColor-color-picker-menu");
+
+                    // Create a Button instance of type "split"
+                    var oButton = new YAHOO.widget.Button({
+                        type: "split",
+                        id: "borderColor-color-picker-button",
+                        label: "<em id=\"borderColor-current-color\">&nbsp;&nbsp;&nbsp;&nbsp;</em>",
+                        menu: oColorPickerMenu,
+                        container: this });
+
+                    oButton.on("appendTo", function () {
+                        oColorPickerMenu.setBody("&#32;");
+                        oColorPickerMenu.body.id = "borderColor-color-picker-container";
+
+                        // Render the Menu into the Button instance's parent element
+
+                        oColorPickerMenu.render(this.get("container"));
+                    });
+
+                    function onButtonOption() {
+
+                        /*
+                            Create an empty body element for the Menu instance in order to
+                            reserve space to render the ColorPicker instance into.
+                        */
+
+                        /*            oColorPickerMenu.setBody("&#32;");
+                                    oColorPickerMenu.body.id = "borderColor-color-picker-container";
+
+                                    // Render the Menu into the Button instance's parent element
+
+                                    oColorPickerMenu.render(this.get("container"));
+                        */
+                        /*
+                             Create a new ColorPicker instance, placing it inside the body
+                             element of the Menu instance.
+                        */
+
+                        var oColorPicker = new YAHOO.widget.ColorPicker(oColorPickerMenu.body.id, {
+                            showcontrols: false,
+                            showhsvcontrols: false,
+                            showrgbcontrols: false,
+                            showhexcontrols: false,
+                            images: {
+                                PICKER_THUMB: "./Services/Form/templates/default/images/color_picker_thumb.png",
+                                HUE_THUMB: "./Services/Form/templates/default/images/color_picker_hue_thumb.png"
+                            }
+                        });
+
+                        // Init default color
+                        oColorPicker.setValue(YAHOO.util.Color.hex2rgb("FFFFFF"),false);
+
+                        // Align the Menu to its Button
+                        oColorPickerMenu.align();
+
+                        /*
+                            Add a listener for the ColorPicker instance's "rgbChange" event
+                            to update the background color and text of the Button's
+                            label to reflect the change in the value of the ColorPicker.
+                        */
+
+                        oColorPicker.on("rgbChange", function (p_oEvent) {
+
+                            var sColor = "#" + this.get("hex");
+                            var sColorShort = this.get("hex");
+
+                            oButton.set("value", sColor);
+
+
+                            YAHOO.util.Dom.setStyle("borderColor-current-color", "backgroundColor", sColor);
+                            //YAHOO.util.Dom.get("borderColor-current-color").innerHTML = "Current color is " + sColor;
+
+                            // Set value of assigned text field
+                            YAHOO.util.Dom.get("borderColor").value = sColorShort;
+
+                        });
+
+
+
+                        // Remove this event listener so that this code runs only once
+                        this.unsubscribe("option", onButtonOption);
+                    }
+
+                    /*
+                    * Init label background color
+                    */
+
+                    YAHOO.util.Dom.setStyle("borderColor-current-color", "backgroundColor", "#FFFFFF");
+                    //YAHOO.util.Dom.get("borderColor-current-color").innerHTML = "Current color is " + "#FFFFFF";
+
+
+                    /*
+                        Add a listener for the "option" event.  This listener will be
+                        used to defer the creation the ColorPicker instance until the
+                        first time the Button's Menu instance is requested to be displayed
+                        by the user.
+                    */
+
+                    oButton.on("option", onButtonOption);
+
+                });
+
+                function colorchanged(e) {
+                    if ((this.value) && (this.value.length == 6))
+                    {
+                        this.value = this.value.toUpperCase();
+                        YAHOO.util.Dom.setStyle("current-color", "backgroundColor", '#' + this.value);
+                    }
+                }
+                YAHOO.util.Event.addListener("borderColor", "change", colorchanged);
+            </script>
+            <style type="text/css">
+                <!--
+
+                #borderColor-color-picker-container .yui-picker-controls,
+                #borderColor-color-picker-container .yui-picker-swatch,
+                #borderColor-color-picker-container .yui-picker-websafe-swatch {
+
+                    display: none;
+
+                }
+
+                #borderColor-color-picker-menu .bd {
+
+                    width: 220px;
+                    height: 190px;
+
+                }
+
+                -->
+            </style>
+
+
+            <div class="yui-skin-sam form-inline">
+                <input type="text" class="form-control" id="borderColor" size="15" maxlength="21" name="borderColor" value="{borderColor}" />
+                <span style="vertical-align:bottom;" id="borderColor-bc"></span>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_enableRightClick">
+        <label  for="enableRightClick"  class="col-sm-3 control-label">{txt_enableRightClick}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="enableRightClick" {immutable_enableRightClick_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Enable Right Click" onclick="il.Form.showSubForm('subform_enableRightClick','il_prop_cont_enableRightClick', this);" type="checkbox" id="enableRightClick" name="enableRightClick"  {enableRightClick_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_enableLabelDrags">
+        <label  for="enableLabelDrags"  class="col-sm-3 control-label">{txt_enableLabelDrags}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="enableLabelDrags" {immutable_enableLabelDrags_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Enable Label Drags" onclick="il.Form.showSubForm('subform_enableLabelDrags','il_prop_cont_enableLabelDrags', this);" type="checkbox" id="enableLabelDrags" name="enableLabelDrags"  {enableLabelDrags_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showZoomButtons">
+        <label  for="showZoomButtons"  class="col-sm-3 control-label">{txt_showZoomButtons}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showZoomButtons" {immutable_showZoomButtons_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Zoom Buttons" onclick="il.Form.showSubForm('subform_showZoomButtons','il_prop_cont_showZoomButtons', this);" type="checkbox" id="showZoomButtons" name="showZoomButtons"  {showZoomButtons_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_errorDialogsActive">
+        <label  for="errorDialogsActive"  class="col-sm-3 control-label">{txt_errorDialogsActive}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="errorDialogsActive" {immutable_errorDialogsActive_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Error Dialogs" onclick="il.Form.showSubForm('subform_errorDialogsActive','il_prop_cont_errorDialogsActive', this);" type="checkbox" id="errorDialogsActive" name="errorDialogsActive"  {errorDialogsActive_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showMenuBar">
+        <label  for="showMenuBar"  class="col-sm-3 control-label">{txt_showMenuBar}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showMenuBar" {immutable_showMenuBar_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Menu Bar / Undo Button" onclick="il.Form.showSubForm('subform_showMenuBar','il_prop_cont_showMenuBar', this);" type="checkbox" id="showMenuBar" name="showMenuBar"  {showMenuBar_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showToolBar">
+        <label  for="showToolBar"  class="col-sm-3 control-label">{txt_showToolBar}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showToolBar" {immutable_showToolBar_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Tool Bar" onclick="il.Form.showSubForm('subform_showToolBar','il_prop_cont_showToolBar', this);" type="checkbox" id="showToolBar" name="showToolBar"  {showToolBar_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showToolBarHelp">
+        <label  for="showToolBarHelp"  class="col-sm-3 control-label">{txt_showToolBarHelp}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showToolBarHelp" {immutable_showToolBarHelp_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Tool Bar Help" onclick="il.Form.showSubForm('subform_showToolBarHelp','il_prop_cont_showToolBarHelp', this);" type="checkbox" id="showToolBarHelp" name="showToolBarHelp"  {showToolBarHelp_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showAlgebraInput">
+        <label  for="showAlgebraInput"  class="col-sm-3 control-label">{txt_showAlgebraInput}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showAlgebraInput" {immutable_showAlgebraInput_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Algebra Input" onclick="il.Form.showSubForm('subform_showAlgebraInput','il_prop_cont_showAlgebraInput', this);" type="checkbox" id="showAlgebraInput" name="showAlgebraInput"  {showAlgebraInput_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_language">
+        <label  for="language"  class="col-sm-3 control-label">{txt_language}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="language" {immutable_language_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <input aria-label="Language" class="form-control"  type="text"  id="language"  maxlength="200" name="language" value="{language}"   />
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_allowStyleBar">
+        <label  for="allowStyleBar"  class="col-sm-3 control-label">{txt_allowStyleBar}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="allowStyleBar" {immutable_allowStyleBar_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Style Bar" onclick="il.Form.showSubForm('subform_allowStyleBar','il_prop_cont_allowStyleBar', this);" type="checkbox" id="allowStyleBar" name="allowStyleBar"  {allowStyleBar_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_useBrowserForJS">
+        <label  for="useBrowserForJS"  class="col-sm-3 control-label">{txt_useBrowserForJS}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="useBrowserForJS" {immutable_useBrowserForJS_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Use Browser For JS" onclick="il.Form.showSubForm('subform_useBrowserForJS','il_prop_cont_useBrowserForJS', this);" type="checkbox" id="useBrowserForJS" name="useBrowserForJS"  {useBrowserForJS_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showLogging">
+        <label  for="showLogging"  class="col-sm-3 control-label">{txt_showLogging}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showLogging" {immutable_showLogging_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Logging" onclick="il.Form.showSubForm('subform_showLogging','il_prop_cont_showLogging', this);" type="checkbox" id="showLogging" name="showLogging"  {showLogging_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_capturingThreshold">
+        <label  for="capturingThreshold"  class="col-sm-3 control-label">{txt_capturingThreshold}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="capturingThreshold" {immutable_capturingThreshold_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="form-inline">
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="capturingThreshold" maxlength="200" name="capturingThreshold" value="{capturingThreshold}"   />
+                <div class="help-block"></div>
+                <!--
+                <script language="JavaScript" type="text/javascript">
+                il.Form.initNumericCheck("capturingThreshold", "");
+                </script>
+                -->
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_enable3d">
+        <label  for="enable3d"  class="col-sm-3 control-label">{txt_enable3d}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="enable3d" {immutable_enable3d_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Enable 3D" onclick="il.Form.showSubForm('subform_enable3d','il_prop_cont_enable3d', this);" type="checkbox" id="enable3d" name="enable3d"  disabled="disabled" checked="checked" />
+                    &nbsp;</label>
+            </div>
+            <div class="help-block">Always active</div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_enableCAS">
+        <label  for="enableCAS"  class="col-sm-3 control-label">{txt_enableCAS}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="enableCAS" {immutable_enableCAS_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Enable CAS" onclick="il.Form.showSubForm('subform_enableCAS','il_prop_cont_enableCAS', this);" type="checkbox" id="enableCAS" name="enableCAS"  disabled="disabled" checked="checked" />
+                    &nbsp;</label>
+            </div>
+            <div class="help-block">Always active</div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_algebraInputPosition">
+        <label  for="algebraInputPosition"  class="col-sm-3 control-label">{txt_algebraInputPosition}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="algebraInputPosition" {immutable_algebraInputPosition_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <input aria-label="Algebra Input Position" class="form-control"  type="text"  id="algebraInputPosition"  maxlength="200" name="algebraInputPosition" value="algebraInputPosition"  />
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_preventFocus">
+        <label  for="preventFocus"  class="col-sm-3 control-label">{txt_preventFocus}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="preventFocus" {immutable_preventFocus_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Prevent Focus" onclick="il.Form.showSubForm('subform_preventFocus','il_prop_cont_preventFocus', this);" type="checkbox" id="preventFocus" name="preventFocus"  {preventFocus_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_autoHeight">
+        <label  for="autoHeight"  class="col-sm-3 control-label">{txt_autoHeight}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="autoHeight" {immutable_autoHeight_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Auto Height" onclick="il.Form.showSubForm('subform_autoHeight','il_prop_cont_autoHeight', this);" type="checkbox" id="autoHeight" name="autoHeight"  {autoHeight_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_allowUpscale">
+        <label  for="allowUpscale"  class="col-sm-3 control-label">{txt_allowUpscale}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="allowUpscale" {immutable_allowUpscale_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Allow Upscale" onclick="il.Form.showSubForm('subform_allowUpscale','il_prop_cont_allowUpscale', this);" type="checkbox" id="allowUpscale" name="allowUpscale"  {allowUpscale_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_playButton">
+        <label  for="playButton"  class="col-sm-3 control-label">{txt_playButton}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="playButton" {immutable_playButton_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Play Button" onclick="il.Form.showSubForm('subform_playButton','il_prop_cont_playButton', this);" type="checkbox" id="playButton" name="playButton"  {playButton_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_scale">
+        <label  for="scale"  class="col-sm-3 control-label">{txt_scale}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="scale" {immutable_scale_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="form-inline">
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="scale" maxlength="200" name="scale" value="{scale}"   />
+                <div class="help-block"></div>
+                <!--
+                <script language="JavaScript" type="text/javascript">
+                il.Form.initNumericCheck("scale", "");
+                </script>
+                -->
+            </div>
+            <div class="help-block">Only downscaling is currently supported.</div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showAnimationButton">
+        <label  for="showAnimationButton"  class="col-sm-3 control-label">{txt_showAnimationButton}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showAnimationButton" {immutable_showAnimationButton_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Animation Button" onclick="il.Form.showSubForm('subform_showAnimationButton','il_prop_cont_showAnimationButton', this);" type="checkbox" id="showAnimationButton" name="showAnimationButton"  {showAnimationButton_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showFullscreenButton">
+        <label  for="showFullscreenButton"  class="col-sm-3 control-label">{txt_showFullscreenButton}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showFullscreenButton" {immutable_showFullscreenButton_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Fullscreen Button" onclick="il.Form.showSubForm('subform_showFullscreenButton','il_prop_cont_showFullscreenButton', this);" type="checkbox" id="showFullscreenButton" name="showFullscreenButton"  {showFullscreenButton_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showSuggestionButtons">
+        <label  for="showSuggestionButtons"  class="col-sm-3 control-label">{txt_showSuggestionButtons}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showSuggestionButtons" {immutable_showSuggestionButtons_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Suggestion Buttons" onclick="il.Form.showSubForm('subform_showSuggestionButtons','il_prop_cont_showSuggestionButtons', this);" type="checkbox" id="showSuggestionButtons" name="showSuggestionButtons"  {showSuggestionButtons_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_showStartTooltip">
+        <label  for="showStartTooltip"  class="col-sm-3 control-label">{txt_showStartTooltip}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="showStartTooltip" {immutable_showStartTooltip_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Show Start Tooltip" onclick="il.Form.showSubForm('subform_showStartTooltip','il_prop_cont_showStartTooltip', this);" type="checkbox" id="showStartTooltip" name="showStartTooltip"  {showStartTooltip_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_rounding">
+        <label  for="rounding"  class="col-sm-3 control-label">{txt_rounding}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="rounding" {immutable_rounding_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <input aria-label="Show Rounding" class="form-control"  type="text"  id="rounding"  maxlength="200" name="rounding" value="{rounding}"   />
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_buttonShadows">
+        <label  for="buttonShadows"  class="col-sm-3 control-label">{txt_buttonShadows}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="buttonShadows" {immutable_buttonShadows_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input aria-label="Button Shadows" onclick="il.Form.showSubForm('subform_buttonShadows','il_prop_cont_buttonShadows', this);" type="checkbox" id="buttonShadows" name="buttonShadows"  {buttonShadows_checked} />
+                    &nbsp;</label>
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="form-group" id="il_prop_cont_buttonRounding">
+        <label  for="buttonRounding"  class="col-sm-3 control-label">{txt_buttonRounding}</label>
+        <div class="col-sm-1">
+            <div class="checkbox">
+            <label class="checkbox-inline">
+            <input type="checkbox" name="immutable[]" value="buttonRounding" {immutable_buttonRounding_checked}  />
+        </label></div></div>
+        <div class="col-sm-8">
+            <div class="form-inline">
+                <input style="text-align:right;" class="form-control" type="text" size="40" id="buttonRounding" maxlength="200" name="buttonRounding" value="{buttonRounding}"   />
+                <div class="help-block"></div>
+                <!--
+                <script language="JavaScript" type="text/javascript">
+                il.Form.initNumericCheck("buttonRounding", "");
+                </script>
+                -->
+            </div>
+        </div>
+    </div> <!-- end of ilFormRow -->
+    <!-- <script type="text/javascript">
+    $(function() {
+        il.Form.initItem('', );
+    });
+    </script> -->
+    <div class="ilFormFooter clearfix">
+        <div class="col-sm-6 ilFormRequired">
+
+
+            &nbsp;</div>
+        <div class="col-sm-6 ilFormCmds">
+
+            <input class="btn btn-default btn-sm" type="submit" name="cmd[updateConfigure]" value="{save}"  />
+
+        </div>
+    </div>
+</form>

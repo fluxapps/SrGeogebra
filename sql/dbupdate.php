@@ -34,6 +34,15 @@ $result = $ilDB->query("SELECT page_id, parent_id, content FROM page_object");
 $resultAssoc = $ilDB->fetchAll($result);
 
 foreach ($resultAssoc as $entry) {
+    libxml_use_internal_errors(true);
+    $doc = new DOMDocument('1.0', 'utf-8');
+    $doc->loadXML($entry["content"]);
+    $errors = libxml_get_errors();
+
+    if (!empty($errors)) {
+        continue;
+    }
+
     $xml = new SimpleXMLElement($entry["content"]);
 
     if (!isset($xml->PageContent->Plugged)) {

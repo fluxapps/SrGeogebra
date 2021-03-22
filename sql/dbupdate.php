@@ -45,12 +45,28 @@ foreach ($resultAssoc as $entry) {
 
     $xml = new SimpleXMLElement($entry["content"]);
 
-    if (!isset($xml->PageContent->Plugged)) {
+    $ggb_found = false;
+    $valid_page_element = null;
+
+    if (!isset($xml->PageContent)) {
+        continue;
+    } else {
+        foreach ($xml->PageContent as $page_element) {
+            if (isset($page_element->Plugged)) {
+                if ((string) $page_element->Plugged["PluginName"] === "SrGeogebra") {
+                    $valid_page_element = $page_element;
+                    $ggb_found = true;
+                }
+            }
+        }
+    }
+
+    if (!$ggb_found) {
         continue;
     }
 
-    $plugin_name = (string) $xml->PageContent->Plugged->attributes()->PluginName;
-    $file_names = $xml->PageContent->Plugged->xpath("//PluggedProperty[@Name='fileName']");
+    $plugin_name = (string) $valid_page_element->Plugged->attributes()->PluginName;
+    $file_names = $valid_page_element->Plugged->xpath("//PluggedProperty[@Name='fileName']");
 
     if (!is_null($plugin_name) && !empty($plugin_name) && $plugin_name === "SrGeogebra") {
         $page_id = $entry["page_id"];

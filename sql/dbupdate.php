@@ -26,6 +26,32 @@ Repository::getInstance()->setValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE
 <#5>
 <?php
 use srag\Plugins\SrGeogebra\Upload\UploadService;
+
+function is_ggb_xml_element($element, $loop_num, &$valid_page_element, &$ggb_found) {
+    $max_loops = 6;
+    if ($loop_num > $max_loops) {
+        return false;
+    }
+
+    if (isset($element->Plugged) && (string)$element->Plugged["PluginName"] === "SrGeogebra") {
+        $valid_page_element = $element;
+        $ggb_found = true;
+        return true;
+    } else {
+        $children = $element->children();
+
+        foreach ($children as $child) {
+            $result = is_ggb_xml_element($child, $loop_num + 1, $valid_page_element, $ggb_found);
+            if ($result === false) {
+                continue;
+            } else {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 global $DIC;
 $ilDB = $DIC['ilDB'];
 
@@ -52,12 +78,7 @@ foreach ($resultAssoc as $entry) {
         continue;
     } else {
         foreach ($xml->PageContent as $page_element) {
-            if (isset($page_element->Plugged)) {
-                if ((string) $page_element->Plugged["PluginName"] === "SrGeogebra") {
-                    $valid_page_element = $page_element;
-                    $ggb_found = true;
-                }
-            }
+            is_ggb_xml_element($page_element, 1, $valid_page_element, $ggb_found);
         }
     }
 

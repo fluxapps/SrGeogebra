@@ -28,7 +28,7 @@ Repository::getInstance()->setValue(ConfigAdvancedGeogebraFormGUI::KEY_IMMUTABLE
 use srag\Plugins\SrGeogebra\Upload\UploadService;
 
 function is_ggb_xml_element($element, $loop_num, &$valid_page_element, &$ggb_found) {
-    $max_loops = 6;
+    $max_loops = 20;
     if ($loop_num > $max_loops) {
         return false;
     }

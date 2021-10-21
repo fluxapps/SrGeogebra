@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.0]
+- ILIAS 7 support
+
 ## [1.1.2]
 - Fix migration nesting bug
 

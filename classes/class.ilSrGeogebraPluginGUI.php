@@ -440,7 +440,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             $tpl = $template = self::plugin()->template("tpl.geogebra.html");
             $tpl->setVariable("ID", $id);
 
-            $tpl->setVariable("URL", filter_input(INPUT_SERVER, "REQUEST_URI") . '&iframe=' . $id);
+            $tpl->setVariable("URL", $_SERVER["REQUEST_URI"] . '&iframe=' . $id);
 
             $tpl->setVariable("SCALE_WRAPPER_HEIGHT", $scale_height);
 

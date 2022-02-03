@@ -12,7 +12,7 @@ class UploadService
     const FILE_SUFFIX = "ggb";
 
 
-    public function handleUpload($form, $file_name) {
+    public function handleUpload($form, $file_name, $page_id, $parent_id) {
         global $DIC;
 
         $upload = $DIC->upload();
@@ -32,7 +32,7 @@ class UploadService
             return $form->getHTML();
         }
 
-        $file_name = $this->evaluateFileName($file_name);
+        $file_name = self::evaluateFileName($file_name, $page_id, $parent_id);
 
         $upload->moveOneFileTo(
             $uploadResult,
@@ -59,12 +59,13 @@ class UploadService
     }
 
 
-    public function evaluateFileName($file_name, $inc = null) {
+    public static function evaluateFileName($file_name, $page_id, $parent_id, $inc = null) {
         global $DIC;
 
         $legacyFileName = $file_name;
 
         $file_name = rtrim($file_name, ".ggb");
+        $file_name = sprintf("obj_%s/page_%s/%s", $parent_id, $page_id, $file_name);
         $file_name_extra = is_null($inc) ? "" : sprintf("_%s", $inc);
         $file_name .= $file_name_extra . ".ggb";
         $path = sprintf("%s/%s", self::DATA_FOLDER, $file_name);
@@ -78,7 +79,7 @@ class UploadService
         // Calculate increment
         $inc = is_null($inc) ? 2 : $inc + 1;
 
-        return $this->evaluateFileName($legacyFileName, $inc);
+        return self::evaluateFileName($legacyFileName, $page_id, $parent_id, $inc);
     }
 
 }

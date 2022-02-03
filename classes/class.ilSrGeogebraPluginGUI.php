@@ -124,6 +124,8 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      */
     public function create()/*:void*/
     {
+        $parent_id = ilObject::_lookupObjectId(filter_input(INPUT_GET, "ref_id"));
+        $page_id = filter_input(INPUT_GET, "obj_id");
         $form = $this->getForm();
         $form->setValuesByPost();
 
@@ -139,12 +141,12 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
             return;
         }
 
-        $file_name = $this->uploader->handleUpload($form, $_FILES["file"]["name"]);
+        $file_name = $this->uploader->handleUpload($form, $_FILES["file"]["name"], $page_id, $parent_id);
 
         $properties = [
             "title" => $_POST["title"],
             "legacyFileName" => $file_name,
-            "fileName"       => $file_name
+            "fileName"       => $file_name,
         ];
 
         $properties = $this->mergeCustomSettings($properties);
@@ -224,6 +226,8 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
      */
     public function update()/*:void*/
     {
+        $parent_id = ilObject::_lookupObjectId(filter_input(INPUT_GET, "ref_id"));
+        $page_id = filter_input(INPUT_GET, "obj_id");
         $properties = $this->getProperties();
         $form = $this->getForm($properties);
         $form->setValuesByPost();
@@ -241,7 +245,7 @@ class ilSrGeogebraPluginGUI extends ilPageComponentPluginGUI
                 return;
             }
 
-            $fileName = $this->uploader->handleUpload($form, $_FILES["file"]["name"]);
+            $fileName = $this->uploader->handleUpload($form, $_FILES["file"]["name"], $page_id, $parent_id);
 
             $properties["legacyFileName"] = $fileName;
             $properties["fileName"] = $fileName;

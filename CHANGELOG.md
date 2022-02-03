@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2]
+- Fix migration nesting bug
+
+## [1.1.0]
+- Implement import/export of ILIAS learn modules
+- Implement configuration site with separate immutability column
+
 ## [1.0.0]
 - Stable version
 

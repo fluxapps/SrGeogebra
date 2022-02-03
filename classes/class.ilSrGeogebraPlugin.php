@@ -23,6 +23,7 @@ class ilSrGeogebraPlugin extends ilPageComponentPlugin
     const PLUGIN_ID = "srgg";
     const PLUGIN_NAME = "SrGeogebra";
     const PLUGIN_CLASS_NAME = self::class;
+    const DIRECTORY = "Customizing/global/plugins/Services/COPage/PageComponent/SrGeogebra";
     // Can't be in language file as languages aren't updated on a failed update
     const UPDATE_ERROR_MSG = "Update failed. Please add the file extension \"ggb\" into the ILIAS file upload whitelist. Please consult the documentation for more info.";
     /**

@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\Plugins\SrGeogebra\Config\Repository;
 use srag\Plugins\SrGeogebra\Utils\SrGeogebraTrait;
 use srag\DIC\SrGeogebra\DICTrait;
 
@@ -79,9 +80,97 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
     {
         self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
 
+        ini_set("xdebug.var_display_max_children", '-1');
+        ini_set("xdebug.var_display_max_data", '-1');
+        ini_set("xdebug.var_display_max_depth", '-1');
+
         $form = self::srGeogebra()->config()->factory()->newFormInstance($this);
 
-        self::output()->output($form);
+        $conf_rep = Repository::getInstance();
+        $fields = $conf_rep->getFields();
+
+
+        $tpl = new ilTemplate(
+            "tpl.geogebra_config.html",
+            false,
+            false,
+            ilSrGeogebraPlugin::DIRECTORY
+        );
+
+        $tpl->setVariable("FORM_ACTION", $form->getFormAction());
+
+        foreach ($fields as $key => $value) {
+            $fetched_value = $conf_rep->getValue($key);
+            if ($key === "default_alignment" || $key === "appName") {
+                $key = $key . "_" . $fetched_value;
+                $tpl->setVariable($key, "selected='selected'");
+            } else if ($key === "immutable") {
+                foreach ($fetched_value as $immutable_key) {
+                    $tpl->setVariable("immutable_" . $immutable_key . "_checked", "checked='checked'");
+                }
+            } else if ($key !== "immutable") {
+                if (is_bool($fetched_value)) {
+                    if ($fetched_value === true) {
+                        $tpl->setVariable($key . "_checked", "checked='checked'");
+                    }
+                    $fetched_value = intval($fetched_value);
+                }
+                $tpl->setVariable($key, $fetched_value);
+            }
+        }
+
+        // Inject language
+        $field_language_keys = [
+            "default_width",
+            "default_height",
+            "default_enableShiftDragZoom",
+            "default_showResetIcon",
+            "default_alignment",
+            "appName",
+            "borderColor",
+            "enableRightClick",
+            "enableLabelDrags",
+            "showZoomButtons",
+            "errorDialogsActive",
+            "showMenuBar",
+            "showToolBar",
+            "showToolBarHelp",
+            "showAlgebraInput",
+            "language",
+            "allowStyleBar",
+            "useBrowserForJS",
+            "showLogging",
+            "capturingThreshold",
+            "enable3d",
+            "enableCAS",
+            "algebraInputPosition",
+            "preventFocus",
+            "autoHeight",
+            "allowUpscale",
+            "playButton",
+            "scale",
+            "showAnimationButton",
+            "showFullscreenButton",
+            "showSuggestionButtons",
+            "showStartTooltip",
+            "rounding",
+            "buttonShadows",
+            "buttonRounding"
+        ];
+
+        $tpl->setVariable("configuration", self::plugin()->translate("configuration", self::LANG_MODULE));
+        $tpl->setVariable("header_immutable", self::plugin()->translate("header_immutable", self::LANG_MODULE));
+        $tpl->setVariable("header_value", self::plugin()->translate("header_value", self::LANG_MODULE));
+        $tpl->setVariable("save", self::plugin()->translate("save", self::LANG_MODULE));
+        $tpl->setVariable("enableCAS_info", self::plugin()->translate("enableCAS_info", self::LANG_MODULE));
+        $tpl->setVariable("enable3d_info", self::plugin()->translate("enable3d_info", self::LANG_MODULE));
+        $tpl->setVariable("scale_info", self::plugin()->translate("scale_info", self::LANG_MODULE));
+
+        foreach ($field_language_keys as $field_language_key) {
+            $tpl->setVariable("txt_" . $field_language_key, self::plugin()->translate($field_language_key, self::LANG_MODULE));
+        }
+
+        self::output()->output($tpl->get());
     }
 
 
@@ -90,18 +179,27 @@ class ilSrGeogebraConfigGUI extends ilPluginConfigGUI
      */
     protected function updateConfigure()/*: void*/
     {
+        //die(var_dump($_POST));
         self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
 
+        $conf_rep = Repository::getInstance();
         $form = self::srGeogebra()->config()->factory()->newFormInstance($this);
 
         if (!$form->storeForm()) {
-            self::output()->output($form);
+            ilUtil::sendFailure(self::plugin()->translate("configuration_failed", self::LANG_MODULE), true);
 
-            return;
+            self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE);
+        }
+
+        foreach ($form->getItems() as $item) {
+            if ($item instanceof ilCheckboxInputGUI) {
+                $conf_rep->setValue($item->getPostvar(), $item->getChecked());
+            } else {
+                $conf_rep->setValue($item->getPostvar(), $item->getValue());
+            }
         }
 
         ilUtil::sendSuccess(self::plugin()->translate("configuration_saved", self::LANG_MODULE), true);
-
         self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE);
     }
 }

@@ -1,6 +1,7 @@
 cmd_insert#:#Geogebra-Objekt einfügen
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
+config_configuration_failed#:#Konfiguration konnte nicht gespeichert werden. Versichern Sie, dass alle Eingabefelder korrekte Werte enthalten.
 config_save#:#Speichern
 form_create#:#Erstellen
 form_save#:#Speichern
@@ -52,11 +53,13 @@ config_rounding#:#Rundung
 config_buttonShadows#:#Knopfschatten anzeigen
 config_buttonRounding#:#Knopfrundung
 config_form_title_edit#:#Geogebra-Objekt erweiterte Einstellungen bearbeiten
-config_scale_info#:#Momentan wird nur die Herunterskalierung unterstützt.
-config_enable3d_info#:#Immer aktiviert, um einige unerklärliche Bugs zu vermeiden.
-config_enableCAS_info#:#Immer aktiviert, um einige unerklärliche Bugs zu vermeiden.
+config_scale_info#:#Momentan wird nur die Herunterskalierung unterstützt
+config_enable3d_info#:#Dauerhaft aktiviert
+config_enableCAS_info#:#Dauerhaft aktiviert
 config_immutable#:#Unveränderliche Felder
 config_immutable_info#:#Felder, welche zu dieser Liste hinzugefügt werden, können innerhalb von GeoGebra-Objekten nicht mehr verändert werden. Stattdessen werden alle Werte, die in dieser Konfiguration definiert werden genutzt.
+config_header_immutable#:#Fixiert
+config_header_value#:#Wert
 form_zoom#:#Zoom & Bewegen aktivieren
 form_reset#:#Neu laden aktivieren
 form_title_create#:#Geogebra-Objekt erstellen

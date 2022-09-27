@@ -1,4 +1,4 @@
-### SrGeogebra ###
+# SrGeogebra #
 
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/fluxapps/SrGeogebra?style=flat-square&color=success)
 [![GitHub issues](https://img.shields.io/github/issues/fluxapps/SrGeogebra?style=flat-square&color=yellow)](https://github.com/fluxapps/SrGeogebra/issues)
